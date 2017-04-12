@@ -3,17 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>blog of PeterSansan</title>
+  <title>斐波那契数最优解法 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/index.html">
+  <meta name="description" content="基本问题：给定整数N，返回斐波那契数列的第N项，实现时间复杂度O(logN)的解法。 解法：法一：暴力递归O(2^N) 1234567//1.递归法int Fbi(int n)&amp;#123;	if (n &amp;lt; 2)		return n == 0 ? 0 : 1;	return Fbi(n-1)+Fbi(n-2);&amp;#125; 法二：从左到右迭代法，O(N) 1234567891011121314">
+<meta name="keywords" content="算法,递归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斐波那契数最优解法">
+<meta property="og:url" content="http://petersansan.top/2017/04/12/斐波那契数最优解法/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:description" content="基本问题：给定整数N，返回斐波那契数列的第N项，实现时间复杂度O(logN)的解法。 解法：法一：暴力递归O(2^N) 1234567//1.递归法int Fbi(int n)&amp;#123;	if (n &amp;lt; 2)		return n == 0 ? 0 : 1;	return Fbi(n-1)+Fbi(n-2);&amp;#125; 法二：从左到右迭代法，O(N) 1234567891011121314">
+<meta property="og:updated_time" content="2017-04-12T14:17:32.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="斐波那契数最优解法">
+<meta name="twitter:description" content="基本问题：给定整数N，返回斐波那契数列的第N项，实现时间复杂度O(logN)的解法。 解法：法一：暴力递归O(2^N) 1234567//1.递归法int Fbi(int n)&amp;#123;	if (n &amp;lt; 2)		return n == 0 ? 0 : 1;	return Fbi(n-1)+Fbi(n-2);&amp;#125; 法二：从左到右迭代法，O(N) 1234567891011121314">
   
     <link rel="alternate" href="/atom.xml" title="blog of PeterSansan" type="application/atom+xml">
   
@@ -66,9 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-斐波那契数最优解法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-斐波那契数最优解法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/12/斐波那契数最优解法/" class="article-date">
   <time datetime="2017-04-12T14:15:29.000Z" itemprop="datePublished">2017-04-12</time>
@@ -85,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/斐波那契数最优解法/">斐波那契数最优解法</a>
+    <h1 class="article-title" itemprop="name">
+      斐波那契数最优解法
     </h1>
   
 
@@ -122,154 +122,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/12/hello-world/" class="article-date">
-  <time datetime="2017-04-12T11:22:07.273Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/hello-world/">Hexo常用指令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<h3 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
-<h3 id="新建一个页面"><a href="#新建一个页面" class="headerlink" title="新建一个页面"></a>新建一个页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo nex page newname</div></pre></td></tr></table></figure>
-<h3 id="运行本地预览服务器"><a href="#运行本地预览服务器" class="headerlink" title="运行本地预览服务器"></a>运行本地预览服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<h3 id="生成静态网页"><a href="#生成静态网页" class="headerlink" title="生成静态网页"></a>生成静态网页</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<h3 id="发布远程站点"><a href="#发布远程站点" class="headerlink" title="发布远程站点"></a>发布远程站点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>更多参考请看: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">hexo官方文档</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/12/hello-world/" data-id="cj1f28r3y000067ife4qzm858" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-贪心算法思想入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/12/贪心算法思想入门/" class="article-date">
-  <time datetime="2017-04-12T09:44:56.000Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/算法/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          Hexo常用指令
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/贪心算法思想入门/">贪心算法思想入门</a>
-    </h1>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、基本概念："><a href="#一、基本概念：" class="headerlink" title="一、基本概念："></a>一、基本概念：</h2><p>所谓贪心算法是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的仅是在某种意义上的局部最优解。</p>
-<p>贪心算法没有固定的算法框架，算法设计的关键是贪心策略的选择。必须注意的是，贪心算法不是对所有问题都能得到整体最优解，选择的贪心策略必须具备无后效性，即某个状态以后的过程不会影响以前的状态，只与当前状态有关。</p>
-<p>所以对所采用的贪心策略一定要仔细分析其是否满足无后效性。</p>
-<h2 id="二、贪心算法的基本思路："><a href="#二、贪心算法的基本思路：" class="headerlink" title="二、贪心算法的基本思路："></a>二、贪心算法的基本思路：</h2><ul>
-<li>1.建立数学模型来描述问题。</li>
-<li>2.把求解的问题分成若干个子问题。</li>
-<li>3.对每一子问题求解，得到子问题的局部最优解。</li>
-<li>4.把子问题的解局部最优解合成原来解问题的一个解。</li>
-</ul>
-<h2 id="三、贪心算法适用的问题"><a href="#三、贪心算法适用的问题" class="headerlink" title="三、贪心算法适用的问题"></a>三、贪心算法适用的问题</h2><p>贪心策略适用的前提是：局部最优策略能导致产生全局最优解。</p>
-<p>实际上，贪心算法适用的情况很少。一般，对一个问题分析是否适用于贪心算法，可以先选择该问题下的几个实际数据进行分析，就可做出判断。</p>
-<h2 id="四、贪心算法的实现框架"><a href="#四、贪心算法的实现框架" class="headerlink" title="四、贪心算法的实现框架"></a>四、贪心算法的实现框架</h2><p>从问题的某一初始解出发；<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> （能朝给定总目标前进一步）</div><div class="line">    &#123; </div><div class="line">          利用可行的决策，求出可行解的一个解元素；</div><div class="line">    &#125;</div><div class="line">    由所有解元素组合成问题的一个可行解；</div></pre></td></tr></table></figure></p>
-<h2 id="五、贪心策略的选择"><a href="#五、贪心策略的选择" class="headerlink" title="五、贪心策略的选择"></a>五、贪心策略的选择</h2><p>因为用贪心算法只能通过解局部最优解的策略来达到全局最优解，因此，一定要注意判断问题是否适合采用贪心算法策略，找到的解是否一定是问题的最优解。</p>
-<h2 id="六、经典贪心问题"><a href="#六、经典贪心问题" class="headerlink" title="六、经典贪心问题"></a>六、经典贪心问题</h2><ol>
-<li><p><strong>最优装载问题</strong>  ：给定$n$个物体，第$i$个物体重量为$w_i$。选择尽量多的物体，使得总重量不超过$C$。</p>
-</li>
-<li><p><strong>部分背包问题</strong> ：有$n$个物体的重量为$w_i$，价值为$v_i$。在总重量不超过$C$的情况下让总价值尽量高。每一个物体都可以只取一部分，价值和重量按比例计算。</p>
-</li>
-<li><p><strong>乘船问题</strong> ：有$n$个人，第$i$个人重量为$w_i$。每艘般的最大载重量均为$C$，且最多只能乘两个人。用最少的船装载所有人。</p>
-</li>
-<li><p><strong>选择不相交区间</strong> ：数轴上有$n$个开区间$(a_i,b_i)$。选择尽量多个区间，使得这些区间两两没有公共点。</p>
-</li>
-<li><p><strong>区间选点问题</strong>  ：数轴上有$n$个闭区间$[a_i,b_i]$。取尽量少的点，使得每个区间内都至少有一个点（不同区间内含的点可以不同一个。）</p>
-</li>
-<li><p><strong>区间覆盖问题</strong> ：数轴上有$n$个闭区间$[a_i,b_i]$，选择尽量少的区间覆盖一条指定线段$[s,t]$</p>
-</li>
-<li><p><strong>Huffman编码</strong>  ：假设某文件中只有6种字符：a,b,c,d,e,f,可以用3个二进制位来表示它们，如下表</p>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">字符</th>
-<th style="text-align:center">a</th>
-<th style="text-align:center">b</th>
-<th style="text-align:center">c</th>
-<th style="text-align:center">d</th>
-<th style="text-align:center">e</th>
-<th style="text-align:center">f</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">频率</td>
-<td style="text-align:center">45</td>
-<td style="text-align:center">13</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">16</td>
-<td style="text-align:center">9</td>
-<td style="text-align:center">5</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/12/贪心算法思想入门/" data-id="cj1f28r4b000467ifrt0mn7mi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
