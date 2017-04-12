@@ -68,6 +68,42 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-常见LaTex命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/12/常见LaTex命令/" class="article-date">
+  <time datetime="2017-04-12T14:40:23.000Z" itemprop="datePublished">2017-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/常见LaTex命令/">常见LaTex命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://petersansan.top/2017/04/12/常见LaTex命令/" data-id="cj1f3e6yf0001a3if4mhji5gw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-斐波那契数最优解法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/12/斐波那契数最优解法/" class="article-date">
@@ -111,12 +147,14 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">初始化tmp;</div><div class="line"><span class="keyword">for</span>(p不等于<span class="number">0</span>;p右移<span class="number">1</span>位)</div><div class="line">  	<span class="keyword">if</span>(p与<span class="number">1</span>相与不等于<span class="number">0</span>)</div><div class="line">    	res等于res与tmp相乘;</div><div class="line">  	<span class="keyword">else</span> </div><div class="line">    	res等于res与res相乘; </div><div class="line">返回res;</div></pre></td></tr></table></figure>
 <p>因此最后的斐波那契数列第N项的全部代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fbi_c</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span>(n&lt;<span class="number">1</span>)</div><div class="line">    	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)</div><div class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> base[<span class="number">2</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;&#125;;</div><div class="line">    <span class="keyword">int</span> res[<span class="number">2</span>][<span class="number">2</span>] = matrixPower(base,n<span class="number">-2</span>);	<span class="comment">//矩阵的次方运算</span></div><div class="line">    <span class="keyword">return</span> res[<span class="number">0</span>][<span class="number">0</span>]+res[<span class="number">1</span>][<span class="number">0</span>]; 	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="相近问题："><a href="#相近问题：" class="headerlink" title="相近问题："></a>相近问题：</h3><p>1、给定整数N，代表台阶数，一次可以跨2个或者1个台阶，返回有多少种走法。(二阶递推数列)</p>
+<p>2、假设农场中成熟的母牛每年只会生1头小母牛，并且并不会死。第一年农场有1只成熟的母牛，从第二年开始，母牛开始生小母牛。每只小母牛3年之后成熟又可以生小母牛。给定整数N，求出N年后牛的数量。(三阶递推数列)</p>
 <h3 id="参考来源："><a href="#参考来源：" class="headerlink" title="参考来源："></a>参考来源：</h3><p>1.《程序员代码面试指南IT名企算法与数据结构题目最优解-左程云》</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/12/斐波那契数最优解法/" data-id="cj1f28r43000167ifa2g7r0d1" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/12/斐波那契数最优解法/" data-id="cj1f3e6yl0004a3ifursybrc7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归/">递归</a></li></ul>
@@ -165,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/12/hello-world/" data-id="cj1f28r3y000067ife4qzm858" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/12/hello-world/" data-id="cj1f3e6y90000a3ifkgoqdpph" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -260,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/12/贪心算法思想入门/" data-id="cj1f28r4b000467ifrt0mn7mi" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/12/贪心算法思想入门/" data-id="cj1f3e6ym0005a3ifnjsj4a7x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -321,6 +359,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/12/常见LaTex命令/">常见LaTex命令</a>
+          </li>
         
           <li>
             <a href="/2017/04/12/斐波那契数最优解法/">斐波那契数最优解法</a>
