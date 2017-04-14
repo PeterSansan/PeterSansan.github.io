@@ -3,17 +3,23 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>blog of PeterSansan</title>
+  <title>ubuntu配置Apache网页认证 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/index.html">
+  <meta name="description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+<meta name="keywords" content="ubuntu,服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu配置Apache网页认证">
+<meta property="og:url" content="http://petersansan.top/2017/04/14/ubuntu配置Apache网页认证/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim">
+<meta property="og:updated_time" content="2017-04-14T16:01:53.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="ubuntu配置Apache网页认证">
+<meta name="twitter:description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
   
     <link rel="alternate" href="/atom.xml" title="blog of PeterSansan" type="application/atom+xml">
   
@@ -66,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-ubuntu配置Apache网页认证" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-ubuntu配置Apache网页认证" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/14/ubuntu配置Apache网页认证/" class="article-date">
   <time datetime="2017-04-14T15:58:24.000Z" itemprop="datePublished">2017-04-14</time>
@@ -85,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/ubuntu配置Apache网页认证/">ubuntu配置Apache网页认证</a>
+    <h1 class="article-title" itemprop="name">
+      ubuntu配置Apache网页认证
     </h1>
   
 
@@ -120,195 +124,24 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-自然语言处理任务综述" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/14/自然语言处理任务综述/" class="article-date">
-  <time datetime="2017-04-14T02:55:11.000Z" itemprop="datePublished">2017-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/14/自然语言处理任务综述/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/自然语言处理任务综述/">自然语言处理任务综述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+          自然语言处理任务综述
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/14/自然语言处理任务综述/" data-id="cj1i0uqxf000fjwifhkhdsxy1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
-
-  
-    <article id="post-序列标注——深度学习的来访" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/14/序列标注——深度学习的来访/" class="article-date">
-  <time datetime="2017-04-14T02:54:29.000Z" itemprop="datePublished">2017-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/序列标注——深度学习的来访/">序列标注——深度学习的来访</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/14/序列标注——深度学习的来访/" data-id="cj1i0uqx20006jwifs9xpo0r7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-序列标注——从中文分词说起" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/14/序列标注——从中文分词说起/" class="article-date">
-  <time datetime="2017-04-14T02:53:43.000Z" itemprop="datePublished">2017-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/序列标注——从中文分词说起/">序列标注——从中文分词说起</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/14/序列标注——从中文分词说起/" data-id="cj1i0uqwy0005jwifzngbi1xz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-概率图模型介绍" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/14/概率图模型介绍/" class="article-date">
-  <time datetime="2017-04-14T02:49:53.000Z" itemprop="datePublished">2017-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/概率图模型介绍/">概率图模型介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/14/概率图模型介绍/" data-id="cj1i0uqxa000cjwifeinijmbp" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-自然语言处理序列标注问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/13/自然语言处理序列标注问题/" class="article-date">
-  <time datetime="2017-04-13T02:27:38.000Z" itemprop="datePublished">2017-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/13/自然语言处理序列标注问题/">自然语言处理序列标注问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/13/自然语言处理序列标注问题/" data-id="cj1i0uqxg000gjwif9w7mq6fh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
