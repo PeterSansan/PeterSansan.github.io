@@ -5,20 +5,20 @@
   
   <title>ubuntu配置Apache网页认证 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+  <meta name="description" content="1、目的：浏览器网页登入认证">
 <meta name="keywords" content="ubuntu,服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu配置Apache网页认证">
 <meta property="og:url" content="http://petersansan.top/2017/04/14/ubuntu配置Apache网页认证/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+<meta property="og:description" content="1、目的：浏览器网页登入认证">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim">
-<meta property="og:updated_time" content="2017-04-14T16:01:53.980Z">
+<meta property="og:updated_time" content="2017-04-14T16:04:40.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu配置Apache网页认证">
-<meta name="twitter:description" content="1、目的：浏览器网页登入认证 Ubuntu上安装Apache2做web服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在/var/www/html/中。主机因配有静态IP，其他电脑直接访问地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用PHP等脚本在后台做认证，这种方式应该也行。不过转念一想，能在Apache上做配置">
+<meta name="twitter:description" content="1、目的：浏览器网页登入认证">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
   
     <link rel="alternate" href="/atom.xml" title="blog of PeterSansan" type="application/atom+xml">
@@ -79,7 +79,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>
   </div>
 
   </div>
@@ -99,6 +99,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1、目的：浏览器网页登入认证"><a href="#1、目的：浏览器网页登入认证" class="headerlink" title="1、目的：浏览器网页登入认证"></a>1、目的：浏览器网页登入认证</h3><p><img src="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim" alt="net"></p>
+<a id="more"></a>
 <p><code>Ubuntu</code>上安装<code>Apache2</code>做<code>web</code>服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在<code>/var/www/html/中</code>。主机因配有静态<code>IP</code>，其他电脑直接访问<code>地址</code>就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用<code>PHP</code>等脚本在后台做认证，这种方式应该也行。不过转念一想，能在<code>Apache</code>上做配置，会更加方便。</p>
 <h3 id="2、配置过程"><a href="#2、配置过程" class="headerlink" title="2、配置过程"></a>2、配置过程</h3><p>参考了网上好多的教程都是配置<code>/etc/httpd/httpd.conf</code>，我愣是找不到:anguished:。查了另外一些说是<code>/etc/apache2/</code>下面的一些配置文件，但也没有统一的。通过不断的试错，终于调试成功啦:v:。</p>
 <h4 id="1、配置apache2-conf文件"><a href="#1、配置apache2-conf文件" class="headerlink" title="1、配置apache2.conf文件"></a>1、配置<code>apache2.conf</code>文件</h4><p>打开<code>/etc/apache2/apache2.conf</code>文件，要用<code>sudo</code>命令，如<code>sudo vim /etc/apache2/apache2.conf</code>，定位到如下位置并修改：</p>
@@ -150,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
     </div>
   </div>
 
