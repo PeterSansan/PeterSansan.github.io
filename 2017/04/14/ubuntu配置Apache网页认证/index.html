@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim">
-<meta property="og:updated_time" content="2017-04-14T16:07:37.712Z">
+<meta property="og:updated_time" content="2017-04-14T16:09:57.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu配置Apache网页认证">
 <meta name="twitter:description" content="1、目的：浏览器网页登入认证">
@@ -100,7 +100,7 @@
       
         <h3 id="1、目的：浏览器网页登入认证"><a href="#1、目的：浏览器网页登入认证" class="headerlink" title="1、目的：浏览器网页登入认证"></a>1、目的：浏览器网页登入认证</h3><p><img src="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim" alt="登录验证图"></p>
 <a id="more"></a>
-<p><code>Ubuntu</code>上安装<code>Apache2</code>做<code>web</code>服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在<code>/var/www/html/中</code>。主机因配有静态<code>IP</code>，其他电脑直接访问<code>地址</code>就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用<code>PHP</code>等脚本在后台做认证，这种方式应该也行。不过转念一想，能在<code>Apache</code>上做配置，会更加方便。</p>
+<p><code>Ubuntu</code>上安装<code>Apache2</code>做<code>web</code>服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在<code>/var/www/html/中</code>。主机因配有静态<code>IP</code>，其他电脑直接访问<code>IP</code>地址就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用<code>PHP</code>等脚本在后台做认证，这种方式应该也行。不过转念一想，能在<code>Apache</code>上做配置，会更加方便。</p>
 <h3 id="2、配置过程"><a href="#2、配置过程" class="headerlink" title="2、配置过程"></a>2、配置过程</h3><p>参考了网上好多的教程都是配置<code>/etc/httpd/httpd.conf</code>，我愣是找不到。查了另外一些说是<code>/etc/apache2/</code>下面的一些配置文件，但也没有统一的。通过不断的试错，终于调试成功啦。</p>
 <h4 id="1、配置apache2-conf文件"><a href="#1、配置apache2-conf文件" class="headerlink" title="1、配置apache2.conf文件"></a>1、配置<code>apache2.conf</code>文件</h4><p>打开<code>/etc/apache2/apache2.conf</code>文件，要用<code>sudo</code>命令，如<code>sudo vim /etc/apache2/apache2.conf</code>，定位到如下位置并修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Directory /var/www/&gt;</div><div class="line">    Options Indexes FollowSymLinks</div><div class="line">    AllowOverride None</div><div class="line">    AllowOverride AuthConfig</div><div class="line">    Order allow,deny</div><div class="line">    Allow from all</div><div class="line">    Require all granted</div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure>
