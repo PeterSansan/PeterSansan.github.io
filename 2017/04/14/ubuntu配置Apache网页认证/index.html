@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim">
-<meta property="og:updated_time" content="2017-04-14T16:04:40.060Z">
+<meta property="og:updated_time" content="2017-04-14T16:07:37.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu配置Apache网页认证">
 <meta name="twitter:description" content="1、目的：浏览器网页登入认证">
@@ -98,21 +98,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1、目的：浏览器网页登入认证"><a href="#1、目的：浏览器网页登入认证" class="headerlink" title="1、目的：浏览器网页登入认证"></a>1、目的：浏览器网页登入认证</h3><p><img src="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim" alt="net"></p>
+        <h3 id="1、目的：浏览器网页登入认证"><a href="#1、目的：浏览器网页登入认证" class="headerlink" title="1、目的：浏览器网页登入认证"></a>1、目的：浏览器网页登入认证</h3><p><img src="http://ogtxggxo6.bkt.clouddn.com/net.png?imageslim" alt="登录验证图"></p>
 <a id="more"></a>
 <p><code>Ubuntu</code>上安装<code>Apache2</code>做<code>web</code>服务器比较顺畅，基本不用配置什么，大部分采用默认的配置，网页根目录默认放在<code>/var/www/html/中</code>。主机因配有静态<code>IP</code>，其他电脑直接访问<code>地址</code>就可以进入了。不过有时我们的服务器只想内部人员访问，即浏览器输入网址时，要用户帐号与密码。一开始认为用<code>PHP</code>等脚本在后台做认证，这种方式应该也行。不过转念一想，能在<code>Apache</code>上做配置，会更加方便。</p>
-<h3 id="2、配置过程"><a href="#2、配置过程" class="headerlink" title="2、配置过程"></a>2、配置过程</h3><p>参考了网上好多的教程都是配置<code>/etc/httpd/httpd.conf</code>，我愣是找不到:anguished:。查了另外一些说是<code>/etc/apache2/</code>下面的一些配置文件，但也没有统一的。通过不断的试错，终于调试成功啦:v:。</p>
+<h3 id="2、配置过程"><a href="#2、配置过程" class="headerlink" title="2、配置过程"></a>2、配置过程</h3><p>参考了网上好多的教程都是配置<code>/etc/httpd/httpd.conf</code>，我愣是找不到。查了另外一些说是<code>/etc/apache2/</code>下面的一些配置文件，但也没有统一的。通过不断的试错，终于调试成功啦。</p>
 <h4 id="1、配置apache2-conf文件"><a href="#1、配置apache2-conf文件" class="headerlink" title="1、配置apache2.conf文件"></a>1、配置<code>apache2.conf</code>文件</h4><p>打开<code>/etc/apache2/apache2.conf</code>文件，要用<code>sudo</code>命令，如<code>sudo vim /etc/apache2/apache2.conf</code>，定位到如下位置并修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;Directory /var/www/&gt;</div><div class="line">    Options Indexes FollowSymLinks</div><div class="line">    AllowOverride None</div><div class="line">    AllowOverride AuthConfig</div><div class="line">    Order allow,deny</div><div class="line">    Allow from all</div><div class="line">    Require all granted</div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim" alt="img"></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/auth.png?imageslim" alt="apache2.conf"></p>
 <h4 id="2、在web目录下手动建立-htaccess文件"><a href="#2、在web目录下手动建立-htaccess文件" class="headerlink" title="2、在web目录下手动建立.htaccess文件"></a>2、在<code>web</code>目录下手动建立<code>.htaccess</code>文件</h4><p>我的<code>web</code>目录是<code>/var/www/html/</code>，切换到这个目录下，手动建立一个名了<code>.htacceses</code>的文件，打开文件并输入如下:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">AuthName <span class="string">"html"</span></div><div class="line">AuthType Basic</div><div class="line">AuthUserFile /var/www/html/.htpasswd</div><div class="line">require valid-user</div></pre></td></tr></table></figure>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim" alt="img"></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/pas.png?imagesllim" alt=".htpasswd"></p>
 <h4 id="3、创建可配置用户帐号与密码"><a href="#3、创建可配置用户帐号与密码" class="headerlink" title="3、创建可配置用户帐号与密码"></a>3、创建可配置用户帐号与密码</h4><p>用到的命令为<code>htpasswd</code>，如果没有安装的话，可以在终端中输入<code>htpasswd</code>中，查看是否已经安装，如果没有，安装推荐的包即要。之后，执行如下指令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">htpasswd -c -m /var/www/html/.htpasswd xiaomi  # xiaomi是用户名</div></pre></td></tr></table></figure>
 <p>这时我们会在<code>/var/www/html/</code>下面看到一个./htpasswd文件，注意前面带点的是隐藏文件，要用<code>ll</code>或<code>ls -a</code>查看。</p>
 <h4 id="4、重启Apache2服务"><a href="#4、重启Apache2服务" class="headerlink" title="4、重启Apache2服务"></a>4、重启<code>Apache2</code>服务</h4><p>在终端中输入服务器重启命令<code>sudo /etc/init.d/apache2 restart</code>，显示<code>OK</code>,即为重启成功。</p>
-<h4 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h4><p>测试结果就不展示啦，可想而知，就是帐号与密码输对后，进入网页呗​:wink:​</p>
+<h4 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h4><p>测试结果就不展示啦，可想而知，就是帐号与密码输对后，进入网页呗。</p>
 
       
     </div>
