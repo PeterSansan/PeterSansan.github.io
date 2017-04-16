@@ -5,16 +5,16 @@
   
   <title>blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python模型保存与加载有的时候我们在做机器学习实验或使用别人的机器学习包时，总是会涉及到model的加载，如加载一个分词模型cws.model,你不禁会问这个模型是怎样做成的，又是怎样加载的。其实它是用cPickle/pickle模块实现的。cPickle是pickle的一个更快的C语言编译版本,因此效率会高一些，但使用语法是一样的。 123# -*- coding: utf-8 -*-#!/">
+  <meta name="description" content="model        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.6 (http://getbootstrap.com)  * Copyright 2011-2015 Twitter, Inc.  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/mast">
 <meta property="og:type" content="website">
 <meta property="og:title" content="blog of PeterSansan">
 <meta property="og:url" content="http://petersansan.top/model.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="python模型保存与加载有的时候我们在做机器学习实验或使用别人的机器学习包时，总是会涉及到model的加载，如加载一个分词模型cws.model,你不禁会问这个模型是怎样做成的，又是怎样加载的。其实它是用cPickle/pickle模块实现的。cPickle是pickle的一个更快的C语言编译版本,因此效率会高一些，但使用语法是一样的。 123# -*- coding: utf-8 -*-#!/">
-<meta property="og:updated_time" content="2017-04-16T12:35:11.266Z">
+<meta property="og:description" content="model        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.6 (http://getbootstrap.com)  * Copyright 2011-2015 Twitter, Inc.  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/mast">
+<meta property="og:updated_time" content="2017-04-16T12:39:15.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="python模型保存与加载有的时候我们在做机器学习实验或使用别人的机器学习包时，总是会涉及到model的加载，如加载一个分词模型cws.model,你不禁会问这个模型是怎样做成的，又是怎样加载的。其实它是用cPickle/pickle模块实现的。cPickle是pickle的一个更快的C语言编译版本,因此效率会高一些，但使用语法是一样的。 123# -*- coding: utf-8 -*-#!/">
+<meta name="twitter:description" content="model        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.6 (http://getbootstrap.com)  * Copyright 2011-2015 Twitter, Inc.  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/mast">
   
     <link rel="alternate" href="/atom.xml" title="blog of PeterSansan" type="application/atom+xml">
   
@@ -67,58 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/model.html" class="article-date">
-  <time datetime="2017-04-16T12:35:11.266Z" itemprop="datePublished">2017-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="python模型保存与加载"><a href="#python模型保存与加载" class="headerlink" title="python模型保存与加载"></a>python模型保存与加载</h1><p>有的时候我们在做机器学习实验或使用别人的机器学习包时，总是会涉及到model的加载，如加载一个分词模型<code>cws.model</code>,你不禁会问这个模型是怎样做成的，又是怎样加载的。其实它是用cPickle/pickle模块实现的。cPickle是pickle的一个更快的C语言编译版本,因此效率会高一些，但使用语法是一样的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div></pre></td></tr></table></figure>
-<h3 id="1-基本函数"><a href="#1-基本函数" class="headerlink" title="1.基本函数"></a>1.基本函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pickle.dump(变量,文件名,[True/False]) # 其中最后面一个参数默认是False,控制的是是否以二进制的形式存储，用二进制格式存储空间更小。</div><div class="line">pickle.load(文件名)</div></pre></td></tr></table></figure>
-<h3 id="2-基本使用步骤："><a href="#2-基本使用步骤：" class="headerlink" title="2.基本使用步骤："></a>2.基本使用步骤：</h3><p><strong>保存模型</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data=[<span class="string">'how'</span>,<span class="string">'are'</span>,<span class="string">'you'</span>] <span class="comment"># evevry variable</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">"cws.model"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> f:</div><div class="line">    pickle.dump(data,f,<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">model = pickle.load(f)</div></pre></td></tr></table></figure>
-<h4 id="试试字符格式存储方式"><a href="#试试字符格式存储方式" class="headerlink" title="- 试试字符格式存储方式"></a>- 试试字符格式存储方式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 存储数据</span></div><div class="line">data = [<span class="string">'how '</span>,<span class="string">'are'</span>,<span class="string">'you'</span>]</div><div class="line"><span class="keyword">with</span> open(<span class="string">"cws.model"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> mysavedata:</div><div class="line">    pickle.dump(data,mysavedata)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh cws.model</div></pre></td></tr></table></figure>
-<pre><code>-rw-rw-r-- 1 yude yude 40 Apr 16 12:17 cws.model
-</code></pre><h4 id="试试二进制格式的存储方式"><a href="#试试二进制格式的存储方式" class="headerlink" title="-试试二进制格式的存储方式"></a>-试试二进制格式的存储方式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data = [<span class="string">'how'</span>,<span class="string">'are'</span>,<span class="string">'you'</span>]</div><div class="line"><span class="keyword">with</span> open(<span class="string">"cws.model"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> mysavedata:</div><div class="line">    pickle.dump(data,mysavedata)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh cws.model</div></pre></td></tr></table></figure>
-<pre><code>-rw-rw-r-- 1 yude yude 39 Apr 16 12:28 cws.model
-</code></pre><p>从上面可以看出来，二进制格式的存储方式的确会比字符的存储方式要节省空间，不过这里因为数据不大，所以不是很明显。用字符存储有一个好处是可以打开model文件直接查看里抽的内部，而二进制格式的存储文件查看则是乱码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat cws.model</div></pre></td></tr></table></figure>
-<pre><code>(lp1
-S&apos;how&apos;
-p2
-aS&apos;are&apos;
-p3
-aS&apos;you&apos;
-p4
-a.
-</code></pre><p><strong>加载模型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">with open(&quot;cws.model&quot;,&quot;rb&quot;) as myrestoredata:</div><div class="line">    data = pickle.load(myrestoredata)</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">"cws.model"</span>,<span class="string">"rb"</span>) <span class="keyword">as</span> myrestoredata:</div><div class="line">    data = pickle.load(myrestoredata)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data</div></pre></td></tr></table></figure>
-<pre><code>[&apos;how&apos;, &apos;are&apos;, &apos;you&apos;]
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/model.html" data-id="cj1kod0io0000opif3jmy1r2g" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-  
-</article>
-
-</section>
+        <section id="main">[object Promise]</section>
         
           <aside id="sidebar">
   
