@@ -3,21 +3,23 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>初见webapp有感 | blog of PeterSansan</title>
+  <title>hexo使用网易云跟贴等配置 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="昨天晚上我哥突然微信突然找我，说问我能否把一个网址做成一个APP，我看了有些疑惑，单独一个网站可以做成APP吗？然后他说了一句内核就是与浏览器一样的，我一开始以为这个网页只能在电脑端显示正常，在手机端可能没有那么好的显示效果。结果在手机浏览器上打开这个网址，显示十分良好。我的第一反应就是把他做到一个单界面的网页浏览器，因为那久没有接触过手机端的开发，不知现在发展到什么程度了，觉得可以找找看有没有">
-<meta name="keywords" content="webapp">
+  <meta name="description" content="这几天时不时都会捣鼓一下Hexo博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持Latex公式编译等等。 公式编辑器可以安装MathJax解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。 1、网易云跟贴">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初见webapp有感">
-<meta property="og:url" content="http://petersansan.top/2017/04/18/初见webapp有感/index.html">
+<meta property="og:title" content="hexo使用网易云跟贴等配置">
+<meta property="og:url" content="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="昨天晚上我哥突然微信突然找我，说问我能否把一个网址做成一个APP，我看了有些疑惑，单独一个网站可以做成APP吗？然后他说了一句内核就是与浏览器一样的，我一开始以为这个网页只能在电脑端显示正常，在手机端可能没有那么好的显示效果。结果在手机浏览器上打开这个网址，显示十分良好。我的第一反应就是把他做到一个单界面的网页浏览器，因为那久没有接触过手机端的开发，不知现在发展到什么程度了，觉得可以找找看有没有">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/ff.png?imageslim">
-<meta property="og:updated_time" content="2017-04-18T15:41:53.534Z">
+<meta property="og:description" content="这几天时不时都会捣鼓一下Hexo博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持Latex公式编译等等。 公式编辑器可以安装MathJax解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。 1、网易云跟贴">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/nnn.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/dff.png?imageslim">
+<meta property="og:updated_time" content="2017-04-20T15:17:51.409Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初见webapp有感">
-<meta name="twitter:description" content="昨天晚上我哥突然微信突然找我，说问我能否把一个网址做成一个APP，我看了有些疑惑，单独一个网站可以做成APP吗？然后他说了一句内核就是与浏览器一样的，我一开始以为这个网页只能在电脑端显示正常，在手机端可能没有那么好的显示效果。结果在手机浏览器上打开这个网址，显示十分良好。我的第一反应就是把他做到一个单界面的网页浏览器，因为那久没有接触过手机端的开发，不知现在发展到什么程度了，觉得可以找找看有没有">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/ff.png?imageslim">
+<meta name="twitter:title" content="hexo使用网易云跟贴等配置">
+<meta name="twitter:description" content="这几天时不时都会捣鼓一下Hexo博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持Latex公式编译等等。 公式编辑器可以安装MathJax解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。 1、网易云跟贴">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,14 +70,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-初见webapp有感" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-hexo使用网易云跟贴等配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/18/初见webapp有感/" class="article-date">
-  <time datetime="2017-04-18T13:38:20.000Z" itemprop="datePublished">2017-04-18</time>
+    <a href="/2017/04/20/hexo使用网易云跟贴等配置/" class="article-date">
+  <time datetime="2017-04-20T14:20:37.000Z" itemprop="datePublished">2017-04-20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/有感/">有感</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -86,7 +88,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      初见webapp有感
+      hexo使用网易云跟贴等配置
     </h1>
   
 
@@ -94,20 +96,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/ff.png?imageslim" alt="一步一个脚印"></p>
-<p>昨天晚上我哥突然微信突然找我，说问我能否把一个网址做成一个APP，我看了有些疑惑，单独一个网站可以做成APP吗？然后他说了一句内核就是与浏览器一样的，我一开始以为这个网页只能在电脑端显示正常，在手机端可能没有那么好的显示效果。结果在手机浏览器上打开这个网址，显示十分良好。我的第一反应就是把他做到一个单界面的网页浏览器，因为那久没有接触过手机端的开发，不知现在发展到什么程度了，觉得可以找找看有没有自动生成app的工具。昨晚打了鸡血一样，本来收到消息就已晚上2点 了，这个时候我正要躺床上睡觉，觉得有一点点意思，就起来上网搜索。</p>
-<a id="more"></a>
-<p>一开始搜到几家，当然也是百度搜出来的前面几个，我一开始看到还可以的都注册了帐号试了一下，结果体验了才知道许多网站上的这种打包的功能并不是都是免费的，而且收费也不便宜，我还是吓了一跳。我一开始搜索的关键字并不够准确，百度的搜索也总是指向这几家打广告的公司。同过不断查找，我发现这种app称作<code>webapp</code>，与之相的是之前成熟的原生app，原生app用户交互好，做开发时间长；<code>webapp</code>开发时间短，但用户交互差，且可能会没方法发布；针对两者的优缺点，出现了一个<code>hybrid app</code>，即混合app，这种app采用新的<code>HTML5</code>开发，能够跨安卓与苹果手机等平台，且可能顺序发布。因此指对wap打包的方案，最好方案就是<code>hybrid app</code>。但是目前的人也没有时间去使用这个，因此我优先选择了网上一两个能提供在线打包功能的网站生成免费的app；通过体验，的确在交互上有一些不尽人意的地方，比如部分网页没有返回键，要依赖安卓的返回键，但在苹果手机上就回退不了。我本来想着加点控件在上面，比如导航键之类的，不过网站自动生成的那些是加不了的，加这些是要收费的，也没有源码可以下载，就算有些有基本源码的，我也没有空去改。其实另一个原因比较关注后端的技术，对前端的技术目前还没有心想去搞。除了了解了<code>webapp</code>的概念后，我也体会到了<code>javascript</code>火的地方，的确是无处不在。</p>
-<p>我目前还在读书，做的也是与软件相关的，我哥是个小微商，做一些推广，他有事总会提出我帮他做一点软件的东西。他提的问题都很有针对性，很实用，像之前微信一个图片群发的问题，和这事的app。技术的确要取着于民，用之于民，有需要就有市场，我佩服我哥这种实干家的精神。而我目前对于技术的使用还只停留在有趣上面，远没有解决问题的实力，也许是还不想作些商业上的东西吧~</p>
-<p> 参考文章：<a href="http://www.cnblogs.com/songxingzheng/p/6482697.html" target="_blank" rel="external">几款移动跨平台App开发框架比较</a></p>
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim" alt=""></p>
+<p>这几天时不时都会捣鼓一下<code>Hexo</code>博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持<code>Latex</code>公式编译等等。</p>
+<p>公式编辑器可以安装<code>MathJax</code>解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。</p>
+<h2 id="1、网易云跟贴配置"><a href="#1、网易云跟贴配置" class="headerlink" title="1、网易云跟贴配置"></a>1、网易云跟贴配置</h2><p>之的以使用网易云跟贴理由是多说评论要关闭了，没有过多的选择，网上打了一下，找到了网易云跟贴，因此就试验了一下。大家可以先按[m官网]的步骤操作，</p>
+<ul>
+<li><p>1、进入站长管理平台，获取代码—WEB页面代码—点击右侧复制代码按钮，获取云跟贴接入代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var cloudTieConfig = &#123;</div><div class="line">  url: document.location.href, </div><div class="line">  sourceId: &quot;&quot;,</div><div class="line">  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,</div><div class="line">  target: &quot;cloud-tie-wrapper&quot;</div><div class="line">&#125;;</div><div class="line">var yunManualLoad = true;</div><div class="line">Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>2、打开项目目录，进入路径：themes/landscape/layout/_partial，找到article.ejs文件。参照下图，找到节点<code>&lt;footer class=&quot;article-footer&quot;&gt;</code>在结束标签<code>&lt;/footer&gt;</code>（准确的说位于第31行）后粘贴云跟贴代码，保存，重启服务。不重启的话，就直接生成发布吧。</p>
+<p><strong>问题出现</strong> ：每个文章的页面最下面没有问题，都有评论栏，如下图</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/nnn.png?imageslim" alt=""></p>
+</li>
+</ul>
+<p>问题出在首页，它莫名其妙地在第一篇文章的后面出现了那多个上面图一样的评论栏，如果你没有出现这样的情况，那真是恭喜你了，但我是就遇到了这样的情况。怎么办呢？方法是在复贴的那段代码外面加一个条件判断。老实说，我并不懂这个ejs文件的语法，我只是参考它文件的写法，自己加了一个条件判断是不是主页，如果不是主页，就增加，是主页，就不添加，详细代码变为：</p>
+<pre><code>&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+var cloudTieConfig = {
+  url: document.location.href,
+  sourceId: &quot;&quot;,
+  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,
+  target: &quot;cloud-tie-wrapper&quot;
+};
+var yunManualLoad = true;
+Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);
+&lt;/script&gt;
+&lt;% } %&gt;
+</code></pre><p>  这样问题就可以解决了。</p>
+<h2 id="2、添加关于页面"><a href="#2、添加关于页面" class="headerlink" title="2、添加关于页面"></a>2、添加关于页面</h2><p>添加关于页面知道的人很简单，像我这种非前端的人就是不知道，我百度了一下没有好的结果，只能去谷歌看看，结果还是有的，方法的确简单。</p>
+<ul>
+<li>先建一个about页面，注意这样建立的网址是<code>博客网址/about</code>，但是没有导航信息显示在主页</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page about</div></pre></td></tr></table></figure>
+<ul>
+<li><p>在主页建About的导航信息</p>
+<p>用代码编辑器打开<code>theme/landscape/_config.yml</code>，在menu下面添加<code>About:about</code></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/dff.png?imageslim" alt=""></p>
+<p>​</p>
+</li>
+<li><p>编译好你的about目录下面的index.html就可以生成上传啦!</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/18/初见webapp有感/" data-id="cj1qjx57z0005ygifc4anjyk5" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/" data-id="cj1qjx57o0000ygiffmnyqdc2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapp/">webapp</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
     </footer>
 	
@@ -129,20 +167,15 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/04/16/未归档文章目录/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          未归档文章目录
+          华为李航：NLP有5个基本问题，深度学习有4个做得很好
         
       </div>
     </a>
   
-  
-    <a href="/2017/04/19/报告1-自然语言处理序列标注问题研究/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">报告1-自然语言处理序列标注问题的研究</div>
-    </a>
   
 </nav>
 
