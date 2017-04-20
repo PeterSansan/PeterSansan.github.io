@@ -52,6 +52,8 @@
         
           <a class="main-nav-link" href="/about">About</a>
         
+          <a class="main-nav-link" href="/other">Other</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -92,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/aaa/" data-id="cj1qkkbuw000039if018fqfl9" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/20/aaa/" data-id="cj1qkrd2l00007rifl8j6xos0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -131,52 +133,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim" alt=""></p>
-<p>这几天时不时都会捣鼓一下<code>Hexo</code>博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持<code>Latex</code>公式编译等等。</p>
-<p>公式编辑器可以安装<code>MathJax</code>解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。</p>
-<h2 id="1、网易云跟贴配置"><a href="#1、网易云跟贴配置" class="headerlink" title="1、网易云跟贴配置"></a>1、网易云跟贴配置</h2><p>之的以使用网易云跟贴理由是多说评论要关闭了，没有过多的选择，网上打了一下，找到了网易云跟贴，因此就试验了一下。大家可以先按[m官网]的步骤操作，</p>
-<ul>
-<li><p>1、进入站长管理平台，获取代码—WEB页面代码—点击右侧复制代码按钮，获取云跟贴接入代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var cloudTieConfig = &#123;</div><div class="line">  url: document.location.href, </div><div class="line">  sourceId: &quot;&quot;,</div><div class="line">  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,</div><div class="line">  target: &quot;cloud-tie-wrapper&quot;</div><div class="line">&#125;;</div><div class="line">var yunManualLoad = true;</div><div class="line">Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>2、打开项目目录，进入路径：themes/landscape/layout/_partial，找到article.ejs文件。参照下图，找到节点<code>&lt;footer class=&quot;article-footer&quot;&gt;</code>在结束标签<code>&lt;/footer&gt;</code>（准确的说位于第31行）后粘贴云跟贴代码，保存，重启服务。不重启的话，就直接生成发布吧。</p>
-<p><strong>问题出现</strong> ：每个文章的页面最下面没有问题，都有评论栏，如下图</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/nnn.png?imageslim" alt=""></p>
-</li>
-</ul>
-<p>问题出在首页，它莫名其妙地在第一篇文章的后面出现了那多个上面图一样的评论栏，如果你没有出现这样的情况，那真是恭喜你了，但我是就遇到了这样的情况。怎么办呢？方法是在复贴的那段代码外面加一个条件判断。老实说，我并不懂这个ejs文件的语法，我只是参考它文件的写法，自己加了一个条件判断是不是主页，如果不是主页，就增加，是主页，就不添加，详细代码变为：</p>
-<pre><code>&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-var cloudTieConfig = {
-  url: document.location.href,
-  sourceId: &quot;&quot;,
-  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,
-  target: &quot;cloud-tie-wrapper&quot;
-};
-var yunManualLoad = true;
-Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);
-&lt;/script&gt;
-&lt;% } %&gt;
-</code></pre><p>  这样问题就可以解决了。</p>
-<h2 id="2、添加关于页面"><a href="#2、添加关于页面" class="headerlink" title="2、添加关于页面"></a>2、添加关于页面</h2><p>添加关于页面知道的人很简单，像我这种非前端的人就是不知道，我百度了一下没有好的结果，只能去谷歌看看，结果还是有的，方法的确简单。</p>
-<ul>
-<li>先建一个about页面，注意这样建立的网址是<code>博客网址/about</code>，但是没有导航信息显示在主页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page about</div></pre></td></tr></table></figure>
-<ul>
-<li><p>在主页建About的导航信息</p>
-<p>用代码编辑器打开<code>theme/landscape/_config.yml</code>，在menu下面添加<code>About:about</code></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/dff.png?imageslim" alt=""></p>
-<p>​</p>
-</li>
-<li><p>编译好你的about目录下面的index.html就可以生成上传啦!</p>
-</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/04/20/hexo使用网易云跟贴等配置/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/" data-id="cj1qkkbv7000439ifhnbsdo7w" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/" data-id="cj1qkrd2t00047rifnn38jsnd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -226,7 +191,7 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" data-id="cj1qkkbvl000g39iflam39zjh" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" data-id="cj1qkrd37000d7rif5cbhkl5g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/综述/">综述</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
@@ -275,7 +240,7 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/19/报告1-自然语言处理序列标注问题研究/" data-id="cj1qkkbvp000k39if2mhug3jq" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/19/报告1-自然语言处理序列标注问题研究/" data-id="cj1qkrd3a000i7rifs9zc7652" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nlp/">nlp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/序列标注/">序列标注</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概率图模型/">概率图模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -325,7 +290,7 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/18/初见webapp有感/" data-id="cj1qkkbvh000839iffgkvxi4p" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/18/初见webapp有感/" data-id="cj1qkrd3100077rifmoxp0plz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapp/">webapp</a></li></ul>
@@ -370,7 +335,7 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/16/未归档文章目录/" data-id="cj1qkkbvs000n39ifcavcwqc9" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/16/未归档文章目录/" data-id="cj1qkrd3e000q7rifthn1c0eb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jupyter/">jupyter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/未归档/">未归档</a></li></ul>
@@ -483,6 +448,8 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
     <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/other" class="mobile-nav-link">Other</a>
   
 </nav>
     
