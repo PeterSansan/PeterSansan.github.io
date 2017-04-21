@@ -1301,10 +1301,10 @@ pre .javascript .function {
 .widget {
   color: #262626 sa30;
   text-shadow: 0 1px #fff;
-  background: #262a30;
-  -webkit-box-shadow: 0 -1px 4px #262a30 inset;
-  box-shadow: 0 -1px 4px #262a30 inset;
-  border: 1px solid #262a30;
+  background: #ddd;
+  -webkit-box-shadow: 0 -1px 4px #ccc inset;
+  box-shadow: 0 -1px 4px #ccc inset;
+  border: 1px solid #ccc;
   padding: 15px;
   border-radius: 3px;
 }
