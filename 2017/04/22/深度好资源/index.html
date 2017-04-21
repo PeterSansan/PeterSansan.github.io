@@ -3,20 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>hexo使用网易云跟贴等配置 | blog of PeterSansan</title>
+  <title>深度好资源 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hexo">
+  <meta name="description" content="Github是个地方 清华大神aymericdamien:有机器学习、深度学习TensorFlow与TFlearn的学习入门教程，讲的好全面。">
+<meta name="keywords" content="深度学习,github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo使用网易云跟贴等配置">
-<meta property="og:url" content="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/index.html">
+<meta property="og:title" content="深度好资源">
+<meta property="og:url" content="http://petersansan.top/2017/04/22/深度好资源/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/nnn.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/dff.png?imageslim">
-<meta property="og:updated_time" content="2017-04-20T15:41:17.777Z">
+<meta property="og:description" content="Github是个地方 清华大神aymericdamien:有机器学习、深度学习TensorFlow与TFlearn的学习入门教程，讲的好全面。">
+<meta property="og:updated_time" content="2017-04-21T19:09:09.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo使用网易云跟贴等配置">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim">
+<meta name="twitter:title" content="深度好资源">
+<meta name="twitter:description" content="Github是个地方 清华大神aymericdamien:有机器学习、深度学习TensorFlow与TFlearn的学习入门教程，讲的好全面。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -69,14 +68,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hexo使用网易云跟贴等配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-深度好资源" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/20/hexo使用网易云跟贴等配置/" class="article-date">
-  <time datetime="2017-04-20T14:20:37.000Z" itemprop="datePublished">2017-04-20</time>
+    <a href="/2017/04/22/深度好资源/" class="article-date">
+  <time datetime="2017-04-21T18:48:24.000Z" itemprop="datePublished">2017-04-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
+    <a class="article-category-link" href="/categories/资源/">资源</a>
   </div>
 
   </div>
@@ -87,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo使用网易云跟贴等配置
+      深度好资源
     </h1>
   
 
@@ -95,57 +94,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim" alt=""></p>
-<a id="more"></a>
-<p>这几天时不时都会捣鼓一下<code>Hexo</code>博客的事，我个人比较喜欢默认的landscape主题，其他的主题没有看到十分合胃口的，所以我一直沿用着landscape。但它还是有一些功能很不完善的，像没有关于页面，RSS与搜索就是摆设，不支持<code>Latex</code>公式编译等等。</p>
-<p>公式编辑器可以安装<code>MathJax</code>解决，网上教程也不少。今天我就讲一下怎样在landscape上实现跟帖功能与添加About页面。</p>
-<h2 id="1、网易云跟贴配置"><a href="#1、网易云跟贴配置" class="headerlink" title="1、网易云跟贴配置"></a>1、网易云跟贴配置</h2><p>之的以使用网易云跟贴理由是多说评论要关闭了，没有过多的选择，网上打了一下，找到了网易云跟贴，因此就试验了一下。大家可以先按[m官网]的步骤操作，</p>
-<ul>
-<li><p>1、进入站长管理平台，获取代码—WEB页面代码—点击右侧复制代码按钮，获取云跟贴接入代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var cloudTieConfig = &#123;</div><div class="line">  url: document.location.href, </div><div class="line">  sourceId: &quot;&quot;,</div><div class="line">  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,</div><div class="line">  target: &quot;cloud-tie-wrapper&quot;</div><div class="line">&#125;;</div><div class="line">var yunManualLoad = true;</div><div class="line">Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>2、打开项目目录，进入路径：themes/landscape/layout/_partial，找到article.ejs文件。参照下图，找到节点<code>&lt;footer class=&quot;article-footer&quot;&gt;</code>在结束标签<code>&lt;/footer&gt;</code>（准确的说位于第31行）后粘贴云跟贴代码，保存，重启服务。不重启的话，就直接生成发布吧。</p>
-<p><strong>问题出现</strong> ：每个文章的页面最下面没有问题，都有评论栏，如下图</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/nnn.png?imageslim" alt=""></p>
-</li>
-</ul>
-<p>问题出在首页，它莫名其妙地在第一篇文章的后面出现了那多个上面图一样的评论栏，如果你没有出现这样的情况，那真是恭喜你了，但我是就遇到了这样的情况。怎么办呢？方法是在复贴的那段代码外面加一个条件判断。老实说，我并不懂这个ejs文件的语法，我只是参考它文件的写法，自己加了一个条件判断是不是主页，如果不是主页，就增加，是主页，就不添加，详细代码变为：</p>
-<pre><code>&lt;div id=&quot;cloud-tie-wrapper&quot; class=&quot;cloud-tie-wrapper&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-var cloudTieConfig = {
-  url: document.location.href,
-  sourceId: &quot;&quot;,
-  productKey: &quot;e2a8be6e9b7f4bf7aa3c3f956be2ce37&quot;,
-  target: &quot;cloud-tie-wrapper&quot;
-};
-var yunManualLoad = true;
-Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&quot;, true);
-&lt;/script&gt;
-&lt;% } %&gt;
-</code></pre><p>  这样问题就可以解决了。</p>
-<h2 id="2、添加关于页面"><a href="#2、添加关于页面" class="headerlink" title="2、添加关于页面"></a>2、添加关于页面</h2><p>添加关于页面知道的人很简单，像我这种非前端的人就是不知道，我百度了一下没有好的结果，只能去谷歌看看，结果还是有的，方法的确简单。</p>
-<ul>
-<li>先建一个about页面，注意这样建立的网址是<code>博客网址/about</code>，但是没有导航信息显示在主页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page about</div></pre></td></tr></table></figure>
-<ul>
-<li><p>在主页建About的导航信息</p>
-<p>用代码编辑器打开<code>theme/landscape/_config.yml</code>，在menu下面添加<code>About:about</code></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/dff.png?imageslim" alt=""></p>
-<p>​</p>
-</li>
-<li><p>编译好你的about目录下面的index.html就可以生成上传啦!</p>
-</li>
+        <h2 id="Github是个地方"><a href="#Github是个地方" class="headerlink" title="Github是个地方"></a>Github是个地方</h2><ul>
+<li><a href="https://github.com/aymericdamien" target="_blank" rel="external">清华大神aymericdamien</a>:有机器学习、深度学习<code>TensorFlow</code>与<code>TFlearn</code>的学习入门教程，讲的好全面。</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/" data-id="cj1s7mlrq0002pbifka4zp2me" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/04/22/深度好资源/" data-id="cj1s7mlsg000qpbifuy5oadji" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
     </footer>
 	
@@ -167,20 +126,15 @@ Tie.loader(&quot;aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s&qu
     
 <nav id="article-nav">
   
-    <a href="/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/21/某教育IT事业部面试记录/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          华为李航：NLP有5个基本问题，深度学习有4个做得很好
+          某教育IT事业部面试记录
         
       </div>
     </a>
   
-  
-    <a href="/2017/04/21/某教育IT事业部面试记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">某教育IT事业部面试记录</div>
-    </a>
   
 </nav>
 
