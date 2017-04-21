@@ -206,7 +206,7 @@ body {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
-  border: 1px solid #ddd;
+  border: 1px solid #8b3a62;
   border-radius: 3px;
 }
 .article-entry h1,
@@ -236,7 +236,7 @@ body {
 }
 .article-entry hr,
 .widget hr {
-  border: 1px dashed #ddd;
+  border: 1px dashed #8b3a62;
 }
 .article-entry strong,
 .widget strong {
@@ -310,7 +310,7 @@ body {
 #header {
   height: 300px;
   position: relative;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #8b3a62;
 }
 #header:before,
 #header:after {
@@ -615,11 +615,11 @@ a.article-title:hover {
 }
 .article-entry th {
   font-weight: bold;
-  border-bottom: 3px solid #ddd;
+  border-bottom: 3px solid #8b3a62;
   padding-bottom: 0.5em;
 }
 .article-entry td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #8b3a62;
   padding: 10px 0;
 }
 .article-entry blockquote {
@@ -693,7 +693,7 @@ a.article-title:hover {
 .article-footer {
   font-size: 0.85em;
   line-height: 1.6em;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #8b3a62;
   padding-top: 1.6em;
   margin: 0 20px 20px;
 }
@@ -762,7 +762,7 @@ a.article-title:hover {
     margin-left: -4px;
     content: "";
     border-radius: 50%;
-    background: #ddd;
+    background: #8b3a62;
     -webkit-box-shadow: 0 1px 2px #fff;
     box-shadow: 0 1px 2px #fff;
   }
@@ -804,7 +804,7 @@ a.article-title:hover {
 .article-nav-caption {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #ddd;
+  color: #8b3a62;
   line-height: 1em;
   font-weight: bold;
 }
@@ -840,7 +840,7 @@ a.article-title:hover {
   padding: 0 15px;
   color: #000;
   outline: none;
-  border: 1px solid #ddd;
+  border: 1px solid #8b3a62;
   border-radius: 3px 3px 0 0;
   height: 36px;
   line-height: 36px;
@@ -946,7 +946,7 @@ a.article-title:hover {
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #8b3a62;
   border-radius: 3px;
   margin: 50px 0;
 }
@@ -1025,7 +1025,7 @@ a.article-title:hover {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
-  border: 1px solid #ddd;
+  border: 1px solid #8b3a62;
   border-radius: 3px;
   text-align: center;
   color: #f03;
@@ -1072,12 +1072,12 @@ a.article-title:hover {
   font-weight: bold;
 }
 #page-nav .space {
-  color: #ddd;
+  color: #8b3a62;
 }
 #footer {
   background: #262a30;
   padding: 50px 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #8b3a62;
   color: #f03;
 }
 #footer a {
@@ -1097,7 +1097,7 @@ a.article-title:hover {
   margin: 0 -20px;
   padding: 15px 20px;
   border-style: solid;
-  border-color: #ddd;
+  border-color: #8b3a62;
   border-width: 1px 0;
   overflow: auto;
   color: #ccc;
@@ -1165,7 +1165,7 @@ a.article-title:hover {
 .article-entry .gist {
   margin: 0 -20px;
   border-style: solid;
-  border-color: #ddd;
+  border-color: #8b3a62;
   border-width: 1px 0;
   background: #2d2d2d;
   padding: 15px 20px 15px 0;
@@ -1299,7 +1299,7 @@ pre .javascript .function {
   margin: 50px 0;
 }
 .widget {
-  color: #8b0000;
+  color: #777;
   text-shadow: 0 1px #fff;
   background: #ddd;
   -webkit-box-shadow: 0 -1px 4px #ccc inset;
