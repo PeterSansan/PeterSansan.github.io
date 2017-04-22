@@ -3,17 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>blog of PeterSansan</title>
+  <title>jupyter主题安装 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/index.html">
+  <meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jupyter主题安装">
+<meta property="og:url" content="http://petersansan.top/2017/04/22/jupyter主题安装/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/jupyter.png?imageslim">
+<meta property="og:updated_time" content="2017-04-22T15:47:06.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="jupyter主题安装">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/jupyter.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-jupyter主题安装" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-jupyter主题安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/22/jupyter主题安装/" class="article-date">
   <time datetime="2017-04-22T15:07:54.000Z" itemprop="datePublished">2017-04-22</time>
@@ -85,8 +84,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/jupyter主题安装/">jupyter主题安装</a>
+    <h1 class="article-title" itemprop="name">
+      jupyter主题安装
     </h1>
   
 
@@ -95,11 +94,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://ogtxggxo6.bkt.clouddn.com/jupyter.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/22/jupyter主题安装/#more">Read More</a>
-          </p>
-        
+<a id="more"></a>
+<p>真是No Zuo No Die，原本只是觉得jupyter上的主题太亮了，想换一下主题的，结果了浪费了一下午。。。因为我是选择困难户。</p>
+<p>安装主题的过程比较简单：<code>sudo pip install jupyterthemes</code></p>
+<p>安装完后看一下已安装了哪些主题：<code>sudo jt -l</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Available Themes: </div><div class="line">   solarizedl</div><div class="line">   solarized-light</div><div class="line">   chesterish</div><div class="line">   oceans16</div><div class="line">   grade3</div><div class="line">   monokai</div><div class="line">   onedork</div><div class="line">   solarized-light</div></pre></td></tr></table></figure>
+<p>清除复原配置： <code>sudo jt -r</code></p>
+<p>切换主题： <code>sudo jt -t grade3</code></p>
+<p>加配置的主题切换：<code>sudo jt -t grade3 -cellw 1050 -lineh 155 -fs 11 -nfs 12 -tfs 12 -f source -tf sourcesans -nf sourcesans</code></p>
+<p>其中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-cellw 表示 代码块宽度</div><div class="line">-lineh 表示 代码块高度</div><div class="line">-fs    表示 代码字体大小</div><div class="line">-nfs   表示 笔记本字体大小</div><div class="line">-tfs   表示 markdown字体大小</div><div class="line">-f     表示 代码字休</div><div class="line">-tf    表示 markdown字体</div><div class="line">-nf    表示 笔记本字体大小</div></pre></td></tr></table></figure>
+<p>其中的参数详细请看：<a href="https://github.com/dunovank/jupyter-themes" target="_blank" rel="external">jupyterthemes Github</a></p>
+<p>不过小编的使用情况说来，不好的有两点，一点是转html字体没有跟着转过去，导致字体不是我们配置的字体；另一点是主题太少啦，都没有自己很喜欢的。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -110,262 +117,40 @@
 
     </footer>
 	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-git若干操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/22/git若干操作/" class="article-date">
-  <time datetime="2017-04-22T04:07:36.000Z" itemprop="datePublished">2017-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/git若干操作/">git若干操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/22/git若干操作/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/git若干操作/" data-id="cj1tfxe5k0006abifn9iiyp4n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
-    </footer>
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "e2a8be6e9b7f4bf7aa3c3f956be2ce37",
+      target: "cloud-tie-wrapper"
+    };
+    var yunManualLoad = true;
+    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+    </script>
 	
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-深度好资源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/22/深度好资源/" class="article-date">
-  <time datetime="2017-04-21T18:48:24.000Z" itemprop="datePublished">2017-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/资源/">资源</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/22/git若干操作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          git若干操作
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/深度好资源/">深度好资源</a>
-    </h1>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Github是个地方"><a href="#Github是个地方" class="headerlink" title="Github是个地方"></a>Github是个地方</h2><ul>
-<li><a href="https://github.com/aymericdamien" target="_blank" rel="external">清华大神aymericdamien</a>:有机器学习、深度学习<code>TensorFlow</code>与<code>TFlearn</code>的学习入门教程，讲的好全面。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/深度好资源/" data-id="cj1tfxe67000sabif3eoijfyl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
-
-    </footer>
-	
-  </div>
   
 </article>
 
 
-
-  
-    <article id="post-某教育IT事业部面试记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/21/某教育IT事业部面试记录/" class="article-date">
-  <time datetime="2017-04-21T14:28:00.000Z" itemprop="datePublished">2017-04-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/有感/">有感</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/某教育IT事业部面试记录/">某教育IT事业部面试记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/dream.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/21/某教育IT事业部面试记录/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/21/某教育IT事业部面试记录/" data-id="cj1tfxe63000pabif5agqrkh8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/价值观/">价值观</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hexo使用网易云跟贴等配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/20/hexo使用网易云跟贴等配置/" class="article-date">
-  <time datetime="2017-04-20T14:20:37.000Z" itemprop="datePublished">2017-04-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/20/hexo使用网易云跟贴等配置/">hexo使用网易云跟贴等配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/www.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/20/hexo使用网易云跟贴等配置/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/hexo使用网易云跟贴等配置/" data-id="cj1tfxe6t0024abifuk09o8ml" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-华为李航：NLP有5个基本问题，深度学习有4个做得很好" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" class="article-date">
-  <time datetime="2017-04-20T08:39:29.000Z" itemprop="datePublished">2017-04-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/">华为李航：NLP有5个基本问题，深度学习有4个做得很好</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>【摘要】：在具体的问题上，有了数据就可以跑 AI 的闭环，就可以不断提高系统的性能、算法的能力。深度学习在我刚说的五个大任务里的前四个都能做得很好，特别是运用 seq to seq 的翻译和语音识别。单论对话也能做的越来越好，但是多轮对话需要去研究和解决。”在对话部分，李航老师和北大人工智能创新中心主任、曾经的“百度七剑客”之一雷鸣老师一起，就产品应用、处理难点、语义理解、知识库、通用人工智能、神经网络的记忆等多个大家关注的问题展开了深入的讨论和交流。</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/huawei.jpg?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/20/华为李航：NLP有5个基本问题，深度学习有4个做得很好/" data-id="cj1tfxe6s0023abifossm3608" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/综述/">综述</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
