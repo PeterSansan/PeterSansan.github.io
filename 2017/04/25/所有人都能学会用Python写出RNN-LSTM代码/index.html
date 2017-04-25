@@ -3,17 +3,26 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>blog of PeterSansan</title>
+  <title>所有人都能学会用Python写出RNN代码 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/index.html">
+  <meta name="description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
+<meta name="keywords" content="LSTM,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="所有人都能学会用Python写出RNN代码">
+<meta property="og:url" content="http://petersansan.top/2017/04/25/所有人都能学会用Python写出RNN-LSTM代码/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/xxd.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rn1.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rn2.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn3.png?imageView2/2/h/300">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/recurrence_gif.gif?imageView2/2/h/400">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/backprop_through_time.gif?imageView2/2/h/400">
+<meta property="og:updated_time" content="2017-04-25T15:01:07.074Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="所有人都能学会用Python写出RNN代码">
+<meta name="twitter:description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/xxd.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,47 +75,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-人生管理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/25/人生管理/" class="article-date">
-  <time datetime="2017-04-25T14:52:58.000Z" itemprop="datePublished">2017-04-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/25/人生管理/">人生管理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/25/人生管理/" data-id="cj1xojaif0006llifv9zgcj6i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-所有人都能学会用Python写出RNN-LSTM代码" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-所有人都能学会用Python写出RNN-LSTM代码" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/25/所有人都能学会用Python写出RNN-LSTM代码/" class="article-date">
   <time datetime="2017-04-24T17:00:29.000Z" itemprop="datePublished">2017-04-25</time>
@@ -123,8 +92,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/25/所有人都能学会用Python写出RNN-LSTM代码/">所有人都能学会用Python写出RNN代码</a>
+    <h1 class="article-title" itemprop="name">
+      所有人都能学会用Python写出RNN代码
     </h1>
   
 
@@ -182,201 +151,45 @@
 
     </footer>
 	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-LSTM神经网络输入输出究竟是怎样的" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/24/LSTM神经网络输入输出究竟是怎样的/" class="article-date">
-  <time datetime="2017-04-24T15:43:27.000Z" itemprop="datePublished">2017-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/24/LSTM神经网络输入输出究竟是怎样的/">LSTM神经网络输入输出究竟是怎样的?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/24/LSTM神经网络输入输出究竟是怎样的/" data-id="cj1xojai20000llifv514lwfe" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "e2a8be6e9b7f4bf7aa3c3f956be2ce37",
+      target: "cloud-tie-wrapper"
+    };
+    var yunManualLoad = true;
+    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+    </script>
 	
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-jupyter主题安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/22/jupyter主题安装/" class="article-date">
-  <time datetime="2017-04-22T15:07:54.000Z" itemprop="datePublished">2017-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/24/LSTM神经网络输入输出究竟是怎样的/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          LSTM神经网络输入输出究竟是怎样的?
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/jupyter主题安装/">jupyter主题安装</a>
-    </h1>
   
+    <a href="/2017/04/25/人生管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">人生管理</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/jupyter.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/22/jupyter主题安装/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/jupyter主题安装/" data-id="cj1xojai80002llifx0y0iqle" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-	
-  </div>
   
 </article>
 
 
-
-  
-    <article id="post-git若干操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/22/git若干操作/" class="article-date">
-  <time datetime="2017-04-22T04:07:36.000Z" itemprop="datePublished">2017-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/git若干操作/">git若干操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/22/git若干操作/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/git若干操作/" data-id="cj1xojaif0007llifgj09ll8a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-深度好资源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/22/深度好资源/" class="article-date">
-  <time datetime="2017-04-21T18:48:24.000Z" itemprop="datePublished">2017-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/资源/">资源</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/深度好资源/">深度好资源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Github是个地方"><a href="#Github是个地方" class="headerlink" title="Github是个地方"></a>Github是个地方</h2><ul>
-<li><a href="https://github.com/aymericdamien" target="_blank" rel="external">清华大神aymericdamien</a>:有机器学习、深度学习<code>TensorFlow</code>与<code>TFlearn</code>的学习入门教程，讲的好全面。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/深度好资源/" data-id="cj1xojajq0027llifg8p4n4qw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
