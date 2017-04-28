@@ -3,17 +3,20 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Category: 工具 | blog of PeterSansan</title>
+  <title>论文记录:LSTM | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/categories/工具/index.html">
+  <meta name="keywords" content="LSTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文记录:LSTM">
+<meta property="og:url" content="http://petersansan.top/2017/04/28/论文记录-LSTM/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn.jpg?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/lstm.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/lstm1.png?imageslim">
+<meta property="og:updated_time" content="2017-04-28T16:49:58.073Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="论文记录:LSTM">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn.jpg?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,134 +69,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/27/jupyter快捷键/" class="archive-article-date">
-  <time datetime="2017-04-27T15:14:08.000Z" itemprop="datePublished">4月 27</time>
+        <section id="main"><article id="post-论文记录-LSTM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/28/论文记录-LSTM/" class="article-date">
+  <time datetime="2017-04-28T15:51:06.000Z" itemprop="datePublished">2017-04-28</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/论文记录/">论文记录</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/27/jupyter快捷键/">jupyter快捷键</a>
+    <h1 class="article-title" itemprop="name">
+      论文记录:LSTM
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/22/jupyter主题安装/" class="archive-article-date">
-  <time datetime="2017-04-22T15:07:54.000Z" itemprop="datePublished">4月 22</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/22/jupyter主题安装/">jupyter主题安装</a>
-    </h1>
-  
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn.jpg?imageslim" alt=""></p>
+<a id="more"></a>
+<h3 id="1、RECURRENT-NEURAL-NETWORK-REGULARIZATION"><a href="#1、RECURRENT-NEURAL-NETWORK-REGULARIZATION" class="headerlink" title="1、RECURRENT NEURAL NETWORK REGULARIZATION "></a>1、<a href="http://arxiv.org/abs/1409.2329" target="_blank" rel="external">RECURRENT NEURAL NETWORK REGULARIZATION </a></h3><p>这篇论文主要的目的是教大家怎样的在多层<code>RNN</code>网络中正确的使用<code>Dropout</code>，具体地说就只能在层与层之间使用<code>Dropout</code>，而不允许在隐藏层的时间反馈中加入<code>Dropout</code>，并做了多种实验证明了它的泛化能力强，可以扩大<code>RNN</code>的模型，而不会过拟合。</p>
+<p>我们都知道<code>LSTM</code>有许多变种来改善模型，如<code>cell clipping</code>，<code>a projection layer</code>，<code>peep-hole connections</code>，不过在<code>TensorFlow</code>的<code>BasicLSTMCell</code>中采用的是基本的单元，这篇文章就是基本的<code>LSTM</code>基准</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/lstm.png?imageslim" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/lstm1.png?imageslim" alt=""></p>
+<p>上面的详细公式参考自下一篇。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/22/git若干操作/" class="archive-article-date">
-  <time datetime="2017-04-22T04:07:36.000Z" itemprop="datePublished">4月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/22/git若干操作/">git若干操作</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/20/hexo使用网易云跟贴等配置/" class="archive-article-date">
-  <time datetime="2017-04-20T14:20:37.000Z" itemprop="datePublished">4月 20</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://petersansan.top/2017/04/28/论文记录-LSTM/" data-id="cj222qe62001c5jif26kwzj79" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/hexo使用网易云跟贴等配置/">hexo使用网易云跟贴等配置</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/13/hello-world/" class="archive-article-date">
-  <time datetime="2017-04-12T16:36:15.345Z" itemprop="datePublished">4月 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/13/hello-world/">Hexo常用指令</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/">LSTM</a></li></ul>
 
-    </header>
+    </footer>
+	
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "e2a8be6e9b7f4bf7aa3c3f956be2ce37",
+      target: "cloud-tie-wrapper"
+    };
+    var yunManualLoad = true;
+    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+    </script>
+	
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/12/常见LaTex命令/" class="archive-article-date">
-  <time datetime="2017-04-12T14:40:23.000Z" itemprop="datePublished">4月 12</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/12/常见LaTex命令/">常见LaTex命令</a>
-    </h1>
+    <a href="/2017/04/28/python语法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python语法
+        
+      </div>
+    </a>
   
+  
+    <a href="/2017/04/29/转-理解LSTM网络/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">转:理解LSTM网络</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
+
 
 </section>
         
