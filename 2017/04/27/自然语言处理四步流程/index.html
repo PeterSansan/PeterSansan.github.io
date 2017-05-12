@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/u4.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/u6.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/u7.png?imageslim">
-<meta property="og:updated_time" content="2017-05-12T10:29:27.022Z">
+<meta property="og:updated_time" content="2017-05-12T10:31:17.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自然语言处理四步流程">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/good.png?imageslim">
@@ -101,8 +101,7 @@
       
         <p><img src="http://ogtxggxo6.bkt.clouddn.com/good.png?imageslim" alt=""></p>
 <a id="more"></a>
-<p>中文转载自：<a href="http://blog.chinaunix.net/uid-261569-id-5755300.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-261569-id-5755300.html</a></p>
-<p>英文转载自：<a href="https://explosion.ai/blog/deep-learning-formula-nlp" target="_blank" rel="external">https://explosion.ai/blog/deep-learning-formula-nlp</a></p>
+<p>[#目录]</p>
 <ul>
 <li><a href="#1">1 文本类深度学习四部曲</a> <ul>
 <li><a href="#1.1">1.1 词向量Embed</a></li>
@@ -250,6 +249,8 @@
 <p>将yang等人的模型与卷积神经网络做比较，可以得到有意思的结果。两个模型都能自动提取位置敏感特征。然而，CNN模型既不通用，效率也较低。而双向RNN模型只需要对每个句子读入两次 —— 正向一次，反向一次。LSTM编码还能提取任意长度的特征，因为句子上下文的任何信息都有可能被揉入词语的向量表示。将句子矩阵压缩成向量的步骤简单并且有效的。要构建文档向量，只需要对句子向量再进行一次同样的操作。</p>
 <p>提升模型准确率的主要因素是双向LSTM编码器，它创建了位置敏感的特点。作者通过将注意力机制替换为平均池化，证明了上述观点。使用平均池化的方法，该模型在所有测试数据上仍然优于以前的最好模型。然而，注意力机制进一步普遍地提高了性能。</p>
 <h2 id="后续内容"><a href="#后续内容" class="headerlink" title="后续内容"></a>后续内容</h2><p>我已经用我们自己的NLP库<a href="https://github.com/explosion/spaCy" target="_blank" rel="external">spaCy</a>实现了第一个例子，我正在实现文本分类的系统。我们还计划开发一个SpaCy版的通用双向LSTM模型，能够方便地将预训练的词向量用于实际问题中。</p>
+<p>中文转载自：<a href="http://blog.chinaunix.net/uid-261569-id-5755300.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-261569-id-5755300.html</a></p>
+<p>英文转载自：<a href="https://explosion.ai/blog/deep-learning-formula-nlp" target="_blank" rel="external">https://explosion.ai/blog/deep-learning-formula-nlp</a></p>
 
       
     </div>
