@@ -3,19 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>git若干操作 | blog of PeterSansan</title>
+  <title>爬虫-初体验 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="github">
+  <meta name="description" content="Focus on NLP">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git若干操作">
-<meta property="og:url" content="http://petersansan.top/2017/04/22/git若干操作/index.html">
+<meta property="og:title" content="爬虫-初体验">
+<meta property="og:url" content="http://petersansan.top/2017/05/16/爬虫-初体验/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/git%E5%B7%A5%E4%BD%9C%E6%B5%81.png?imageView2/2/h/300">
-<meta property="og:updated_time" content="2017-04-22T04:43:39.032Z">
+<meta property="og:description" content="Focus on NLP">
+<meta property="og:updated_time" content="2017-05-16T03:15:48.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git若干操作">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim">
+<meta name="twitter:title" content="爬虫-初体验">
+<meta name="twitter:description" content="Focus on NLP">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,16 +68,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-git若干操作" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-爬虫-初体验" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/22/git若干操作/" class="article-date">
-  <time datetime="2017-04-22T04:07:36.000Z" itemprop="datePublished">2017-04-22</time>
+    <a href="/2017/05/16/爬虫-初体验/" class="article-date">
+  <time datetime="2017-05-16T03:15:48.000Z" itemprop="datePublished">2017-05-16</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -86,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      git若干操作
+      爬虫-初体验
     </h1>
   
 
@@ -94,34 +90,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim" alt=""></p>
-<a id="more"></a>
-<p>本人也是常用git命令，但用的很水，基本只用简单的命令，一遇到问题才会去打其他命令来用，这里只是简单记录一下我常用到的命令，后面有用么其他命令再陆续补充。</p>
-<h4 id="1、下载仓库"><a href="#1、下载仓库" class="headerlink" title="1、下载仓库"></a>1、下载仓库</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> 地址</div></pre></td></tr></table></figure>
-<h4 id="2、修改、添加上传提交"><a href="#2、修改、添加上传提交" class="headerlink" title="2、修改、添加上传提交"></a>2、修改、添加上传提交</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add * </div><div class="line">git commit -m <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<h4 id="3、删除上传提交"><a href="#3、删除上传提交" class="headerlink" title="3、删除上传提交"></a>3、删除上传提交</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm file</div><div class="line">git commit -m <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm file</div><div class="line">git commit -am <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p><code>commit -m</code>与<code>commit -am</code>的区别：</p>
-<p>一般仓库中的文件可能存在于这三种状态：</p>
-<ul>
-<li>1）<code>Untracked files</code> → 文件未被跟踪；</li>
-<li>2）<code>Changes to be committed</code> → 文件已缓存，这是下次提交的内容；</li>
-<li>3）<code>Changes but not updated</code> → 文件被修改，但并没有添加到缓存区。</li>
-</ul>
-<p><code>git commit -m &quot; &quot;</code> 只会提交添加到缓存区的文件（只提交添加的）</p>
-<p><code>git commit -a -m &quot; &quot;</code>  能提交修改过，但是没有添加到缓存区的文件（修改过的就能提交）</p>
-<h4 id="4、查看远程库名称"><a href="#4、查看远程库名称" class="headerlink" title="4、查看远程库名称"></a>4、查看远程库名称</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure>
-<h4 id="5、git工作流"><a href="#5、git工作流" class="headerlink" title="5、git工作流"></a>5、git工作流</h4><p><img src="http://ogtxggxo6.bkt.clouddn.com/git%E5%B7%A5%E4%BD%9C%E6%B5%81.png?imageView2/2/h/300" alt="git工作流"></p>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/git若干操作/" data-id="cj2r6t3of0002dnif4cdrsvfk" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/05/16/爬虫-初体验/" data-id="cj2r6t3pj001mdnifapdaeqah" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
     </footer>
 	
     <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
@@ -142,19 +117,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/04/22/深度干货/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/12/词袋模型/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          深度干货
+          词袋模型
         
       </div>
     </a>
   
   
-    <a href="/2017/04/22/jupyter主题安装/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/05/16/阅读与修心/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">jupyter主题安装</div>
+      <div class="article-nav-title">阅读与修心随笔</div>
     </a>
   
 </nav>

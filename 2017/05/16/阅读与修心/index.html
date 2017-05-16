@@ -3,19 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>git若干操作 | blog of PeterSansan</title>
+  <title>阅读与修心随笔 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="github">
+  <meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git若干操作">
-<meta property="og:url" content="http://petersansan.top/2017/04/22/git若干操作/index.html">
+<meta property="og:title" content="阅读与修心随笔">
+<meta property="og:url" content="http://petersansan.top/2017/05/16/阅读与修心/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/git%E5%B7%A5%E4%BD%9C%E6%B5%81.png?imageView2/2/h/300">
-<meta property="og:updated_time" content="2017-04-22T04:43:39.032Z">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rt.png?imageslim">
+<meta property="og:updated_time" content="2017-05-16T06:38:14.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git若干操作">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim">
+<meta name="twitter:title" content="阅读与修心随笔">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/rt.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,14 +67,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-git若干操作" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-阅读与修心" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/22/git若干操作/" class="article-date">
-  <time datetime="2017-04-22T04:07:36.000Z" itemprop="datePublished">2017-04-22</time>
+    <a href="/2017/05/16/阅读与修心/" class="article-date">
+  <time datetime="2017-05-16T05:32:54.000Z" itemprop="datePublished">2017-05-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
   </div>
 
   </div>
@@ -86,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      git若干操作
+      阅读与修心随笔
     </h1>
   
 
@@ -94,33 +93,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/gitd.jpg?imageslim" alt=""></p>
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/rt.png?imageslim" alt=""></p>
 <a id="more"></a>
-<p>本人也是常用git命令，但用的很水，基本只用简单的命令，一遇到问题才会去打其他命令来用，这里只是简单记录一下我常用到的命令，后面有用么其他命令再陆续补充。</p>
-<h4 id="1、下载仓库"><a href="#1、下载仓库" class="headerlink" title="1、下载仓库"></a>1、下载仓库</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> 地址</div></pre></td></tr></table></figure>
-<h4 id="2、修改、添加上传提交"><a href="#2、修改、添加上传提交" class="headerlink" title="2、修改、添加上传提交"></a>2、修改、添加上传提交</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add * </div><div class="line">git commit -m <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<h4 id="3、删除上传提交"><a href="#3、删除上传提交" class="headerlink" title="3、删除上传提交"></a>3、删除上传提交</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm file</div><div class="line">git commit -m <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm file</div><div class="line">git commit -am <span class="string">"message"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p><code>commit -m</code>与<code>commit -am</code>的区别：</p>
-<p>一般仓库中的文件可能存在于这三种状态：</p>
-<ul>
-<li>1）<code>Untracked files</code> → 文件未被跟踪；</li>
-<li>2）<code>Changes to be committed</code> → 文件已缓存，这是下次提交的内容；</li>
-<li>3）<code>Changes but not updated</code> → 文件被修改，但并没有添加到缓存区。</li>
-</ul>
-<p><code>git commit -m &quot; &quot;</code> 只会提交添加到缓存区的文件（只提交添加的）</p>
-<p><code>git commit -a -m &quot; &quot;</code>  能提交修改过，但是没有添加到缓存区的文件（修改过的就能提交）</p>
-<h4 id="4、查看远程库名称"><a href="#4、查看远程库名称" class="headerlink" title="4、查看远程库名称"></a>4、查看远程库名称</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure>
-<h4 id="5、git工作流"><a href="#5、git工作流" class="headerlink" title="5、git工作流"></a>5、git工作流</h4><p><img src="http://ogtxggxo6.bkt.clouddn.com/git%E5%B7%A5%E4%BD%9C%E6%B5%81.png?imageView2/2/h/300" alt="git工作流"></p>
+<p>从五一到现在已经过去了两周，不过我始终没有认真的学习和看书过，大概是前面过实习压抑的时间太久了。一整天都宅在宿舍里面，单凭一个手机都可以看一天，自己的身体与智力都感觉明显的下降，现在要重新回归实验室，感到一种力不从心的感觉，像明知自己有好多东西要学，但还是不能集中精力。我知道自己很为自我为中心，经常随着自己的性子。但目前还不是享受放纵的时光，奋斗的旅程还没有走完呢。最近几年逐渐把一些优良的精神品质给遗忘了，像是自制力，意志力，勇气等。我自己的感受是一个人在逆境中要比顺境来的光彩夺目，在这样的过程中其实他自己展现了一个人的各种精神品质与才华去完成一件伟大的事，还在顺境中，还没有这样的机会去展示，甚至会把原来好的精神品质给遗忘掉。我们这一代的年轻人少了对这些品质的认可与追求，简简单单用一句话把件事归为能做不能做，可做不可做，想不想做。是的，我们现在的条优越了，就算不做个优秀的人也能正常地养活自己，甚至说不做一个伟人，更加可以享受舒适的一身。这种理想与一百年前，生合的意义在于要么革命，要么苟且的生活有天壤之别。今天，没有人会把一个过了普通生活的人说成苟且，但是我们的目光是从受未有的短浅，只看到了自己，看到了家人，甚至开始对朋友也不再重视了。不知这是人性对自我的回归还是人性的冷漠。理解这种状态很模糊，因为我们也处于其中，如果不能跳出这个圈中，就不能正确的看待这个问题。但是真正的评判标准在哪呢，是我们自己的内心，还是有客观的好的人生目标。我们对知识与生活经验的匮乏体现出来了，我们只是井底之蛙。所以我们只能相信自己，相信自己的内心，不管这个判断是否真的合情合理，自我的想法就是唯一。信仰呢？它已经不在了，但就算有它，在我们眼里，你也没过得比我们发了，因为你的物质生活也没那样。那是真正的精神生活就是玩游戏，刷微博，看电影，旅行，运动，吃好吃的等活动得到的精神享受吗？思考，你有去思考这样的问题吗?大概我们每于都忙于生活，工作，忙于享受……我们这一代人像是温室里的花朵，因为知道暴风雪可能不会来，就不会想着去外面看看，因为里面已经很大很美了。我没有批判的意思，只是谈到阅读与修心，我想到了这些，也在此告诫自己，你要的是什么？你勇去做什么？你是于连吗？</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/04/22/git若干操作/" data-id="cj2r6t3of0002dnif4cdrsvfk" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/05/16/阅读与修心/" data-id="cj2r6t3pv0026dnif1wcjsd0c" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
 
     </footer>
 	
@@ -142,20 +125,15 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/04/22/深度干货/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/16/爬虫-初体验/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          深度干货
+          爬虫-初体验
         
       </div>
     </a>
   
-  
-    <a href="/2017/04/22/jupyter主题安装/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">jupyter主题安装</div>
-    </a>
   
 </nav>
 
