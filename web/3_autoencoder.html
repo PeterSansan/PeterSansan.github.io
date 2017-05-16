@@ -11769,6 +11769,9 @@ Links:
     [MNIST Dataset] http://yann.lecun.com/exdb/mnist/</code></pre>
 <p><img src="http://ogtxggxo6.bkt.clouddn.com/autoencode.jpg?imageView2/2/w/650" alt=""></p>
 
+<pre><code>这里的自动编码机的结构如上图所示：手写数字图片为24*24，展开为784个输入节点，之后两层隐藏层构成了编码层，维数变化为784-&gt;256,256-128,这后是解码层，维度变化为128-&gt;256,256-&gt;784,这样的转换后就又重构出一个图像了。</code></pre>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/auto.png?imageslim" alt=""></p>
+
 </div>
 </div>
 </div>
@@ -13581,6 +13584,16 @@ YcOGDRs2bNg40fj/ASDTgquQNuM0AAAAAElFTkSuQmCC
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>上面的结果中，第一行表示的是测试集原始的图,第二行表示的重构的图。</p>
+
+</div>
+</div>
 </div>
     </div>
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
