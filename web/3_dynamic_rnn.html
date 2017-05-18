@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>3_recurrent_network</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>3_dynamic_rnn</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11749,26 +11749,24 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="LSTM&#25163;&#20889;&#35782;&#21035;-">LSTM&#25163;&#20889;&#35782;&#21035; <a href="http://petersansan.top"><img align="right" src="http://ogtxggxo6.bkt.clouddn.com/home.jpg?imageView2/2/h/30" /></a><a class="anchor-link" href="#LSTM&#25163;&#20889;&#35782;&#21035;-">&#182;</a></h1>
-<pre><code>Author: PeterSansan
-Times : 2017-4-27</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="&#20195;&#30721;&#25551;&#36848;:">&#20195;&#30721;&#25551;&#36848;:<a class="anchor-link" href="#&#20195;&#30721;&#25551;&#36848;:">&#182;</a></h4><p>这个文章很好的展示了RNN网络大体的数据变化过程，RNN的输入是一个序列（这里只讨论固定长度的序列），序列的长度与timestep有关，尤其图像间不存在时序关系，图像内像素才有时序关系，所以可以考虑用一幅图构成多个序列，像这里的手写图片可以构成28*28的序列，即28组28像素长的序列，前面一个28即为timestep，后面那个28为输入层的神经元个数。上一篇的《人人都所有人都能学会用Python写出RNN代码》采用的是一组数据就更新一次参数，叫作Stochastic Gradient Descent (SGD)；也可以同时并行算多组数据，再用平均值迭代，即为Mini-batch gradient descent——小批量递度下降法。这样的技术只能后向传播有影响，又前向传播没有影响。</p>
-<p>这个例子有几个支影响结果的超参数：</p>
-<ul>
-<li>learning_rate 学习速度</li>
-<li>training_iters 迭代次数</li>
-<li>batch_size 并列计算组数</li>
-<li>n_hidden 隐藏层结点数</li>
-</ul>
+<h1 id="&#21160;&#24577;RNN">&#21160;&#24577;RNN<a class="anchor-link" href="#&#21160;&#24577;RNN">&#182;</a></h1><p>实验目的：判断序列是否为线性，序列二分类问题，序列的长度不是固定的，这各LSTM模型为多对1的，即输入为一个序列，输出为一个固定长度的数值，跟前面的用RNN做手写识别的例子类似，不同点是这个例子的序列的长度不同，即<code>timestep</code>不同，每一个序列按照自身的序列长度 = <code>timestep</code>做更新。</p>
+<h3 id="1&#12289;&#29983;&#25104;&#25968;&#25454;&#65306;ToySequenceDate&#31867;">1&#12289;&#29983;&#25104;&#25968;&#25454;&#65306;ToySequenceDate&#31867;<a class="anchor-link" href="#1&#12289;&#29983;&#25104;&#25968;&#25454;&#65306;ToySequenceDate&#31867;">&#182;</a></h3><p>生成一组长度不等的随机序列，最短序列长度默认为3，最长序列默认为20，最短序列默认为3,其中的数据用0填充；用类函数next可以批量地取数据，得到的分别是<code>batch_x</code>,<code>batch_y</code>,<code>batch_seqlen</code>;
+如把batch_size = 3;</p>
+<p>$ batch_x</p>
+<blockquote><p>[[[0.375], [0.417], [0.675], [0.212], [0.799], [0.713], [0.489], [0.181], [0.757], [0.97], [0.755], [0.357], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0]], [[0.426], [0.787], [0.323], [0.295], [0.572], [0.696], [0.651], [0.344], [0.156], [0.855], [0.933], [0.505], [0.533], [0.881], [0.055], [0.318], [0.532], [0.196], [0.54], [0.0]]] # 维度为(2,20,1)</p>
+</blockquote>
+<p>$ batch_y</p>
+<blockquote><p>[[0.0, 1.0], [0.0, 1.0]]    # 如果是线性序列，分类标签为[1.0,0.0]，如果非线性序列，分类标签为[0.0,1.0]</p>
+</blockquote>
+<p>$batch_seqlen</p>
+<blockquote><p>[12, 19]  # 序列有效的真实长度</p>
+</blockquote>
+<h3 id="2&#12289;&#32593;&#32476;&#27169;&#22411;&#65306;dynamicRNN(x,-seqlen,-weights,-biases):">2&#12289;&#32593;&#32476;&#27169;&#22411;&#65306;dynamicRNN(x, seqlen, weights, biases):<a class="anchor-link" href="#2&#12289;&#32593;&#32476;&#27169;&#22411;&#65306;dynamicRNN(x,-seqlen,-weights,-biases):">&#182;</a></h3>
+<pre><code>输入节点：1个
+LSTM层节点： 64个
+输出节点：2个</code></pre>
+<p>比上一个模型多了seqlen的变量</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/ls.png?imageslim" alt="模型图"></p>
 
 </div>
 </div>
@@ -11778,76 +11776,112 @@ Times : 2017-4-27</code></pre>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="o">%%</span><span class="k">time</span>
-from __future__ import print_function
+<div class=" highlight hl-ipython2"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">A Dynamic Recurrent Neural Network (LSTM) implementation example using</span>
+<span class="sd">TensorFlow library. This example is using a toy dataset to classify linear</span>
+<span class="sd">sequences. The generated sequences have variable length.</span>
 
-import tensorflow as tf
-import numpy as np
-from tensorflow.contrib import rnn
+<span class="sd">Long Short Term Memory paper: http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-# Import MNIST data
-from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets(&quot;./../mnist/MNIST_data/&quot;, one_hot=True)
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c"># ====================</span>
+<span class="c">#  TOY DATA GENERATOR</span>
+<span class="c"># ====================</span>
+<span class="k">class</span> <span class="nc">ToySequenceData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Generate sequence of data with dynamic length.</span>
+<span class="sd">    This class generate samples for training:</span>
+<span class="sd">    - Class 0: linear sequences (i.e. [0, 1, 2, 3,...])</span>
+<span class="sd">    - Class 1: random sequences (i.e. [1, 3, 10, 7,...])</span>
+
+<span class="sd">    NOTICE:</span>
+<span class="sd">    We have to pad each sequence to reach &#39;max_seq_len&#39; for TensorFlow</span>
+<span class="sd">    consistency (we cannot feed a numpy array with inconsistent</span>
+<span class="sd">    dimensions). The dynamic calculation will then be perform thanks to</span>
+<span class="sd">    &#39;seqlen&#39; attribute that records every actual sequence length.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_seq_len</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">max_value</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seqlen</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+            <span class="c"># Random sequence length</span>
+            <span class="nb">len</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">min_seq_len</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="p">)</span>
+            <span class="c"># Monitor sequence length for TensorFlow dynamic calculation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seqlen</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+            <span class="c"># Add a random or linear int sequence (50% prob)</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">.</span><span class="mi">5</span><span class="p">:</span>
+                <span class="c"># Generate a linear sequence</span>
+                <span class="n">rand_start</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">-</span> <span class="nb">len</span><span class="p">)</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">max_value</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+                     <span class="nb">range</span><span class="p">(</span><span class="n">rand_start</span><span class="p">,</span> <span class="n">rand_start</span> <span class="o">+</span> <span class="nb">len</span><span class="p">)]</span>
+                <span class="c"># Pad sequence for dimension consistency</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_seq_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">)]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># Generate a random sequence</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span><span class="p">))</span><span class="o">/</span><span class="n">max_value</span><span class="p">]</span>
+                     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">)]</span>
+                <span class="c"># Pad sequence for dimension consistency</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_seq_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">)]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return a batch of data. When dataset end is reached, start over.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">batch_data</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">+</span>
+                                                  <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))])</span>
+        <span class="n">batch_labels</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">+</span>
+                                                  <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))])</span>
+        <span class="n">batch_seqlen</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seqlen</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">+</span>
+                                                  <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_id</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">batch_data</span><span class="p">,</span> <span class="n">batch_labels</span><span class="p">,</span> <span class="n">batch_seqlen</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Extracting ./../mnist/MNIST_data/train-images-idx3-ubyte.gz
-Extracting ./../mnist/MNIST_data/train-labels-idx1-ubyte.gz
-Extracting ./../mnist/MNIST_data/t10k-images-idx3-ubyte.gz
-Extracting ./../mnist/MNIST_data/t10k-labels-idx1-ubyte.gz
-CPU times: user 1.12 s, sys: 341 ms, total: 1.46 s
-Wall time: 1.23 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>为了有将我使用RNN网络，我们把原本28*28的图像，看成是28个序列的数据，每一个序列为一行，因此每一个数据样本我们会处理28个时间步与28个序列，这表示输入结点是28个，一次输入一个长28的序列，连续输入28个序列，再反向传播把参数更新一次。</p>
-
-<pre><code>To classify images using a reccurent neural network, we consider every image
-row as a sequence of pixels. Because MNIST image shape is 28*28px, we will then
-handle 28 sequences of 28 steps for every sample.</code></pre>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># Parameters</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c"># 学习速率</span>
-<span class="n">training_iters</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c"># 迭代次数，这里是数据组数</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span> <span class="c"># Mini-batch 并行计算数，多少组数据更新一次参数</span>
-<span class="n">display_step</span> <span class="o">=</span> <span class="mi">10</span> <span class="c"># 多少次迭代显示一次训练精度</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># ==========</span>
+<span class="c">#   MODEL</span>
+<span class="c"># ==========</span>
+
+<span class="c"># Parameters</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">training_iters</span> <span class="o">=</span> <span class="mi">2000000</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">display_step</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="c"># Network Parameters</span>
-<span class="n">n_input</span> <span class="o">=</span> <span class="mi">28</span> <span class="c"># MNIST data input (img shape: 28*28)</span>
-<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">28</span> <span class="c"># timesteps</span>
-<span class="n">n_hidden</span> <span class="o">=</span> <span class="mi">128</span> <span class="c"># hidden layer num of features</span>
-<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">10</span> <span class="c"># MNIST total classes (0-9 digits)</span>
+<span class="n">seq_max_len</span> <span class="o">=</span> <span class="mi">20</span> <span class="c"># Sequence max length</span>
+<span class="n">n_hidden</span> <span class="o">=</span> <span class="mi">64</span> <span class="c"># hidden layer num of features</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># linear sequence or not</span>
+
+<span class="n">trainset</span> <span class="o">=</span> <span class="n">ToySequenceData</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="o">=</span><span class="n">seq_max_len</span><span class="p">)</span>
+<span class="n">testset</span> <span class="o">=</span> <span class="n">ToySequenceData</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="o">=</span><span class="n">seq_max_len</span><span class="p">)</span>
 
 <span class="c"># tf Graph input</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">&quot;float&quot;</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_input</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">&quot;float&quot;</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">seq_max_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">&quot;float&quot;</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">])</span>
+<span class="c"># A placeholder for indicating each sequence length</span>
+<span class="n">seqlen</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">])</span>
 
 <span class="c"># Define weights</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
@@ -11856,73 +11890,55 @@ handle 28 sequences of 28 steps for every sample.</code></pre>
 <span class="n">biases</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;out&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="n">n_classes</span><span class="p">]))</span>
 <span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;done&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>done
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">RNN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dynamicRNN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">):</span>
 
     <span class="c"># Prepare data shape to match `rnn` function requirements</span>
-    <span class="c"># Current data input shape: (batch_size, n_steps, n_input)</span>
+    <span class="c"># Current data input shape: (batch_size, n_steps, n_input)  # 原来数据维度(batch_size,n_steps,n_input)</span>
     <span class="c"># Required shape: &#39;n_steps&#39; tensors list of shape (batch_size, n_input)</span>
-    <span class="c"># Unstack to get a list of &#39;n_steps&#39; tensors of shape (batch_size, n_input)</span>
-    <span class="c"># 这个函数把原来[batch_size,n_steps,n_inputs]的数据格式转成[n_steps,batch_size,n_input]的数据格式</span>
-    <span class="c"># 如</span>
-    <span class="c">#&gt;&gt;&gt; array([[[ 1,  2],</span>
-    <span class="c">#    [ 3,  4]],</span>
-    <span class="c">#   [[ 5,  6],</span>
-    <span class="c">#    [ 7,  8]],</span>
-    <span class="c">#   [[ 9, 10],</span>
-    <span class="c">#    [11, 12]]], dtype=int32)</span>
-    <span class="c"># 转化为：</span>
-    <span class="c"># &gt;&gt;&gt; array([[ 1,  2],</span>
-    <span class="c">#   [ 5,  6],</span>
-    <span class="c">#   [ 9, 10]], dtype=int32)</span>
-    <span class="c"># &gt;&gt;&gt; b[1].eval()</span>
-    <span class="c"># array([[ 3,  4],</span>
-    <span class="c">#   [ 7,  8],</span>
-    <span class="c">#   [11, 12]], dtype=int32)</span>
-    <span class="c">#</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="c"># Define a lstm cell with tensorflow</span>
-    <span class="n">lstm_cell</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">BasicLSTMCell</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">forget_bias</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="c"># Get lstm cell output</span>
-    <span class="n">outputs</span><span class="p">,</span> <span class="n">states</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">static_rnn</span><span class="p">(</span><span class="n">lstm_cell</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     
-    <span class="c"># outputs维度是[timestep,batch_size,n_hidden] ,表示每一timestep的输出，输出长度为隐藏层的长度， outputs[-1]维度是最后一个timestep</span>
-    <span class="c"># 的输出,维度为(batch_size,n_hidden)</span>
-    <span class="c"># Linear activation, using rnn inner loop last output</span>
-    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="s">&#39;out&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">biases</span><span class="p">[</span><span class="s">&#39;out&#39;</span><span class="p">]</span>
+    <span class="c"># Unstack to get a list of &#39;n_steps&#39; tensors of shape (batch_size, n_input) # 重构数据维度(n_steps,batch_size,n_input)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">seq_max_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c"># 默认n_steps = seq_max_len = 20</span>
 
-<span class="n">pred</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">)</span>
+    <span class="c"># Define a lstm cell with tensorflow</span>
+    <span class="n">lstm_cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">BasicLSTMCell</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">)</span>
+
+    <span class="c"># Get lstm cell output, providing &#39;sequence_length&#39; will perform dynamic</span>
+    <span class="c"># calculation.</span>
+    <span class="n">outputs</span><span class="p">,</span> <span class="n">states</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">static_rnn</span><span class="p">(</span><span class="n">lstm_cell</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+                                <span class="n">sequence_length</span><span class="o">=</span><span class="n">seqlen</span><span class="p">)</span>  <span class="c"># 这里就是与最基本的LSTM的区别</span>
+
+    <span class="c"># 上一个例子中，如果定义一个seqlen的序列为[28,28,28,...]，结果是一样的</span>
+    <span class="c"># When performing dynamic calculation, we must retrieve the last</span>
+    <span class="c"># dynamically computed output, i.e., if a sequence length is 10, we need</span>
+    <span class="c"># to retrieve the 10th output.</span>
+    <span class="c"># However TensorFlow doesn&#39;t support advanced indexing yet, so we build</span>
+    <span class="c"># a custom op that for each sample in batch size, get its length and</span>
+    <span class="c"># get the corresponding relevant output.</span>
+
+    <span class="c"># &#39;outputs&#39; is a list of output at every timestep, we pack them in a Tensor</span>
+    <span class="c"># and change back dimension to [batch_size, n_step, n_input]</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>  <span class="c"># 影响不大,把list转为tensor</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c"># 转置函数，本来的outpus维度为(n_step，batch_size,hidden),</span>
+    <span class="c"># 现在的维度为(batch_size,n_step,hidden)</span>
+          
+    <span class="c"># Hack to build the indexing and retrieve the right output.</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">outputs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c"># 取batch_size</span>
+    <span class="c"># Start indices for each sample</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">seq_max_len</span> <span class="o">+</span> <span class="p">(</span><span class="n">seqlen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c"># Indexing</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">]),</span> <span class="n">index</span><span class="p">)</span> <span class="c"># 这里的outputs先是由原来的(batch_size,n_step,hidden)</span>
+    <span class="c"># 转为(batch_size*n_step,hidden),这样的每一列的hidden输出，都包括了多个batch_size,每一个batch_size相差seqlen_max,即20，通过</span>
+    <span class="c"># 加上seqlen来定位到真正有效的长度，即长度为10，即为10th的隐藏层输出</span>
+    <span class="c"># Linear activation, using outputs computed above</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s">&#39;out&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">biases</span><span class="p">[</span><span class="s">&#39;out&#39;</span><span class="p">]</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">dynamicRNN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">biases</span><span class="p">)</span>
 
 <span class="c"># Define loss and optimizer</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
 
 <span class="c"># Evaluate model</span>
 <span class="n">correct_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -11936,10 +11952,25 @@ handle 28 sequences of 28 steps for every sample.</code></pre>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py:93: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  &#34;Converting sparse IndexedSlices to a dense Tensor of unknown shape. &#34;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Launch the graph</span>
@@ -11948,29 +11979,30 @@ handle 28 sequences of 28 steps for every sample.</code></pre>
     <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="c"># Keep training until reach max iterations</span>
     <span class="k">while</span> <span class="n">step</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="o">&lt;</span> <span class="n">training_iters</span><span class="p">:</span>
-        <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">next_batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
-        <span class="c"># Reshape data to get 28 seq of 28 elements</span>
-        <span class="n">batch_x</span> <span class="o">=</span> <span class="n">batch_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_input</span><span class="p">))</span>
+        <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span><span class="p">,</span> <span class="n">batch_seqlen</span> <span class="o">=</span> <span class="n">trainset</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
         <span class="c"># Run optimization op (backprop)</span>
-        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span>
+                                       <span class="n">seqlen</span><span class="p">:</span> <span class="n">batch_seqlen</span><span class="p">})</span>
         <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="n">display_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c"># Calculate batch accuracy</span>
-            <span class="n">acc</span><span class="p">,</span><span class="n">pp</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">accuracy</span><span class="p">,</span><span class="n">pred</span><span class="p">]</span> <span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+            <span class="n">acc</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span>
+                                                <span class="n">seqlen</span><span class="p">:</span> <span class="n">batch_seqlen</span><span class="p">})</span>
             <span class="c"># Calculate batch loss</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span>
+                                             <span class="n">seqlen</span><span class="p">:</span> <span class="n">batch_seqlen</span><span class="p">})</span>
             <span class="k">print</span><span class="p">(</span><span class="s">&quot;Iter &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">step</span><span class="o">*</span><span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;, Minibatch Loss= &quot;</span> <span class="o">+</span> \
                   <span class="s">&quot;{:.6f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;, Training Accuracy= &quot;</span> <span class="o">+</span> \
                   <span class="s">&quot;{:.5f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">acc</span><span class="p">))</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">pp</span><span class="p">))</span>
         <span class="n">step</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Optimization Finished!&quot;</span><span class="p">)</span>
 
-    <span class="c"># Calculate accuracy for 128 mnist test images</span>
-    <span class="n">test_len</span> <span class="o">=</span> <span class="mi">128</span>
-    <span class="n">test_data</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">[:</span><span class="n">test_len</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_input</span><span class="p">))</span>
-    <span class="n">test_label</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">labels</span><span class="p">[:</span><span class="n">test_len</span><span class="p">]</span>
+    <span class="c"># Calculate accuracy</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="n">testset</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">test_label</span> <span class="o">=</span> <span class="n">testset</span><span class="o">.</span><span class="n">labels</span>
+    <span class="n">test_seqlen</span> <span class="o">=</span> <span class="n">testset</span><span class="o">.</span><span class="n">seqlen</span>
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Testing Accuracy:&quot;</span><span class="p">,</span> \
-        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">test_label</span><span class="p">}))</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">test_label</span><span class="p">,</span>
+                                      <span class="n">seqlen</span><span class="p">:</span> <span class="n">test_seqlen</span><span class="p">}))</span>
 </pre></div>
 
 </div>
@@ -11983,164 +12015,74 @@ handle 28 sequences of 28 steps for every sample.</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Iter 1280, Minibatch Loss= 2.314154, Training Accuracy= 0.25000
-(128, 10)
-Iter 2560, Minibatch Loss= 2.140744, Training Accuracy= 0.21094
-(128, 10)
-Iter 3840, Minibatch Loss= 1.896697, Training Accuracy= 0.32812
-(128, 10)
-Iter 5120, Minibatch Loss= 1.516512, Training Accuracy= 0.52344
-(128, 10)
-Iter 6400, Minibatch Loss= 1.464008, Training Accuracy= 0.50000
-(128, 10)
-Iter 7680, Minibatch Loss= 1.127073, Training Accuracy= 0.64062
-(128, 10)
-Iter 8960, Minibatch Loss= 0.878898, Training Accuracy= 0.71094
-(128, 10)
-Iter 10240, Minibatch Loss= 0.811448, Training Accuracy= 0.71875
-(128, 10)
-Iter 11520, Minibatch Loss= 0.662714, Training Accuracy= 0.75000
-(128, 10)
-Iter 12800, Minibatch Loss= 0.621471, Training Accuracy= 0.74219
-(128, 10)
-Iter 14080, Minibatch Loss= 0.588912, Training Accuracy= 0.77344
-(128, 10)
-Iter 15360, Minibatch Loss= 0.634052, Training Accuracy= 0.78906
-(128, 10)
-Iter 16640, Minibatch Loss= 0.623472, Training Accuracy= 0.78125
-(128, 10)
-Iter 17920, Minibatch Loss= 0.584624, Training Accuracy= 0.81250
-(128, 10)
-Iter 19200, Minibatch Loss= 0.382112, Training Accuracy= 0.88281
-(128, 10)
-Iter 20480, Minibatch Loss= 0.286754, Training Accuracy= 0.89844
-(128, 10)
-Iter 21760, Minibatch Loss= 0.323630, Training Accuracy= 0.89844
-(128, 10)
-Iter 23040, Minibatch Loss= 0.347978, Training Accuracy= 0.84375
-(128, 10)
-Iter 24320, Minibatch Loss= 0.403346, Training Accuracy= 0.87500
-(128, 10)
-Iter 25600, Minibatch Loss= 0.457143, Training Accuracy= 0.86719
-(128, 10)
-Iter 26880, Minibatch Loss= 0.287412, Training Accuracy= 0.91406
-(128, 10)
-Iter 28160, Minibatch Loss= 0.277562, Training Accuracy= 0.92969
-(128, 10)
-Iter 29440, Minibatch Loss= 0.184329, Training Accuracy= 0.92969
-(128, 10)
-Iter 30720, Minibatch Loss= 0.499276, Training Accuracy= 0.82812
-(128, 10)
-Iter 32000, Minibatch Loss= 0.254924, Training Accuracy= 0.92188
-(128, 10)
-Iter 33280, Minibatch Loss= 0.394380, Training Accuracy= 0.85938
-(128, 10)
-Iter 34560, Minibatch Loss= 0.229457, Training Accuracy= 0.95312
-(128, 10)
-Iter 35840, Minibatch Loss= 0.466334, Training Accuracy= 0.86719
-(128, 10)
-Iter 37120, Minibatch Loss= 0.195923, Training Accuracy= 0.92969
-(128, 10)
-Iter 38400, Minibatch Loss= 0.230221, Training Accuracy= 0.91406
-(128, 10)
-Iter 39680, Minibatch Loss= 0.120939, Training Accuracy= 0.96094
-(128, 10)
-Iter 40960, Minibatch Loss= 0.183080, Training Accuracy= 0.94531
-(128, 10)
-Iter 42240, Minibatch Loss= 0.234198, Training Accuracy= 0.92188
-(128, 10)
-Iter 43520, Minibatch Loss= 0.185700, Training Accuracy= 0.93750
-(128, 10)
-Iter 44800, Minibatch Loss= 0.182189, Training Accuracy= 0.93750
-(128, 10)
-Iter 46080, Minibatch Loss= 0.235111, Training Accuracy= 0.93750
-(128, 10)
-Iter 47360, Minibatch Loss= 0.282117, Training Accuracy= 0.89844
-(128, 10)
-Iter 48640, Minibatch Loss= 0.120906, Training Accuracy= 0.97656
-(128, 10)
-Iter 49920, Minibatch Loss= 0.138299, Training Accuracy= 0.96875
-(128, 10)
-Iter 51200, Minibatch Loss= 0.146729, Training Accuracy= 0.96875
-(128, 10)
-Iter 52480, Minibatch Loss= 0.175427, Training Accuracy= 0.94531
-(128, 10)
-Iter 53760, Minibatch Loss= 0.141000, Training Accuracy= 0.96875
-(128, 10)
-Iter 55040, Minibatch Loss= 0.292163, Training Accuracy= 0.92188
-(128, 10)
-Iter 56320, Minibatch Loss= 0.132176, Training Accuracy= 0.96094
-(128, 10)
-Iter 57600, Minibatch Loss= 0.275162, Training Accuracy= 0.89844
-(128, 10)
-Iter 58880, Minibatch Loss= 0.164788, Training Accuracy= 0.93750
-(128, 10)
-Iter 60160, Minibatch Loss= 0.126041, Training Accuracy= 0.96094
-(128, 10)
-Iter 61440, Minibatch Loss= 0.237735, Training Accuracy= 0.92969
-(128, 10)
-Iter 62720, Minibatch Loss= 0.158476, Training Accuracy= 0.93750
-(128, 10)
-Iter 64000, Minibatch Loss= 0.217752, Training Accuracy= 0.92969
-(128, 10)
-Iter 65280, Minibatch Loss= 0.199192, Training Accuracy= 0.91406
-(128, 10)
-Iter 66560, Minibatch Loss= 0.070620, Training Accuracy= 0.97656
-(128, 10)
-Iter 67840, Minibatch Loss= 0.152064, Training Accuracy= 0.94531
-(128, 10)
-Iter 69120, Minibatch Loss= 0.088077, Training Accuracy= 0.96875
-(128, 10)
-Iter 70400, Minibatch Loss= 0.077582, Training Accuracy= 0.98438
-(128, 10)
-Iter 71680, Minibatch Loss= 0.090413, Training Accuracy= 0.96094
-(128, 10)
-Iter 72960, Minibatch Loss= 0.099178, Training Accuracy= 0.95312
-(128, 10)
-Iter 74240, Minibatch Loss= 0.078805, Training Accuracy= 0.97656
-(128, 10)
-Iter 75520, Minibatch Loss= 0.154972, Training Accuracy= 0.93750
-(128, 10)
-Iter 76800, Minibatch Loss= 0.189102, Training Accuracy= 0.97656
-(128, 10)
-Iter 78080, Minibatch Loss= 0.191721, Training Accuracy= 0.94531
-(128, 10)
-Iter 79360, Minibatch Loss= 0.101764, Training Accuracy= 0.96875
-(128, 10)
-Iter 80640, Minibatch Loss= 0.103761, Training Accuracy= 0.96094
-(128, 10)
-Iter 81920, Minibatch Loss= 0.214751, Training Accuracy= 0.89844
-(128, 10)
-Iter 83200, Minibatch Loss= 0.132487, Training Accuracy= 0.94531
-(128, 10)
-Iter 84480, Minibatch Loss= 0.172038, Training Accuracy= 0.93750
-(128, 10)
-Iter 85760, Minibatch Loss= 0.155750, Training Accuracy= 0.95312
-(128, 10)
-Iter 87040, Minibatch Loss= 0.106035, Training Accuracy= 0.95312
-(128, 10)
-Iter 88320, Minibatch Loss= 0.166519, Training Accuracy= 0.96094
-(128, 10)
-Iter 89600, Minibatch Loss= 0.080073, Training Accuracy= 0.96875
-(128, 10)
-Iter 90880, Minibatch Loss= 0.073192, Training Accuracy= 0.97656
-(128, 10)
-Iter 92160, Minibatch Loss= 0.055593, Training Accuracy= 0.97656
-(128, 10)
-Iter 93440, Minibatch Loss= 0.175655, Training Accuracy= 0.95312
-(128, 10)
-Iter 94720, Minibatch Loss= 0.098792, Training Accuracy= 0.96875
-(128, 10)
-Iter 96000, Minibatch Loss= 0.062665, Training Accuracy= 0.98438
-(128, 10)
-Iter 97280, Minibatch Loss= 0.123720, Training Accuracy= 0.96875
-(128, 10)
-Iter 98560, Minibatch Loss= 0.169592, Training Accuracy= 0.95312
-(128, 10)
-Iter 99840, Minibatch Loss= 0.191976, Training Accuracy= 0.94531
-(128, 10)
-Optimization Finished!
-Testing Accuracy: 0.992188
+<pre>Iter 25600, Minibatch Loss= 0.688734, Training Accuracy= 0.53846
+Iter 51200, Minibatch Loss= 0.686731, Training Accuracy= 0.50962
+Iter 76800, Minibatch Loss= 0.685059, Training Accuracy= 0.54808
+Iter 102400, Minibatch Loss= 0.683110, Training Accuracy= 0.57692
+Iter 128000, Minibatch Loss= 0.680413, Training Accuracy= 0.57692
+Iter 153600, Minibatch Loss= 0.676176, Training Accuracy= 0.64423
+Iter 179200, Minibatch Loss= 0.668738, Training Accuracy= 0.70192
+Iter 204800, Minibatch Loss= 0.653560, Training Accuracy= 0.73077
+Iter 230400, Minibatch Loss= 0.614810, Training Accuracy= 0.73077
+Iter 256000, Minibatch Loss= 0.531648, Training Accuracy= 0.78846
+Iter 281600, Minibatch Loss= 0.467554, Training Accuracy= 0.82692
+Iter 307200, Minibatch Loss= 0.444708, Training Accuracy= 0.83654
+Iter 332800, Minibatch Loss= 0.431049, Training Accuracy= 0.82692
+Iter 358400, Minibatch Loss= 0.420798, Training Accuracy= 0.82692
+Iter 384000, Minibatch Loss= 0.412461, Training Accuracy= 0.83654
+Iter 409600, Minibatch Loss= 0.405410, Training Accuracy= 0.84615
+Iter 435200, Minibatch Loss= 0.399312, Training Accuracy= 0.84615
+Iter 460800, Minibatch Loss= 0.393962, Training Accuracy= 0.86538
+Iter 486400, Minibatch Loss= 0.389211, Training Accuracy= 0.86538
+Iter 512000, Minibatch Loss= 0.384933, Training Accuracy= 0.86538
+Iter 537600, Minibatch Loss= 0.381007, Training Accuracy= 0.86538
+Iter 563200, Minibatch Loss= 0.377308, Training Accuracy= 0.86538
+Iter 588800, Minibatch Loss= 0.373709, Training Accuracy= 0.85577
+Iter 614400, Minibatch Loss= 0.370084, Training Accuracy= 0.85577
+Iter 640000, Minibatch Loss= 0.366325, Training Accuracy= 0.85577
+Iter 665600, Minibatch Loss= 0.362348, Training Accuracy= 0.85577
+Iter 691200, Minibatch Loss= 0.358108, Training Accuracy= 0.86538
+Iter 716800, Minibatch Loss= 0.353580, Training Accuracy= 0.86538
+Iter 742400, Minibatch Loss= 0.348647, Training Accuracy= 0.87500
+Iter 768000, Minibatch Loss= 0.342883, Training Accuracy= 0.87500
+Iter 793600, Minibatch Loss= 0.335310, Training Accuracy= 0.87500
+Iter 819200, Minibatch Loss= 0.323755, Training Accuracy= 0.87500
+Iter 844800, Minibatch Loss= 0.303415, Training Accuracy= 0.87500
+Iter 870400, Minibatch Loss= 0.321832, Training Accuracy= 0.83654
+Iter 896000, Minibatch Loss= 0.385402, Training Accuracy= 0.83654
+Iter 921600, Minibatch Loss= 0.310174, Training Accuracy= 0.82692
+Iter 947200, Minibatch Loss= 0.156201, Training Accuracy= 0.94231
+Iter 972800, Minibatch Loss= 0.120676, Training Accuracy= 0.94231
+Iter 998400, Minibatch Loss= 0.107740, Training Accuracy= 0.95192
+Iter 1024000, Minibatch Loss= 0.099711, Training Accuracy= 0.95192
+Iter 1049600, Minibatch Loss= 0.094423, Training Accuracy= 0.95192
+Iter 1075200, Minibatch Loss= 0.090499, Training Accuracy= 0.96154
+Iter 1100800, Minibatch Loss= 0.087343, Training Accuracy= 0.96154
+Iter 1126400, Minibatch Loss= 0.084676, Training Accuracy= 0.96154
+Iter 1152000, Minibatch Loss= 0.082345, Training Accuracy= 0.96154
+Iter 1177600, Minibatch Loss= 0.080291, Training Accuracy= 0.96154
+Iter 1203200, Minibatch Loss= 0.078469, Training Accuracy= 0.96154
+Iter 1228800, Minibatch Loss= 0.076829, Training Accuracy= 0.96154
+Iter 1254400, Minibatch Loss= 0.075338, Training Accuracy= 0.96154
+Iter 1280000, Minibatch Loss= 0.073975, Training Accuracy= 0.96154
+Iter 1305600, Minibatch Loss= 0.072726, Training Accuracy= 0.96154
+Iter 1331200, Minibatch Loss= 0.071631, Training Accuracy= 0.97115
+Iter 1356800, Minibatch Loss= 0.070625, Training Accuracy= 0.97115
+Iter 1382400, Minibatch Loss= 0.069588, Training Accuracy= 0.97115
+Iter 1408000, Minibatch Loss= 0.068581, Training Accuracy= 0.97115
+Iter 1433600, Minibatch Loss= 0.067625, Training Accuracy= 0.97115
+Iter 1459200, Minibatch Loss= 0.066732, Training Accuracy= 0.97115
+Iter 1484800, Minibatch Loss= 0.065885, Training Accuracy= 0.97115
+Iter 1510400, Minibatch Loss= 0.065097, Training Accuracy= 0.97115
+Iter 1536000, Minibatch Loss= 0.064368, Training Accuracy= 0.97115
+Iter 1561600, Minibatch Loss= 0.063684, Training Accuracy= 0.97115
+Iter 1587200, Minibatch Loss= 0.063004, Training Accuracy= 0.97115
+Iter 1612800, Minibatch Loss= 0.062287, Training Accuracy= 0.97115
+Iter 1638400, Minibatch Loss= 0.061551, Training Accuracy= 0.97115
+Iter 1664000, Minibatch Loss= 0.060837, Training Accuracy= 0.97115
+Iter 1689600, Minibatch Loss= 0.060158, Training Accuracy= 0.97115
+Iter 1715200, Minibatch Loss= 0.059516, Training Accuracy= 0.97115
+Iter 1740800, Minibatch Loss= 0.058910, Training Accuracy= 0.97115
 </pre>
 </div>
 </div>
@@ -12148,19 +12090,6 @@ Testing Accuracy: 0.992188
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><a href="http://218.192.169.151:8888/notebooks/TF_ACTION/notes/3_recurrent_network_1.ipynb">另一个很像的版本</a></li>
-</ul>
-<p><a href="http://petersansan.top"><img src="http://ogtxggxo6.bkt.clouddn.com/home.jpg?imageView2/2/h/30" align="left"/></a></p>
-
-</div>
-</div>
 </div>
     </div>
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
