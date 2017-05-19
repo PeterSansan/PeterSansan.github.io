@@ -11779,6 +11779,9 @@ Time : 2017.04.25</code></pre>
 <li><a href="#14">14、命名域与共享变量</a></li>
 <li><a href="#15">15、查看CPU与GPU使用情况</a></li>
 <li><a href="#16">16. tf.reshape</a></li>
+<li><a href="#17">17.tf.transpose</a></li>
+<li><a href="#18">18.tf.gather</a></li>
+<li><a href="#19">19.加减乘除</a></li>
 </ul>
 
 </div>
@@ -11839,7 +11842,7 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Spend time 0.206182 s
+<pre>Spend time 0.521105 s
 </pre>
 </div>
 </div>
@@ -11875,7 +11878,7 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Spend time 0.564962 s
+<pre>Spend time 0.111130 s
 </pre>
 </div>
 </div>
@@ -11933,19 +11936,19 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[ 36.63120651  35.20991898  35.93156815 ...,  33.42737198  35.38289261
-   31.6554718 ]
- [ 42.56116486  42.72803116  41.04106522 ...,  40.08535385  43.54841614
-   40.63188934]
- [ 38.30940628  36.58013535  38.64689636 ...,  32.69615173  37.78046036
-   36.85554504]
+<pre>[[ 36.421978    32.33883667  36.32481384 ...,  38.8259964   36.90905762
+   34.96734619]
+ [ 33.61271286  32.13290787  36.21008682 ...,  37.74457169  35.23854065
+   32.92845154]
+ [ 33.85023117  35.27126312  38.10679626 ...,  40.34016418  36.56521225
+   34.90681839]
  ..., 
- [ 39.15103149  38.87597656  40.16497421 ...,  37.36235428  40.66197968
-   36.84383774]
- [ 39.997509    37.88767242  36.65858459 ...,  34.99864578  38.94895172
-   36.97928619]
- [ 38.40794754  40.0220871   38.5599556  ...,  38.88759232  40.09415817
-   35.58378601]]
+ [ 35.16938782  31.14734268  36.21683884 ...,  39.2146225   36.79617691
+   33.15740204]
+ [ 35.17005539  32.75048828  37.8230629  ...,  39.10813522  37.65684509
+   36.33364487]
+ [ 39.25868225  38.5942421   42.88594818 ...,  45.04597855  39.78922653
+   38.75571442]]
 </pre>
 </div>
 </div>
@@ -12031,7 +12034,7 @@ Time : 2017.04.25</code></pre>
 <span class="n">input3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>    <span class="c"># 定义三个常量</span>
 
 <span class="n">intermed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">input2</span><span class="p">,</span> <span class="n">input3</span><span class="p">)</span>
-<span class="n">mul</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">intermed</span><span class="p">)</span>
+<span class="n">mul</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">intermed</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">mul</span><span class="p">,</span> <span class="n">intermed</span><span class="p">])</span>
@@ -12147,17 +12150,17 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&lt;tensorflow.python.ops.variables.Variable object at 0x7f4cc8113590&gt;, &lt;tensorflow.python.ops.variables.Variable object at 0x7f4d14256150&gt;, &lt;tensorflow.python.ops.variables.Variable object at 0x7f4ccd1980d0&gt;]
+<pre>[&lt;tf.Variable &#39;counter:0&#39; shape=() dtype=int32_ref&gt;, &lt;tf.Variable &#39;a:0&#39; shape=(5, 2) dtype=float32_ref&gt;, &lt;tf.Variable &#39;d:0&#39; shape=(3, 3) dtype=float32_ref&gt;]
 [u&#39;counter:0&#39;, u&#39;a:0&#39;, u&#39;d:0&#39;]
 [0,
- array([[ 0.18692321,  0.64265215],
-       [ 0.14546293, -0.62066239],
-       [-0.44651672,  0.35067594],
-       [ 0.08697903,  0.24695468],
-       [-0.0844515 ,  0.27527654]], dtype=float32),
- array([[ 0.15427423,  0.00526881,  0.58931553],
-       [ 0.79344165,  0.46213388,  0.9489609 ],
-       [ 0.89840972,  0.50520837,  0.96656311]], dtype=float32)]
+ array([[-0.27231044,  0.06231701],
+       [-0.35887122, -0.00479323],
+       [ 0.88638067,  0.00665551],
+       [ 0.86526895,  0.58776093],
+       [ 0.42452621, -0.14003772]], dtype=float32),
+ array([[ 0.24965227,  0.57588422,  0.70700598],
+       [ 0.53583944,  0.47054195,  0.7503984 ],
+       [ 0.63531339,  0.04223645,  0.30189431]], dtype=float32)]
 </pre>
 </div>
 </div>
@@ -12177,7 +12180,7 @@ Time : 2017.04.25</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
@@ -12206,11 +12209,11 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[-0.96418381  0.62755728  0.20224023  0.19821429]
- [ 0.11692476  0.03023028  0.50005865 -0.36843872]
- [-0.99033117  0.40343499  0.77000117  0.45827532]]
-[1 0 2 2]
-[1 2 2]
+<pre>[[ 0.61477041  0.69772601 -0.34471726 -0.8610878 ]
+ [ 0.45801592 -0.23750687  0.25103879 -0.94248724]
+ [ 0.09553599  0.11336613  0.11424232 -0.7961154 ]]
+[0 0 1 2]
+[1 0 2]
 </pre>
 </div>
 </div>
@@ -12257,12 +12260,12 @@ Time : 2017.04.25</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[-0.34618318  0.62118101 -0.84818065  1.07047594 -1.0440985 ]
- [-0.82751012 -0.60918528 -0.09876704 -0.64386338 -0.47689581]]
-[[-0.43272898  0.77647626 -0.          1.33809495 -1.30512309]
- [-1.03438759 -0.         -0.         -0.         -0.59611976]]
-[[-0.34618318  0.62118101 -0.84818065  1.07047594 -1.0440985 ]
- [-0.82751012 -0.60918528 -0.09876704 -0.64386338 -0.47689581]]
+<pre>[[-0.18207711  0.49687707  0.60756719 -0.61472207  0.61041605]
+ [-0.88965237 -0.68719679 -0.12012607  0.69617593 -0.75358987]]
+[[-0.          0.          0.75945896 -0.76840258  0.76302004]
+ [-1.11206543 -0.85899597 -0.15015759  0.         -0.94198734]]
+[[-0.18207711  0.49687707  0.60756719 -0.61472207  0.61041605]
+ [-0.88965237 -0.68719679 -0.12012607  0.69617593 -0.75358987]]
 </pre>
 </div>
 </div>
@@ -12285,22 +12288,40 @@ Time : 2017.04.25</code></pre>
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># save to file  </span>
+<div class=" highlight hl-ipython2"><pre><span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
+<span class="c"># save to file  </span>
 <span class="c"># 下面代码注释掉，因为一个文件保存与读取不要重复了</span>
-<span class="c"># W = tf.Variable([[1,2,3],[4,5,6]],dtype = tf.float32,name=&#39;weight&#39;)  </span>
-<span class="c"># b = tf.Variable([[1,2,3]],dtype = tf.float32,name=&#39;biases&#39;)  </span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;weight&#39;</span><span class="p">)</span>  
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;biases&#39;</span><span class="p">)</span>  
   
-<span class="c"># init = tf.global_variables_initializer()  </span>
-<span class="c"># saver = tf.train.Saver()  </span>
-<span class="c"># with tf.Session() as sess:  </span>
-<span class="c">#       sess.run(init)  </span>
-<span class="c">#       save_path = saver.save(sess,&quot;./../codes/my_save_net/save_net.ckpt&quot;)  </span>
-<span class="c">#       print (&quot;save to path:&quot;,save_path)  </span>
-<span class="c">#       print (&quot;weights:&quot;,sess.run(W))  </span>
-<span class="c">#       print (&quot;biases:&quot;,sess.run(b)) </span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>  
+<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>  
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>  
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>  
+    <span class="n">save_path</span> <span class="o">=</span> <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span><span class="s">&quot;./save_par/save_par.ckpt&quot;</span><span class="p">)</span>  
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;save to path:&quot;</span><span class="p">,</span><span class="n">save_path</span><span class="p">)</span>  
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;weights:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">))</span>  
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;biases:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>save to path: ./save_par/save_par.ckpt
+weights: [[ 1.  2.  3.]
+ [ 4.  5.  6.]]
+biases: [[ 1.  2.  3.]]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12319,34 +12340,18 @@ Time : 2017.04.25</code></pre>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
-<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;weight&#39;</span><span class="p">)</span>  
-<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;biases&#39;</span><span class="p">)</span>  
+<div class=" highlight hl-ipython2"><pre><span class="c">#tf.reset_default_graph()</span>
+<span class="c">#W = tf.Variable(np.arange(6).reshape((2,3)),dtype = tf.float32,name=&#39;weight&#39;)  </span>
+<span class="c">#b = tf.Variable(np.arange(3).reshape((1,3)),dtype = tf.float32,name=&#39;biases&#39;)  </span>
   
-<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>  
-<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>  
-        <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span><span class="s">&quot;./../codes/my_save_net/save_net.ckpt&quot;</span><span class="p">)</span>  
-        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;weights:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">))</span>  
-        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;biases:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>  
+<span class="c">#saver = tf.train.Saver()  </span>
+<span class="c">#with tf.Session() as sess:  </span>
+<span class="c">#        saver.restore(sess,&quot;./save_par/save_par.ckpt&quot;)  </span>
+<span class="c">#        print (&quot;weights:&quot;,sess.run(W))  </span>
+<span class="c">#        print (&quot;biases:&quot;,sess.run(b))  </span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>weights: [[ 1.  2.  3.]
- [ 4.  5.  6.]]
-biases: [[ 1.  2.  3.]]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12392,8 +12397,8 @@ biases: [[ 1.  2.  3.]]
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>通过sess.run的方式读变量所需的时间: 1.02698397636
-通过直接赋值的手段读变量所需的时间: 0.000610113143921
+<pre>通过sess.run的方式读变量所需的时间: 1.00298500061
+通过直接赋值的手段读变量所需的时间: 0.000418901443481
 </pre>
 </div>
 </div>
@@ -12448,6 +12453,7 @@ biases: [[ 1.  2.  3.]]
 <pre>Hello weird
 Hello weird
 Hello weird
+Hello weird
 
 </pre>
 </div>
@@ -12475,7 +12481,16 @@ Hello weird
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1_basic_operations.ipynb  a.txt  README.md
+<pre>1_basic_operations.ipynb       4_tensorboard_advanced.ipynb
+2_nearest_neighbor.ipynb       4_tensorboard_basic.ipynb
+3_autoencoder.ipynb            a.txt
+3_bidirectional_rnn.ipynb      every_rnn.ipynb
+3_convolutional_network.ipynb  linear_regression.ipynb
+3_dynamic_rnn.ipynb            logistic_regression.ipynb
+3_multilayer_perceptron.ipynb  README.md
+3_recurrent_network_1.ipynb    <span class="ansi-blue-intense-fg ansi-bold">save_par</span>/
+3_recurrent_network.ipynb      tensorboard_advanced.py
+4_save_restore_model.ipynb
 </pre>
 </div>
 </div>
@@ -12591,9 +12606,9 @@ Hello weird
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>random_normal_initializer:
-[[-0.43178701 -1.43916285 -0.48576009  2.22311687]
- [ 1.16909182  0.31709123 -0.82687312 -0.0599713 ]
- [-0.23779255  0.1306451  -1.19138658 -0.00984022]]
+[[ 0.95753425  1.46059477  0.27371508  0.36605692]
+ [ 0.24621746 -0.02094328 -0.25224099  0.35705945]
+ [ 0.50815475 -0.28746808 -1.14822376  0.85695541]]
 </pre>
 </div>
 </div>
@@ -12627,9 +12642,9 @@ Hello weird
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>truncated_normal_initializer:
-[[-0.27428246  0.31585512 -1.13757443  0.35627115]
- [ 0.64936376  0.21050541 -0.91876692  1.64121509]
- [ 1.06470704  0.19850279 -0.64019591  0.07522314]]
+[[-1.21936464 -1.09728968 -0.22761106  0.29304495]
+ [ 0.48207191 -1.66472459  0.04900533 -0.65437996]
+ [-0.24525788 -0.32525098 -1.25320446 -0.09456635]]
 </pre>
 </div>
 </div>
@@ -12663,9 +12678,9 @@ Hello weird
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>random_uniform_initializer:
-[[ 0.11234164  0.47092831  0.47490561  0.74645078]
- [ 0.73484349  0.49166548  0.96968091  0.50727308]
- [ 0.78294468  0.49954581  0.31730163  0.88692081]]
+[[ 0.03791809  0.5784198   0.27508795  0.93115556]
+ [ 0.49908543  0.26265407  0.89508104  0.17106414]
+ [ 0.57495534  0.98303199  0.7831167   0.26729894]]
 </pre>
 </div>
 </div>
@@ -12775,8 +12790,8 @@ foo1/bar1/v:0
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Tensor(&#34;xxx/a/read:0&#34;, shape=(1,), dtype=float32) Tensor(&#34;xxx/a/read:0&#34;, shape=(1,), dtype=float32)
-[ 0.39663684] [ 0.39663684]
+<pre>&lt;tf.Variable &#39;xxx/a:0&#39; shape=(1,) dtype=float32_ref&gt; &lt;tf.Variable &#39;xxx/a:0&#39; shape=(1,) dtype=float32_ref&gt;
+[-0.40943015] [-0.40943015]
 </pre>
 </div>
 </div>
@@ -12928,6 +12943,58 @@ reshape(t, [ 2, -1, 3]) ==&gt; [[[1, 1, 1],
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="17.tf.transpose"><span id="17">17.tf.transpose</span><a class="anchor-link" href="#17.tf.transpose">&#182;</a></h3><p>转置函数：</p>
+<p>转见：<a href="http://blog.csdn.net/u010417185/article/details/51900441">csdn</a></p>
+<h3 id="&lt;span-id-=-&quot;18&quot;&gt;18.tf.gather&lt;/span&gt;">&lt;span id = "18"&gt;18.tf.gather&lt;/span&gt;<a class="anchor-link" href="#&lt;span-id-=-&quot;18&quot;&gt;18.tf.gather&lt;/span&gt;">&#182;</a></h3><p>筛选函数：</p>
+<p>转见：<a href="http://blog.csdn.net/guotong1988/article/details/53172882">csdn</a></p>
+<h3 id="&lt;span-id-=-&quot;19&quot;&gt;19.&#21152;&#20943;&#20056;&#38500;&lt;/span&gt;">&lt;span id = "19"&gt;19.&#21152;&#20943;&#20056;&#38500;&lt;/span&gt;<a class="anchor-link" href="#&lt;span-id-=-&quot;19&quot;&gt;19.&#21152;&#20943;&#20056;&#38500;&lt;/span&gt;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Subtracting a from b:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding a and b:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Multiplying a and b:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Dividing a and b:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Floor dividing a and b:&quot;</span><span class="p">,</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">floor_div</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Subtracting a from b: 1.0
+Adding a and b: 12.0
+Multiplying a and b: 35.75
+Dividing a and b: 1.18182
+Floor dividing a and b: 1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
