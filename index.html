@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/23/udacity-机器学习入门/">udacity-机器学习入门</a>
+      <a class="article-title" href="/2017/05/23/udacity-机器学习入门/">0.Navve Bayes-机器学习入门(udacity)</a>
     </h1>
   
 
@@ -90,27 +90,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>第一课：<code>sklearn Gaussian Naive Bayes</code></li>
-</ul>
-<p>高斯贝叶斯与朴素贝叶斯的区别是先验概念（似然函数）为高斯函数：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/ed0c1181c1696f72e1be266187e4694919047d9e.png?imageslim" alt=""></p>
-<p>sklearn官网基本的使用例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>iris = datasets.load_iris()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>gnb = GaussianNB()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"Number of mislabeled points out of a total %d points : %d"</span></div><div class="line"><span class="meta">... </span>      % (iris.data.shape[<span class="number">0</span>],(iris.target != y_pred).sum()))</div><div class="line">Number of mislabeled points out of a total <span class="number">150</span> points : <span class="number">6</span></div></pre></td></tr></table></figure>
-<p>朴素贝叶斯原理例子：</p>
-<p>假始一种特定癌症发生率为人口的1%，若得了这种特定的癌症，检查结果90%可能是呈阳性的，这通常叫做测试的敏感性，但有时你并没有患癌症，检查结果还是呈阳性，假设你没患上这种特定癌症有90%的可能性是呈阴性，这通常叫做特异性，所以一个人测出阳性是阳性患这种癌症的概率为多少？</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/gdb.png?imageslim" alt=""></p>
-<p>答案是：8.333%</p>
-<p>公式：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/dfa.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/tty.png?imageslim" alt=""></p>
-<p>贝叶斯规则：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/poo.png?imageslim" alt=""></p>
-<p>上面中下面两个箭头是归一化。</p>
-<p> 测试例子1-文档分类：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/dfad.png?imageslim" alt=""></p>
-<p>答案是：<code>SARA</code>，可以用推测，因为<code>SARA</code>使用<code>LOV</code>E与<code>LiFE</code>多一些，也可以用公式算出，只要计算分子即可。</p>
-
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/eer.png?imageslim" alt=""></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/23/udacity-机器学习入门/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -417,7 +402,7 @@
       <ul>
         
           <li>
-            <a href="/2017/05/23/udacity-机器学习入门/">udacity-机器学习入门</a>
+            <a href="/2017/05/23/udacity-机器学习入门/">0.Navve Bayes-机器学习入门(udacity)</a>
           </li>
         
           <li>
