@@ -3,17 +3,25 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Tag: lstm | blog of PeterSansan</title>
+  <title>udacity-机器学习入门 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of PeterSansan">
-<meta property="og:url" content="http://petersansan.top/tags/lstm/index.html">
+  <meta name="description" content="第一课：sklearn Gaussian Naive Bayes  高斯贝叶斯与朴素贝叶斯的区别是先验概念（似然函数）为高斯函数：  sklearn官网基本的使用例子： 12345678&amp;gt;&amp;gt;&amp;gt; from sklearn import datasets&amp;gt;&amp;gt;&amp;gt; iris = datasets.load_iris()&amp;gt;&amp;gt;&amp;gt; from sklearn">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="udacity-机器学习入门">
+<meta property="og:url" content="http://petersansan.top/2017/05/23/udacity-机器学习入门/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
+<meta property="og:description" content="第一课：sklearn Gaussian Naive Bayes  高斯贝叶斯与朴素贝叶斯的区别是先验概念（似然函数）为高斯函数：  sklearn官网基本的使用例子： 12345678&amp;gt;&amp;gt;&amp;gt; from sklearn import datasets&amp;gt;&amp;gt;&amp;gt; iris = datasets.load_iris()&amp;gt;&amp;gt;&amp;gt; from sklearn">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/ed0c1181c1696f72e1be266187e4694919047d9e.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/gdb.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/tty.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/poo.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/dfad.png?imageslim">
+<meta property="og:updated_time" content="2017-05-23T12:52:25.771Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog of PeterSansan">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="udacity-机器学习入门">
+<meta name="twitter:description" content="第一课：sklearn Gaussian Naive Bayes  高斯贝叶斯与朴素贝叶斯的区别是先验概念（似然函数）为高斯函数：  sklearn官网基本的使用例子： 12345678&amp;gt;&amp;gt;&amp;gt; from sklearn import datasets&amp;gt;&amp;gt;&amp;gt; iris = datasets.load_iris()&amp;gt;&amp;gt;&amp;gt; from sklearn">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/ed0c1181c1696f72e1be266187e4694919047d9e.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,39 +74,91 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/29/转-理解LSTM网络/" class="archive-article-date">
-  <time datetime="2017-04-28T16:49:29.000Z" itemprop="datePublished">4月 29</time>
+        <section id="main"><article id="post-udacity-机器学习入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/23/udacity-机器学习入门/" class="article-date">
+  <time datetime="2017-05-23T08:22:27.000Z" itemprop="datePublished">2017-05-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/29/转-理解LSTM网络/">转:理解LSTM网络</a>
+    <h1 class="article-title" itemprop="name">
+      udacity-机器学习入门
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>第一课：<code>sklearn Gaussian Naive Bayes</code></li>
+</ul>
+<p>高斯贝叶斯与朴素贝叶斯的区别是先验概念（似然函数）为高斯函数：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/ed0c1181c1696f72e1be266187e4694919047d9e.png?imageslim" alt=""></p>
+<p>sklearn官网基本的使用例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>iris = datasets.load_iris()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>gnb = GaussianNB()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"Number of mislabeled points out of a total %d points : %d"</span></div><div class="line"><span class="meta">... </span>      % (iris.data.shape[<span class="number">0</span>],(iris.target != y_pred).sum()))</div><div class="line">Number of mislabeled points out of a total <span class="number">150</span> points : <span class="number">6</span></div></pre></td></tr></table></figure>
+<p>朴素贝叶斯原理例子：</p>
+<p>假始一种特定癌症发生率为人口的1%，若得了这种特定的癌症，检查结果90%可能是呈阳性的，这通常叫做测试的敏感性，但有时你并没有患癌症，检查结果还是呈阳性，假设你没患上这种特定癌症有90%的可能性是呈阴性，这通常叫做特异性，所以一个人测出阳性是阳性患这种癌症的概率为多少？</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/gdb.png?imageslim" alt=""></p>
+<p>答案是：8.333%</p>
+<p>公式：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/tty.png?imageslim" alt=""></p>
+<p>贝叶斯规则：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/poo.png?imageslim" alt=""></p>
+<p>上面中下面两个箭头是归一化。</p>
+<p> 测试例子1-文档分类：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/dfad.png?imageslim" alt=""></p>
+<p>答案是：<code>SARA</code>，可以用推测，因为<code>SARA</code>使用<code>LOV</code>E与<code>LiFE</code>多一些，也可以用公式算出，只要计算分子即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://petersansan.top/2017/05/23/udacity-机器学习入门/" data-id="cj31k957p0000q5ifz7ql9ec3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+	
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "e2a8be6e9b7f4bf7aa3c3f956be2ce37",
+      target: "cloud-tie-wrapper"
+    };
+    var yunManualLoad = true;
+    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+    </script>
+	
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/19/循环神经网络惊人的有效性/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          循环神经网络惊人的有效性
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 
 </section>
         
