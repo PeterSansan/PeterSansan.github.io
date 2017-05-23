@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/tty.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/poo.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/dfad.png?imageslim">
-<meta property="og:updated_time" content="2017-05-23T14:05:44.123Z">
+<meta property="og:updated_time" content="2017-05-23T14:17:29.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="0.Navve Bayes-机器学习入门(udacity)">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/eer.png?imageslim">
@@ -124,8 +124,12 @@
 <p>它忽略了单词间的词序</p>
 </blockquote>
 <h4 id="5-朴素贝叶斯的优缺点"><a href="#5-朴素贝叶斯的优缺点" class="headerlink" title="5.朴素贝叶斯的优缺点"></a>5.朴素贝叶斯的优缺点</h4><p>优点：它非常易于执行，它的特征空间非常大，在两万至二十万英文单词之间，运行非常容易，非常有效</p>
-<p>优点：多个单词组成且意义明显不同的短语就不太适用朴素贝叶斯了。</p>
+<p>缺点：多个单词组成且意义明显不同的短语就不太适用朴素贝叶斯了。</p>
 <p>总结：所以具体根据你想要解决的问题，以及要解决的数据集，你不可以把监督分类算法当作是黑匣子，而要把它们当成一种理论性理解，关于算法如何运行以及是否适合你想要解决的问题。然后，当然，你需要进行测试，用训练集与测试集看分类的结果</p>
+<h4 id="6-针对作者身份的机器学习-迷你项目"><a href="#6-针对作者身份的机器学习-迷你项目" class="headerlink" title="6.针对作者身份的机器学习(迷你项目)"></a>6.针对作者身份的机器学习(迷你项目)</h4><p>几年前，J.K. 罗琳（凭借《哈利波特》出名）试着做了件有趣的事。她以 Robert Galbraith 的化名写了本名叫《The Cuckoo’s Calling》的书。尽管该书得到一些不错的评论，但是大家都不太重视它，直到 Twitter 上一个匿名的知情人士说那是 J.K. Rowling 写的。《伦敦周日泰晤士报》找来两名专家对《杜鹃在呼唤》和 Rowling 的《偶发空缺》以及其他几名作者的书进行了比较。<a href="http://languagelog.ldc.upenn.edu/nll/?p=5315" target="_blank" rel="external">分析结果</a>强有力地指出罗琳就是作者，《泰晤士报》直接询问出版商情况是否属实，而出版商也证实了这一说法，该书在此后一夜成名。</p>
+<p>我们也将在此项目中做类似的事。我们有一组邮件，分别由同一家公司的两个人撰写其中半数的邮件。我们的目标是仅根据邮件正文区分每个人写的邮件。在这个迷你项目一开始，我们将使用朴素贝叶斯，并在之后的项目中扩展至其他算法。</p>
+<p>我们会先给你一个字符串列表。每个字符串代表一封经过预处理的邮件的正文；然后，我们会提供代码，用来将数据集分解为训练集和测试集（在下节课中，你将学习如何进行预处理和分解，但是现在请使用我们提供的代码）。</p>
+<p>朴素贝叶斯特殊的一点在于，这种算法非常适合文本分类。在处理文本时，常见的做法是将每个单词看作一个特征，这样就会有大量的特征。此算法的相对简单性和朴素贝叶斯独立特征的这一假设，使其能够出色完成文本的分类。在这个迷你项目中，你将在计算机中下载并安装 sklearn，然后使用朴素贝叶斯根据作者对邮件进行分类。</p>
 
       
     </div>
