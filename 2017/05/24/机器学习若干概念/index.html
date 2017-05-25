@@ -5,17 +5,16 @@
   
   <title>机器学习若干概念 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta name="keywords">
+  <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习若干概念">
 <meta property="og:url" content="http://petersansan.top/2017/05/24/机器学习若干概念/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
-<meta property="og:updated_time" content="2017-05-24T11:16:23.440Z">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim">
+<meta property="og:updated_time" content="2017-05-25T08:02:56.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习若干概念">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -74,6 +73,10 @@
   <time datetime="2017-05-24T11:16:23.000Z" itemprop="datePublished">2017-05-24</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -90,13 +93,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim" alt=""></p>
+<a id="more"></a>
+<h2 id="问题一：多类分类下为什么用softmax而不是用其他归一化方法"><a href="#问题一：多类分类下为什么用softmax而不是用其他归一化方法" class="headerlink" title="问题一：多类分类下为什么用softmax而不是用其他归一化方法"></a>问题一：多类分类下为什么用softmax而不是用其他归一化方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">先理解max. 对一个三类问题，某样本经过NN处理后，最后一层输出值为[24,3,0.1]的话，那么经过max之后的结果为[1,0,0]。对不？</div><div class="line">　　（至于为啥要max，输出结果本来挺奇怪 经过max以后就是categorical 的了，那么样本的类标就可以和他的预测值一起合体 直观地计算cost function。）</div><div class="line">我们最需要的其实是max，但是max有个缺点就是不可导，没法用在dp里，于是有人就想出了softmax。思路就是指数级扩大最后一层的输出，每个值都会增大，然而最大的那个值相比其他值扩大的更多，然后归一化一下，考虑一下极限，如果最大值x_1经过指数运算后想对其他值为无穷大，那么exp(x_1)/exp(x_1)+others =1,其他输出值对应的为0。所以softmax模拟了max的行为，同时他还可导。</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       <a data-url="http://petersansan.top/2017/05/24/机器学习若干概念/" data-id="cj3402z5m001pevifmgf0cx9m" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
     </footer>
 	
     <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
@@ -146,7 +153,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/序列标注/">序列标注</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文记录/">论文记录</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/序列标注/">序列标注</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文记录/">论文记录</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -156,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LSTM/" style="font-size: 13.33px;">LSTM</a> <a href="/tags/NLP/" style="font-size: 16.67px;">NLP</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter/" style="font-size: 13.33px;">jupyter</a> <a href="/tags/lstm/" style="font-size: 10px;">lstm</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/webapp/" style="font-size: 10px;">webapp</a> <a href="/tags/中文分词/" style="font-size: 10px;">中文分词</a> <a href="/tags/价值观/" style="font-size: 10px;">价值观</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/序列标注/" style="font-size: 13.33px;">序列标注</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/概率图模型/" style="font-size: 10px;">概率图模型</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a> <a href="/tags/理论/" style="font-size: 10px;">理论</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/综述/" style="font-size: 10px;">综述</a> <a href="/tags/读后感/" style="font-size: 16.67px;">读后感</a> <a href="/tags/转载/" style="font-size: 10px;">转载</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/LSTM/" style="font-size: 13.33px;">LSTM</a> <a href="/tags/NLP/" style="font-size: 16.67px;">NLP</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter/" style="font-size: 13.33px;">jupyter</a> <a href="/tags/lstm/" style="font-size: 10px;">lstm</a> <a href="/tags/nlp/" style="font-size: 10px;">nlp</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/webapp/" style="font-size: 10px;">webapp</a> <a href="/tags/中文分词/" style="font-size: 10px;">中文分词</a> <a href="/tags/价值观/" style="font-size: 10px;">价值观</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/序列标注/" style="font-size: 13.33px;">序列标注</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/机器学习/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/概率图模型/" style="font-size: 10px;">概率图模型</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a> <a href="/tags/理论/" style="font-size: 10px;">理论</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/综述/" style="font-size: 10px;">综述</a> <a href="/tags/读后感/" style="font-size: 16.67px;">读后感</a> <a href="/tags/转载/" style="font-size: 10px;">转载</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -165,7 +172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/">LSTM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/">jupyter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/">lstm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">nlp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp/">webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文分词/">中文分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/价值观/">价值观</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/序列标注/">序列标注</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率图模型/">概率图模型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/理论/">理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/综述/">综述</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读后感/">读后感</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/">LSTM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/">jupyter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/">lstm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">nlp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp/">webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文分词/">中文分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/价值观/">价值观</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/序列标注/">序列标注</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率图模型/">概率图模型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/理论/">理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/综述/">综述</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读后感/">读后感</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
