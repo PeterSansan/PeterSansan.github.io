@@ -94,10 +94,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，</p>
-<p>如果采用<code>outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)</code>，则<code>LSTM</code>的输出为<br><code>outputs.shape = [ timestep_size,batch_size, hidden_size];</code><br><code>state.shape = [layer_num, 2, batch_size, hidden_size];</code>;</p>
-<p>如果采用<code>outputs, state = tf.nn.dynamic_rnn(mlstm_cell, inputs=X, initial_state=init_state, time_major=False)</code>，则<code>LSTM</code>的输出为</p>
-<p><code>outputs.shape = [ batch_size,timestep_size, hidden_size]</code><br><code>state.shape = [layer_num, 2, batch_size, hidden_size]</code>;</p>
+        <p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，如果采用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)，</div></pre></td></tr></table></figure>
+<p>则LSTM的输出为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ timestep_size,batch_size, hidden_size];</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
+<p>如果采用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = tf.nn.dynamic_rnn(mlstm_cell, inputs=X, initial_state=init_state, time_major=False)</div></pre></td></tr></table></figure></p>
+<p>则LSTM的输出为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ batch_size,timestep_size, hidden_size]</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure></p>
 
       
     </div>
