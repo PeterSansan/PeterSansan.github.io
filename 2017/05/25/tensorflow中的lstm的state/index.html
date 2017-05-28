@@ -5,17 +5,18 @@
   
   <title>tensorflow中的lstm的state | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一开始接触到这个问题是在Tensorflow中的多层LSTM手写数字识别代码中，如果采用 1outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)， 则LSTM的输入为 1shape = (batch_size, timestep_size, input_siz">
-<meta name="keywords" content="tensorflow">
+  <meta name="keywords" content="tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tensorflow中的lstm的state">
 <meta property="og:url" content="http://petersansan.top/2017/05/25/tensorflow中的lstm的state/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="一开始接触到这个问题是在Tensorflow中的多层LSTM手写数字识别代码中，如果采用 1outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)， 则LSTM的输入为 1shape = (batch_size, timestep_size, input_siz">
-<meta property="og:updated_time" content="2017-05-28T04:56:08.532Z">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/yue.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn13.png?imageView2/2/w/650">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn14.png?imageView2/2/w/650">
+<meta property="og:updated_time" content="2017-05-28T05:23:14.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow中的lstm的state">
-<meta name="twitter:description" content="一开始接触到这个问题是在Tensorflow中的多层LSTM手写数字识别代码中，如果采用 1outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)， 则LSTM的输入为 1shape = (batch_size, timestep_size, input_siz">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/yue.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -94,7 +95,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，如果采用</p>
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/yue.png?imageslim" alt=""></p>
+<a id="more"></a>
+<h2 id="一、TF中RNN函数的输入输出"><a href="#一、TF中RNN函数的输入输出" class="headerlink" title="一、TF中RNN函数的输入输出"></a>一、TF中RNN函数的输入输出</h2><p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，如果采用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)，</div></pre></td></tr></table></figure>
 <p>则<code>LSTM</code>的输入为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shape = (batch_size, timestep_size, input_size)</div></pre></td></tr></table></figure>
@@ -105,6 +108,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shpae = (timestep_size,batch_size,input_size)</div></pre></td></tr></table></figure>
 <p><code>LSTM</code>的输出为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ batch_size,timestep_size, hidden_size]</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
+<h2 id="二、TF中lstm的state"><a href="#二、TF中lstm的state" class="headerlink" title="二、TF中lstm的state"></a>二、TF中lstm的state</h2><p><code>state</code>其实包含了两个变量<code>c</code>与<code>h</code>，分别由如下图表示：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn13.png?imageView2/2/w/650" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn14.png?imageView2/2/w/650" alt=""></p>
+<p>因此可以看出<code>state</code>中包含了<code>output</code>；</p>
 
       
     </div>
