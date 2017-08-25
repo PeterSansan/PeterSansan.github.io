@@ -5,20 +5,20 @@
   
   <title>Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用； 0、模型 这个模型的特点是前面的词向量与字符表示；字符表示采用了Bi-lstm的结构，这样可以提取了前缀和后缀信息，并且最后在加一层dropout层   最后一层CRF层可以用softmax层代替，不过这样的精度会下降2.5% 分析每个标签的准确率">
+  <meta name="description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用；">
 <meta name="keywords" content="序列标注">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging">
 <meta property="og:url" content="http://petersansan.top/2017/08/25/论文记录2/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用； 0、模型 这个模型的特点是前面的词向量与字符表示；字符表示采用了Bi-lstm的结构，这样可以提取了前缀和后缀信息，并且最后在加一层dropout层   最后一层CRF层可以用softmax层代替，不过这样的精度会下降2.5% 分析每个标签的准确率">
+<meta property="og:description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用；">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/op.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/ree.png">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/qqw.png?imageslim">
-<meta property="og:updated_time" content="2017-08-25T07:59:51.826Z">
+<meta property="og:updated_time" content="2017-08-25T08:06:25.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging">
-<meta name="twitter:description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用； 0、模型 这个模型的特点是前面的词向量与字符表示；字符表示采用了Bi-lstm的结构，这样可以提取了前缀和后缀信息，并且最后在加一层dropout层   最后一层CRF层可以用softmax层代替，不过这样的精度会下降2.5% 分析每个标签的准确率">
+<meta name="twitter:description" content="本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用；">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/op.png?imageslim">
   
   
@@ -99,6 +99,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是Bi-LSTM-CRF在孟加拉语词性标注中的运用；</p>
+<a id="more"></a>
 <h4 id="0、模型"><a href="#0、模型" class="headerlink" title="0、模型"></a>0、模型</h4><p><img src="http://ogtxggxo6.bkt.clouddn.com/op.png?imageslim" alt=""></p>
 <p>这个模型的特点是前面的词向量与字符表示；字符表示采用了Bi-lstm的结构，这样可以提取了前缀和后缀信息，并且最后在加一层dropout层</p>
 <p> <img src="http://ogtxggxo6.bkt.clouddn.com/ree.png" alt=""></p>

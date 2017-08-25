@@ -5,19 +5,19 @@
   
   <title>Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）1、模型1.1 神经网络模型 1.2 标签方案联合标签：例如B-NT，E-NT; 维特比算法的复杂度为O(kn)，n为句子的长度，k为联合标签的个数 1.3 字符表示1.3.1 联合N元模型 这里是可以拓展的，比">
+  <meta name="description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）">
 <meta name="keywords" content="序列标注">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF">
 <meta property="og:url" content="http://petersansan.top/2017/08/25/论文记录1/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）1、模型1.1 神经网络模型 1.2 标签方案联合标签：例如B-NT，E-NT; 维特比算法的复杂度为O(kn)，n为句子的长度，k为联合标签的个数 1.3 字符表示1.3.1 联合N元模型 这里是可以拓展的，比">
+<meta property="og:description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/uy.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/uud.png?imageslim">
-<meta property="og:updated_time" content="2017-08-25T07:59:57.970Z">
+<meta property="og:updated_time" content="2017-08-25T08:06:03.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF">
-<meta name="twitter:description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）1、模型1.1 神经网络模型 1.2 标签方案联合标签：例如B-NT，E-NT; 维特比算法的复杂度为O(kn)，n为句子的长度，k为联合标签的个数 1.3 字符表示1.3.1 联合N元模型 这里是可以拓展的，比">
+<meta name="twitter:description" content="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/uy.png?imageslim">
   
   
@@ -97,7 +97,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Character-based-Joint-Segmentation-and-POS-Tagging-for-Chinese-using-Bidirectional-RNN-CRF（五星）"><a href="#Character-based-Joint-Segmentation-and-POS-Tagging-for-Chinese-using-Bidirectional-RNN-CRF（五星）" class="headerlink" title="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）"></a>Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）</h3><h3 id="1、模型"><a href="#1、模型" class="headerlink" title="1、模型"></a>1、模型</h3><h4 id="1-1-神经网络模型"><a href="#1-1-神经网络模型" class="headerlink" title="1.1 神经网络模型"></a>1.1 神经网络模型</h4><p><img src="http://ogtxggxo6.bkt.clouddn.com/uy.png?imageslim" alt=""></p>
+        <h3 id="Character-based-Joint-Segmentation-and-POS-Tagging-for-Chinese-using-Bidirectional-RNN-CRF（五星）"><a href="#Character-based-Joint-Segmentation-and-POS-Tagging-for-Chinese-using-Bidirectional-RNN-CRF（五星）" class="headerlink" title="Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）"></a>Character-based Joint Segmentation and POS Tagging for Chinese using Bidirectional RNN-CRF（五星）</h3><a id="more"></a>
+<h3 id="1、模型"><a href="#1、模型" class="headerlink" title="1、模型"></a>1、模型</h3><h4 id="1-1-神经网络模型"><a href="#1-1-神经网络模型" class="headerlink" title="1.1 神经网络模型"></a>1.1 神经网络模型</h4><p><img src="http://ogtxggxo6.bkt.clouddn.com/uy.png?imageslim" alt=""></p>
 <h4 id="1-2-标签方案"><a href="#1-2-标签方案" class="headerlink" title="1.2 标签方案"></a>1.2 标签方案</h4><p>联合标签：例如<code>B-NT</code>，<code>E-NT</code>; 维特比算法的复杂度为O(kn)，n为句子的长度，k为联合标签的个数</p>
 <h4 id="1-3-字符表示"><a href="#1-3-字符表示" class="headerlink" title="1.3 字符表示"></a>1.3 字符表示</h4><h5 id="1-3-1-联合N元模型"><a href="#1-3-1-联合N元模型" class="headerlink" title="1.3.1 联合N元模型"></a>1.3.1 联合N元模型</h5><p><img src="http://ogtxggxo6.bkt.clouddn.com/uud.png?imageslim" alt=""></p>
 <p>这里是可以拓展的，比如Vi,i;Vi-1,i;Vi,i+1;</p>
