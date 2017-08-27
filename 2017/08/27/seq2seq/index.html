@@ -3,19 +3,25 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>seq2seq | blog of PeterSansan</title>
+  <title>seq2seq模型分析 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Focus on NLP">
-<meta name="keywords">
+  <meta name="description" content="1 seq2seq2模型分析(五星)1、Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation  2、Sutskever et al., 2014. Sequence to Sequence Learning with Neura">
+<meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="seq2seq">
+<meta property="og:title" content="seq2seq模型分析">
 <meta property="og:url" content="http://petersansan.top/2017/08/27/seq2seq/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="Focus on NLP">
-<meta property="og:updated_time" content="2017-08-27T07:24:28.328Z">
+<meta property="og:description" content="1 seq2seq2模型分析(五星)1、Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation  2、Sutskever et al., 2014. Sequence to Sequence Learning with Neura">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/wws.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/hyui.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/nbbv.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/poi.png?imageslim">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/yutr.png?imageslim">
+<meta property="og:updated_time" content="2017-08-27T11:24:57.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="seq2seq">
-<meta name="twitter:description" content="Focus on NLP">
+<meta name="twitter:title" content="seq2seq模型分析">
+<meta name="twitter:description" content="1 seq2seq2模型分析(五星)1、Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation  2、Sutskever et al., 2014. Sequence to Sequence Learning with Neura">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/wws.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -74,6 +80,10 @@
   <time datetime="2017-08-27T07:24:28.000Z" itemprop="datePublished">2017-08-27</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -82,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      seq2seq
+      seq2seq模型分析
     </h1>
   
 
@@ -90,13 +100,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1-seq2seq2模型分析-五星"><a href="#1-seq2seq2模型分析-五星" class="headerlink" title="1 seq2seq2模型分析(五星)"></a>1 seq2seq2模型分析(五星)</h2><p>1、<a href="https://arxiv.org/abs/1406.1078" target="_blank" rel="external">Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation</a> </p>
+<p>2、<a href="https://arxiv.org/abs/1409.3215" target="_blank" rel="external">Sutskever et al., 2014. Sequence to Sequence Learning with Neural Networks</a> </p>
+<p>3、<a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="external">Bahdanau et al., 2014. Neural Machine Translation by Jointly Learning to Align and Translate</a> </p>
+<p>4、<a href="https://arxiv.org/abs/1412.2007" target="_blank" rel="external">Jean et. al., 2014. On Using Very Large Target Vocabulary for Neural Machine Translation</a> </p>
+<p>5、<a href="https://arxiv.org/pdf/1506.05869v1.pdf" target="_blank" rel="external">Vinyals et. al., 2015. A Neural Conversational Model[J]. Computer Science</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">顾名思义，seq2seq 模型就像一个翻译模型，输入是一个序列（比如一个英文句子），输出也是一个序列（比如该英文句子所对应的法文翻译）。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。</div></pre></td></tr></table></figure>
+<p>顾名思义，seq2seq 模型就像一个翻译模型，输入是一个序列（比如一个英文句子），输出也是一个序列（比如该英文句子所对应的法文翻译）。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。结构如下图所示：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/wws.png?imageslim" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/hyui.png?imageslim" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/nbbv.png?imageslim" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/poi.png?imageslim" alt=""></p>
+<p>图3中展示的量一邮件对话的应用场景，图中的Encoder和Decoder都只展示了一层的普通的LSTMcell。从上面的结构中，我们可以看到，整个模型结构还是非常简单的。EncoderCell最后一个时刻的状态就是上面说的的中间说语义向量c，它将作为DecoderCell的初始化状态。然后在DecoderCell中，每个时刻的输出将会作为下一个时刻的输入。以此类推，到到DecoderCell某个时刻预测输出特殊符号<end>结束。上文采用</end></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/yutr.png?imageslim" alt=""></p>
+<h2 id="2-2-模型应用"><a href="#2-2-模型应用" class="headerlink" title="2.2 模型应用"></a>2.2 模型应用</h2><p>seq2seq其实可以用在很多地方，比如机器翻译，自动对话<a href="http://lib.csdn.net/base/robot" target="_blank" rel="external">机器人</a>，文档摘要自动生成，图片描述自动生成。比如Google就基于seq2seq开发了一个对话模型(<a href="https://arxiv.org/abs/1506.05869" target="_blank" rel="external">[5]A Neural Conversational Model</a>)，和论文[1，2]的思路基本是一致的，使用两个LSTM的结构，LSTM1将输入的对话编码成一个固定长度的实数向量，LSTM2根据这个向量不停地预测后面的输出（解码）。只是在对话模型中，使用的语料是（（input）你说的话-我答的话（input））这种类型的pairs 。而在机器翻译中使用的语料是（hello-你好）这样的pairs。</p>
+<p>此外，如果我们的输入是图片，输出是对图片的描述，用这样的方式来训练的话就能够完成图片描述的任务。等等，等等。</p>
+<p>可以看出来，seq2seq具有非常广泛的应用场景，而且效果也是非常强大。同时，因为是端到端的模型（大部分的深度模型都是端到端的），它减少了很多人工处理和规则制定的步骤。在 Encoder-Decoder 的基础上，人们又引入了attention mechanism等技术，使得这些深度方法在各个任务上表现更加突出。</p>
+<p>详细请看这篇博客：<a href="http://blog.csdn.net/jerr__y/article/details/53749693" target="_blank" rel="external">seq2seq2模型分析</a></p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://petersansan.top/2017/08/27/seq2seq/" data-id="cj6uj48nv000jcqif20sbk73n" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+
     </footer>
 	
     <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
@@ -146,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Keras/">Keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/序列标注/">序列标注</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文记录/">论文记录</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Keras/">Keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/序列标注/">序列标注</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/理论/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文记录/">论文记录</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -165,7 +194,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/">LSTM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/">jupyter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/">lstm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">nlp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp/">webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文分词/">中文分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/价值观/">价值观</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/序列标注/">序列标注</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率图模型/">概率图模型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/理论/">理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/综述/">综述</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读后感/">读后感</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/">LSTM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/">jupyter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/">lstm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">nlp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp/">webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中文分词/">中文分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/价值观/">价值观</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/序列标注/">序列标注</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率图模型/">概率图模型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/理论/">理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/综述/">综述</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读后感/">读后感</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -192,7 +221,7 @@
           </li>
         
           <li>
-            <a href="/2017/08/27/seq2seq/">seq2seq</a>
+            <a href="/2017/08/27/seq2seq/">seq2seq模型分析</a>
           </li>
         
           <li>
