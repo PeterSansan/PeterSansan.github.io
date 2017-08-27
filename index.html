@@ -144,24 +144,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-seq2seq2模型分析-五星"><a href="#1-seq2seq2模型分析-五星" class="headerlink" title="1 seq2seq2模型分析(五星)"></a>1 seq2seq2模型分析(五星)</h2><p>1、<a href="https://arxiv.org/abs/1406.1078" target="_blank" rel="external">Cho et al., 2014 . Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation</a> </p>
-<p>2、<a href="https://arxiv.org/abs/1409.3215" target="_blank" rel="external">Sutskever et al., 2014. Sequence to Sequence Learning with Neural Networks</a> </p>
-<p>3、<a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="external">Bahdanau et al., 2014. Neural Machine Translation by Jointly Learning to Align and Translate</a> </p>
-<p>4、<a href="https://arxiv.org/abs/1412.2007" target="_blank" rel="external">Jean et. al., 2014. On Using Very Large Target Vocabulary for Neural Machine Translation</a> </p>
-<p>5、<a href="https://arxiv.org/pdf/1506.05869v1.pdf" target="_blank" rel="external">Vinyals et. al., 2015. A Neural Conversational Model[J]. Computer Science</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">顾名思义，seq2seq 模型就像一个翻译模型，输入是一个序列（比如一个英文句子），输出也是一个序列（比如该英文句子所对应的法文翻译）。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。</div></pre></td></tr></table></figure>
-<p>顾名思义，seq2seq 模型就像一个翻译模型，输入是一个序列（比如一个英文句子），输出也是一个序列（比如该英文句子所对应的法文翻译）。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。结构如下图所示：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/wws.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/hyui.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/nbbv.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/poi.png?imageslim" alt=""></p>
-<p>图3中展示的量一邮件对话的应用场景，图中的Encoder和Decoder都只展示了一层的普通的LSTMcell。从上面的结构中，我们可以看到，整个模型结构还是非常简单的。EncoderCell最后一个时刻的状态就是上面说的的中间说语义向量c，它将作为DecoderCell的初始化状态。然后在DecoderCell中，每个时刻的输出将会作为下一个时刻的输入。以此类推，到到DecoderCell某个时刻预测输出特殊符号<end>结束。上文采用</end></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/yutr.png?imageslim" alt=""></p>
-<h2 id="2-2-模型应用"><a href="#2-2-模型应用" class="headerlink" title="2.2 模型应用"></a>2.2 模型应用</h2><p>seq2seq其实可以用在很多地方，比如机器翻译，自动对话<a href="http://lib.csdn.net/base/robot" target="_blank" rel="external">机器人</a>，文档摘要自动生成，图片描述自动生成。比如Google就基于seq2seq开发了一个对话模型(<a href="https://arxiv.org/abs/1506.05869" target="_blank" rel="external">[5]A Neural Conversational Model</a>)，和论文[1，2]的思路基本是一致的，使用两个LSTM的结构，LSTM1将输入的对话编码成一个固定长度的实数向量，LSTM2根据这个向量不停地预测后面的输出（解码）。只是在对话模型中，使用的语料是（（input）你说的话-我答的话（input））这种类型的pairs 。而在机器翻译中使用的语料是（hello-你好）这样的pairs。</p>
-<p>此外，如果我们的输入是图片，输出是对图片的描述，用这样的方式来训练的话就能够完成图片描述的任务。等等，等等。</p>
-<p>可以看出来，seq2seq具有非常广泛的应用场景，而且效果也是非常强大。同时，因为是端到端的模型（大部分的深度模型都是端到端的），它减少了很多人工处理和规则制定的步骤。在 Encoder-Decoder 的基础上，人们又引入了attention mechanism等技术，使得这些深度方法在各个任务上表现更加突出。</p>
-<p>详细请看这篇博客：<a href="http://blog.csdn.net/jerr__y/article/details/53749693" target="_blank" rel="external">seq2seq2模型分析</a></p>
-
+        <h2 id="1-seq2seq2模型分析-五星"><a href="#1-seq2seq2模型分析-五星" class="headerlink" title="1 seq2seq2模型分析(五星)"></a>1 seq2seq2模型分析(五星)</h2><p><img src="http://ogtxggxo6.bkt.clouddn.com/gtyu.png?imageslim" alt=""></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/27/seq2seq/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
