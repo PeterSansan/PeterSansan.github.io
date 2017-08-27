@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/under4.jpeg?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pane1.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pane2.png?imageslim">
-<meta property="og:updated_time" content="2017-05-20T07:47:08.498Z">
+<meta property="og:updated_time" content="2017-08-27T07:37:01.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环神经网络惊人的有效性">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/diags.jpeg?imageslim">
@@ -129,9 +129,7 @@
 <p>注意在每个案例中都没有对序列的长度做出预先规定，这是因为循环变换（绿色部分）是固定的，我们想用几次就用几次。</p>
 <hr>
 <p>如你期望的那样，相较于那些从一开始连计算步骤的都定下的固定网络，序列体制的操作要强大得多。并且对于那些和我们一样希望构建一个更加智能的系统的人来说，这样的网络也更有吸引力。我们后面还会看到，RNN将其输入向量、状态向量和一个固定（可学习的）函数结合起来生成一个新的状态向量。在程序的语境中，这可以理解为运行一个具有某些输入和内部变量的固定程序。从这个角度看，RNN本质上就是在描述程序。实际上RNN是具备<a href="http://link.zhihu.com/?target=http%3A//binds.cs.umass.edu/papers/1995_Siegelmann_Science.pdf" target="_blank" rel="external">图灵完备性</a>的，只要有合适的权重，它们可以模拟任意的程序。然而就像神经网络的通用近似理论一样，你不用过于关注其中细节。实际上，我建议你忘了我刚才说过的话。</p>
-<blockquote>
-<p>如果训练普通神经网络是对函数做最优化，那么训练循环网络就是针对程序做最优化。</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果训练普通神经网络是对函数做最优化，那么训练循环网络就是针对程序做最优化。</div></pre></td></tr></table></figure>
 <p><strong>无序列也能进行序列化处理</strong>。你可能会想，将序列作为输入或输出的情况是相对少见的，但是需要认识到的重要一点是：即使输入或输出是固定尺寸的向量，依然可以使用这个强大的形式体系以序列化的方式对它们进行处理。例如，下图来自于<a href="http://link.zhihu.com/?target=http%3A//deepmind.com/" target="_blank" rel="external">DeepMind</a>的两篇非常不错的论文。左侧动图显示的是一个算法学习到了一个循环网络的策略，该策略能够引导它对图像进行观察；更具体一些，就是它学会了如何从左往右地阅读建筑的门牌号（<a href="http://link.zhihu.com/?target=http%3A//arxiv.org/abs/1412.7755" target="_blank" rel="external">Ba et al</a>）。右边动图显示的是一个循环网络通过学习序列化地向画布上添加颜色，生成了写有数字的图片（<a href="http://link.zhihu.com/?target=http%3A//arxiv.org/abs/1502.04623" target="_blank" rel="external">Gregor et al</a>）。</p>
 <p><img src="http://ogtxggxo6.bkt.clouddn.com/house_read.gif" alt=""><img src="http://ogtxggxo6.bkt.clouddn.com/house_generate.gif" alt=""></p>
 <p>左边：RNN学会如何阅读建筑物门牌号。右边：RNN学会绘出建筑门牌号。</p>
@@ -257,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/05/19/循环神经网络惊人的有效性/" data-id="cj6rkgsd0001fiuifonl25b4h" class="article-share-link">Share</a>
+      <a data-url="http://petersansan.top/2017/05/19/循环神经网络惊人的有效性/" data-id="cj6uf9fc3001d8gifc0qb6cuc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -340,7 +338,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">21</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">21</span></li></ul>
     </div>
   </div>
 
@@ -353,7 +351,11 @@
       <ul>
         
           <li>
-            <a href="/2017/08/25/论文记录2/">Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging</a>
+            <a href="/2017/08/27/seq2seq/">seq2seq</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/27/注意力机制/">注意力机制</a>
           </li>
         
           <li>
@@ -361,15 +363,11 @@
           </li>
         
           <li>
+            <a href="/2017/08/25/论文记录2/">Bidirectional LSTMs - CRFs Networks for Bangla POS Tagging</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/28/Keras入门/">Keras入门</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/28/nlp序列标注notes/">nlp序列标注notes</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/25/tensorflow中的lstm的state/">tensorflow中的lstm的state</a>
           </li>
         
       </ul>
