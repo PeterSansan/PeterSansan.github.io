@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/under4.jpeg?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pane1.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/pane2.png?imageslim">
-<meta property="og:updated_time" content="2017-08-27T07:37:01.804Z">
+<meta property="og:updated_time" content="2017-08-27T07:42:43.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环神经网络惊人的有效性">
 <meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/diags.jpeg?imageslim">
@@ -111,10 +111,7 @@
 <p>亮点在最后面，前面的内容都表达一个意思。</p>
 <p>英文原文：<a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
 <p>中文原文：<a href="https://zhuanlan.zhihu.com/p/22107715" target="_blank" rel="external">循环神经网络惊人的有效性</a></p>
-<p>循环神经网络（RNN）简直像是魔法一样不可思议。我为<a href="http://link.zhihu.com/?target=http%3A//cs.stanford.edu/people/karpathy/deepimagesent/" target="_blank" rel="external">图像标注</a>项目训练第一个循环网络时的情景到现在都还历历在目。当时才对第一个练手模型训练了十几分钟（超参数还都是随手设置的），它就开始生成一些对于图像的描述，描述内容看起来很不错，几乎让人感到语句是通顺的了。有时候你会遇到模型简单，结果的质量却远高预期的情况，这就是其中一次。当时这个结果让我非常惊讶是因为我本以为RNN是非常难以训练的（随着实践的增多，我的结论基本与之相反了）。让我们快进一年：即使现在我成天都在训练RNN，也常常看到它们的能力和鲁棒性，有时候它们那充满魔性的输出还是能够把我给逗乐。这篇博文就是来和你分享RNN中的一些魔法。</p>
-<blockquote>
-<p>我们将训练RNN，让它们生成一个又一个字母。同时好好思考这个问题：这怎么可能呢？</p>
-</blockquote>
+<p>循环神经网络（RNN）简直像是魔法一样不可思议。我为<a href="http://link.zhihu.com/?target=http%3A//cs.stanford.edu/people/karpathy/deepimagesent/" target="_blank" rel="external">图像标注</a>项目训练第一个循环网络时的情景到现在都还历历在目。当时才对第一个练手模型训练了十几分钟（超参数还都是随手设置的），它就开始生成一些对于图像的描述，描述内容看起来很不错，几乎让人感到语句是通顺的了。有时候你会遇到模型简单，结果的质量却远高预期的情况，这就是其中一次。当时这个结果让我非常惊讶是因为我本以为RNN是非常难以训练的（随着实践的增多，我的结论基本与之相反了）。让我们快进一年：即使现在我成天都在训练RNN，也常常看到它们的能力和鲁棒性，有时候它们那充满魔性的输出还是能够把我给逗乐。这篇博文就是来和你分享RNN中的一些魔法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">我们将训练RNN，让它们生成一个又一个字母。同时好好思考这个问题：这怎么可能呢？</div></pre></td></tr></table></figure></p>
 <p>顺便说一句，和这篇博文一起，我在<a href="https://github.com/karpathy/char-rnn" target="_blank" rel="external">Github</a>上发布了一个项目。项目基于多层的LSTM，使得你可以训练字母级别的语言模型。你可以输入一大段文本，然后它能学习并按照一次一个字母的方式生成文本。你也可以用它来复现我下面的实验。但是现在我们要超前一点：RNN到底是什么？</p>
 <h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p><strong>序列</strong>。基于知识背景，你可能会思考：<em>是什么让RNN如此独特呢？</em>普通神经网络和卷积神经网络的一个显而易见的局限就是他们的API都过于限制：他们接收一个固定尺寸的向量作为输入（比如一张图像），并且产生一个固定尺寸的向量作为输出（比如针对不同分类的概率）。不仅如此，这些模型甚至对于上述映射的演算操作的步骤也是固定的（比如模型中的层数）。RNN之所以如此让人兴奋，其核心原因在于其允许我们对向量的序列进行操作：输入可以是序列，输出也可以是序列，在最一般化的情况下输入输出都可以是序列。下面是一些直观的例子：</p>
 <p><img src="http://ogtxggxo6.bkt.clouddn.com/diags.jpeg?imageslim" alt=""></p>
