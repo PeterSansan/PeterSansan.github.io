@@ -11749,14 +11749,14 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;">Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;<a class="anchor-link" href="#Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;">&#182;</a></h1><p>来自吴恩达深度学习教程的例子，目的：比较线性公式C = A*B 用向量化和用for的执行时间的区别</p>
+<h1 id="Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;">Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;<a class="anchor-link" href="#Vectorization&#65288;&#21521;&#37327;&#21270;&#65289;">&#182;</a></h1><h2 id="1&#12289;&#27604;&#36739;&#36816;&#34892;&#36895;&#24230;">1&#12289;&#27604;&#36739;&#36816;&#34892;&#36895;&#24230;<a class="anchor-link" href="#1&#12289;&#27604;&#36739;&#36816;&#34892;&#36895;&#24230;">&#182;</a></h2><p>来自吴恩达深度学习教程的例子，目的：比较线性公式C = A*B 用向量化和用for的执行时间的区别</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -11786,7 +11786,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">time</span>
@@ -11821,10 +11821,10 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>250373.811681
-Vectorized version:2.04396247864ms
-250373.811681
-For loop:289.835929871ms
+<pre>250380.898743
+Vectorized version:1.97005271912ms
+250380.898743
+For loop:306.58197403ms
 </pre>
 </div>
 </div>
@@ -11839,6 +11839,187 @@ For loop:289.835929871ms
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>从结果上看，一个约2ms,一个约300ms，确定相差很大</p>
+<h2 id="2&#12289;&#19981;&#35201;&#29992;&#36845;&#20026;1&#30340;&#21521;&#37327;">2&#12289;&#19981;&#35201;&#29992;&#36845;&#20026;1&#30340;&#21521;&#37327;<a class="anchor-link" href="#2&#12289;&#19981;&#35201;&#29992;&#36845;&#20026;1&#30340;&#21521;&#37327;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 0.22313311  0.53746379  0.2725526   0.68919602  0.58025524]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(5,)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 0.22313311  0.53746379  0.2725526   0.68919602  0.58025524]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.22462793929
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># 列向量</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 1.80424643]
+ [-0.92797005]
+ [ 1.8059113 ]
+ [ 0.38497593]
+ [-1.16677011]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c"># 横向量</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 1.80424643 -0.92797005  1.8059113   0.38497593 -1.16677011]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>上面的例子告诉我们：
+不要用迭为1的向量，它像是一个数组，它的转置还是本身；要用行向量或列向量，并在定义后加下assert(a.shape == (1,5))。
+如果真的使用了迭为1的向量，可以用a.reshape(5,1)</p>
 
 </div>
 </div>
