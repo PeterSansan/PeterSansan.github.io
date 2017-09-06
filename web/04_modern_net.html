@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>03_net</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>04_modern_net</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11749,7 +11749,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="3.&#31616;&#21333;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;">3.&#31616;&#21333;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;<a class="anchor-link" href="#3.&#31616;&#21333;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;">&#182;</a></h1>
+<h1 id="4.&#39640;&#32423;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;">4.&#39640;&#32423;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;<a class="anchor-link" href="#4.&#39640;&#32423;&#22810;&#23618;&#24863;&#30693;&#22120;-&#25163;&#20889;&#25968;&#23383;&#35782;&#21035;">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -11759,8 +11759,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
-<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">SGD</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span>
 <span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
 <span class="kn">from</span> <span class="nn">keras.utils</span> <span class="kn">import</span> <span class="n">np_utils</span>
 </pre></div>
@@ -11791,7 +11791,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="n">nb_classes</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">nb_epoch</span> <span class="o">=</span> <span class="mi">30</span> <span class="c"># 为了显示好看，减少了迭代次数</span>
+<span class="n">nb_epoch</span> <span class="o">=</span> <span class="mi">30</span> <span class="c"># 为了显示好看，减少迭代次数</span>
 </pre></div>
 
 </div>
@@ -11812,8 +11812,8 @@ div#notebook {
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">&#39;float32&#39;</span><span class="p">)</span>
 <span class="n">X_train</span> <span class="o">/=</span> <span class="mi">255</span>
 <span class="n">X_test</span> <span class="o">/=</span> <span class="mi">255</span>
-<span class="n">Y_Train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">nb_classes</span><span class="p">)</span>
-<span class="n">Y_Test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">nb_classes</span><span class="p">)</span>
+<span class="n">Y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">nb_classes</span><span class="p">)</span>
+<span class="n">Y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">nb_classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11826,12 +11826,18 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># Multilayer Perceptron model</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># Deep Multilayer Perceptron model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;sigmoid&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;sigmoid&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;softmax&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="s">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">625</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">&#39;softmax&#39;</span><span class="p">))</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="s">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
@@ -11850,9 +11856,19 @@ Layer (type)                 Output Shape              Param #
 =================================================================
 dense_1 (Dense)              (None, 625)               490625    
 _________________________________________________________________
+activation_1 (Activation)    (None, 625)               0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 625)               0         
+_________________________________________________________________
 dense_2 (Dense)              (None, 625)               391250    
 _________________________________________________________________
+activation_2 (Activation)    (None, 625)               0         
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 625)               0         
+_________________________________________________________________
 dense_3 (Dense)              (None, 10)                6260      
+_________________________________________________________________
+activation_3 (Activation)    (None, 10)                0         
 =================================================================
 Total params: 888,135
 Trainable params: 888,135
@@ -11872,7 +11888,7 @@ _________________________________________________________________
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Train</span>
-<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_Train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">nb_epoch</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">nb_epoch</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11886,65 +11902,65 @@ _________________________________________________________________
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Epoch 1/30
-4s - loss: 1.9184 - acc: 0.4155
+6s - loss: 0.2657 - acc: 0.9192
 Epoch 2/30
-1s - loss: 0.9445 - acc: 0.7693
+1s - loss: 0.1119 - acc: 0.9665
 Epoch 3/30
-1s - loss: 0.5946 - acc: 0.8442
+1s - loss: 0.0836 - acc: 0.9755
 Epoch 4/30
-1s - loss: 0.4778 - acc: 0.8699
+2s - loss: 0.0669 - acc: 0.9800
 Epoch 5/30
-1s - loss: 0.4208 - acc: 0.8833
+2s - loss: 0.0577 - acc: 0.9836
 Epoch 6/30
-1s - loss: 0.3885 - acc: 0.8899
+2s - loss: 0.0490 - acc: 0.9858
 Epoch 7/30
-1s - loss: 0.3665 - acc: 0.8958
+2s - loss: 0.0456 - acc: 0.9868
 Epoch 8/30
-1s - loss: 0.3509 - acc: 0.8996
+2s - loss: 0.0417 - acc: 0.9890
 Epoch 9/30
-1s - loss: 0.3396 - acc: 0.9024
+2s - loss: 0.0402 - acc: 0.9896
 Epoch 10/30
-1s - loss: 0.3303 - acc: 0.9049
+2s - loss: 0.0394 - acc: 0.9903
 Epoch 11/30
-1s - loss: 0.3223 - acc: 0.9067
+2s - loss: 0.0353 - acc: 0.9905
 Epoch 12/30
-1s - loss: 0.3149 - acc: 0.9093
+2s - loss: 0.0336 - acc: 0.9913
 Epoch 13/30
-1s - loss: 0.3096 - acc: 0.9107
+2s - loss: 0.0361 - acc: 0.9915
 Epoch 14/30
-1s - loss: 0.3047 - acc: 0.9110
+2s - loss: 0.0323 - acc: 0.9922
 Epoch 15/30
-1s - loss: 0.3004 - acc: 0.9132
+2s - loss: 0.0323 - acc: 0.9928
 Epoch 16/30
-1s - loss: 0.2961 - acc: 0.9142
+2s - loss: 0.0293 - acc: 0.9930
 Epoch 17/30
-1s - loss: 0.2923 - acc: 0.9153
+2s - loss: 0.0275 - acc: 0.9932
 Epoch 18/30
-1s - loss: 0.2887 - acc: 0.9166
+2s - loss: 0.0271 - acc: 0.9939
 Epoch 19/30
-1s - loss: 0.2854 - acc: 0.9171
+2s - loss: 0.0275 - acc: 0.9935
 Epoch 20/30
-1s - loss: 0.2824 - acc: 0.9183
+2s - loss: 0.0287 - acc: 0.9938
 Epoch 21/30
-1s - loss: 0.2793 - acc: 0.9194
+2s - loss: 0.0264 - acc: 0.9940
 Epoch 22/30
-1s - loss: 0.2762 - acc: 0.9205
+2s - loss: 0.0260 - acc: 0.9943
 Epoch 23/30
-1s - loss: 0.2730 - acc: 0.9208
+2s - loss: 0.0265 - acc: 0.9942
 Epoch 24/30
-1s - loss: 0.2704 - acc: 0.9213
+2s - loss: 0.0263 - acc: 0.9949
 Epoch 25/30
-1s - loss: 0.2683 - acc: 0.9224
+2s - loss: 0.0261 - acc: 0.9945
 Epoch 26/30
-1s - loss: 0.2652 - acc: 0.9233
+2s - loss: 0.0258 - acc: 0.9948
 Epoch 27/30
-1s - loss: 0.2627 - acc: 0.9241
+2s - loss: 0.0243 - acc: 0.9948
 Epoch 28/30
-1s - loss: 0.2595 - acc: 0.9248
+2s - loss: 0.0265 - acc: 0.9950
 Epoch 29/30
-1s - loss: 0.2568 - acc: 0.9261
+2s - loss: 0.0231 - acc: 0.9956
 Epoch 30/30
-1s - loss: 0.2545 - acc: 0.9268
+2s - loss: 0.0258 - acc: 0.9949
 </pre>
 </div>
 </div>
@@ -11959,7 +11975,7 @@ Epoch 30/30
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Evaluate</span>
-<span class="n">evaluation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_Test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;Summary: Loss over the test dataset: </span><span class="si">%.2f</span><span class="s">, Accuracy: </span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">evaluation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">evaluation</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
@@ -11973,7 +11989,7 @@ Epoch 30/30
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Summary: Loss over the test dataset: 0.25, Accuracy: 0.93
+<pre>Summary: Loss over the test dataset: 0.15, Accuracy: 0.98
 </pre>
 </div>
 </div>

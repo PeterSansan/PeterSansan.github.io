@@ -11861,7 +11861,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Logistic regression model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,),</span> <span class="n">init</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;softmax&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,),</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;softmax&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="s">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
@@ -11889,14 +11889,6 @@ _________________________________________________________________
 </div>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python2.7/dist-packages/ipykernel/__main__.py:3: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(kernel_initializer=&#34;normal&#34;, activation=&#34;softmax&#34;, input_shape=(784,), units=10)`
-  app.launch_new_instance()
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -11907,7 +11899,7 @@ _________________________________________________________________
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Train</span>
-<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_Train</span><span class="p">,</span> <span class="n">nb_epoch</span><span class="o">=</span><span class="n">nb_epoch</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_Train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">nb_epoch</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11919,35 +11911,27 @@ _________________________________________________________________
 
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python2.7/dist-packages/keras/models.py:848: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
-  warnings.warn(&#39;The `nb_epoch` argument in `fit` &#39;
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Epoch 1/10
-3s - loss: 0.7186 - acc: 0.8269
+4s - loss: 0.7245 - acc: 0.8263
 Epoch 2/10
-0s - loss: 0.4315 - acc: 0.8857
+0s - loss: 0.4314 - acc: 0.8857
 Epoch 3/10
-0s - loss: 0.3852 - acc: 0.8949
+0s - loss: 0.3852 - acc: 0.8952
 Epoch 4/10
-0s - loss: 0.3617 - acc: 0.9002
+0s - loss: 0.3618 - acc: 0.9003
 Epoch 5/10
-0s - loss: 0.3469 - acc: 0.9042
+0s - loss: 0.3470 - acc: 0.9034
 Epoch 6/10
-0s - loss: 0.3361 - acc: 0.9065
+0s - loss: 0.3363 - acc: 0.9064
 Epoch 7/10
-0s - loss: 0.3281 - acc: 0.9083
+0s - loss: 0.3283 - acc: 0.9087
 Epoch 8/10
-0s - loss: 0.3216 - acc: 0.9106
+0s - loss: 0.3218 - acc: 0.9105
 Epoch 9/10
-0s - loss: 0.3163 - acc: 0.9114
+0s - loss: 0.3167 - acc: 0.9120
 Epoch 10/10
-0s - loss: 0.3120 - acc: 0.9134
+0s - loss: 0.3123 - acc: 0.9128
 </pre>
 </div>
 </div>
@@ -11962,7 +11946,7 @@ Epoch 10/10
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Evaluate</span>
-<span class="n">evaluation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_Test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_Test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;Summary: Loss over the test dataset: </span><span class="si">%.2f</span><span class="s">, Accuracy: </span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">evaluation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">evaluation</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
@@ -11976,7 +11960,7 @@ Epoch 10/10
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre> 9952/10000 [============================&gt;.] - ETA: 0sSummary: Loss over the test dataset: 0.30, Accuracy: 0.92
+<pre>Summary: Loss over the test dataset: 0.30, Accuracy: 0.92
 </pre>
 </div>
 </div>
