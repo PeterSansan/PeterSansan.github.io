@@ -5,13 +5,12 @@
   
   <title>转:理解LSTM网络 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="声明：本文转自简书 1、RNN来啦人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这">
-<meta name="keywords" content="lstm">
+  <meta name="keywords" content="lstm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="转:理解LSTM网络">
 <meta property="og:url" content="http://petersansan.top/2017/04/29/转-理解LSTM网络/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:description" content="声明：本文转自简书 1、RNN来啦人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn1.png?imageView2/2/w/200">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn2.png?imageView2/2/w/650">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn4.png?imageView2/2/w/650">
@@ -29,11 +28,10 @@
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn16.png?imageView2/2/w/650">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn17.png?imageView2/2/w/650">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn18.png?imageView2/2/w/650">
-<meta property="og:updated_time" content="2017-09-13T11:35:14.818Z">
+<meta property="og:updated_time" content="2017-09-13T12:03:37.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="转:理解LSTM网络">
-<meta name="twitter:description" content="声明：本文转自简书 1、RNN来啦人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn1.png?imageView2/2/w/200">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -112,7 +110,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png" alt=""></p>
+<a id="more"></a>
 <p>声明：本文转自<a href="http://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="external">简书</a></p>
 <h2 id="1、RNN来啦"><a href="#1、RNN来啦" class="headerlink" title="1、RNN来啦"></a>1、RNN来啦</h2><p>人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。<br>传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这个问题——使用电影中先前的事件推断后续的事件。<br><code>RNN</code> 解决了这个问题。<code>RNN</code> 是包含循环的网络，允许信息的持久化。</p>
 <p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn1.png?imageView2/2/w/200" alt="RNN"></p>
