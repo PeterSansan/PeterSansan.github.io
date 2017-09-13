@@ -5,21 +5,23 @@
   
   <title>所有人都能学会用Python写出RNN代码 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="深度学习,LSTM">
+  <meta name="description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
+<meta name="keywords" content="深度学习,LSTM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="所有人都能学会用Python写出RNN代码">
 <meta property="og:url" content="http://petersansan.top/2017/04/25/所有人都能学会用Python写出RNN代码/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/xxd.png?imageslim">
+<meta property="og:description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rn1.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rn2.png?imageslim">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/rnn3.png?imageView2/2/h/300">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/recurrence_gif.gif?imageView2/2/h/400">
 <meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/backprop_through_time.gif?imageView2/2/h/400">
-<meta property="og:updated_time" content="2017-04-25T18:22:10.750Z">
+<meta property="og:updated_time" content="2017-09-13T11:34:04.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="所有人都能学会用Python写出RNN代码">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/xxd.png?imageslim">
+<meta name="twitter:description" content="英文原文：Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) 中文原文：所有人都能学会用Python写出RNN-LSTM代码 【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM 第一部分：什么是神经元记忆神经">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/rn1.png?imageslim">
   
   
     <link rel="icon" href="/favicon.png">
@@ -98,8 +100,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/xxd.png?imageslim" alt=""></p>
-<a id="more"></a>
+        <a id="more"></a>
 <p>英文原文：<a href="http://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/" target="_blank" rel="external">Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN)</a></p>
 <p>中文原文：<a href="http://magicly.me/2017/03/09/iamtrask-anyone-can-code-lstm/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">所有人都能学会用Python写出RNN-LSTM代码</a></p>
 <p>【说明】：我在原文中简化了一些解释，因为感觉不是很必要，并且也加了一点自己的理解，我看了代码，其实并不相信这个代码与LSTM有关系，这个代码应该只中RNN，并没有LSTM</p>
@@ -225,7 +226,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -236,6 +237,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/13/hello-world/">Hexo常用指令</a>
+          </li>
         
           <li>
             <a href="/2017/09/13/test/">test</a>
@@ -251,10 +256,6 @@
         
           <li>
             <a href="/2017/08/31/论文记录3/">End-to-end Sequence Labeling via Bi-directional LSTM-CNNs-CRF</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/27/哪有什么岁月静好，不过是有人替你负重前行/">哪有什么岁月静好，不过是有人替你负重前行</a>
           </li>
         
       </ul>

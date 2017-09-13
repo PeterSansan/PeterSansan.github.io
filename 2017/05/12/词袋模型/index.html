@@ -5,16 +5,17 @@
   
   <title>词袋模型 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="NLP">
+  <meta name="description" content="Bag of words，也叫做“词袋”，在信息检索中，Bag of words model假定对于一个文本，忽略其词序和语法，句法，将其仅仅看做是一个词集合，或者说是词的一个组合，文本中每个词的出现都是独立的，不依赖于其他词是否出现，或者说当这篇文章的作者在任意一个位置选择一个词汇都不受前面句子的影响而独立选择的。 这种假设虽然对自然语言进行了简化，便于模型化，但是其假定在有些情况下是不合理的">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="词袋模型">
 <meta property="og:url" content="http://petersansan.top/2017/05/12/词袋模型/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/xo.png?imageslim">
-<meta property="og:updated_time" content="2017-05-12T13:53:57.757Z">
+<meta property="og:description" content="Bag of words，也叫做“词袋”，在信息检索中，Bag of words model假定对于一个文本，忽略其词序和语法，句法，将其仅仅看做是一个词集合，或者说是词的一个组合，文本中每个词的出现都是独立的，不依赖于其他词是否出现，或者说当这篇文章的作者在任意一个位置选择一个词汇都不受前面句子的影响而独立选择的。 这种假设虽然对自然语言进行了简化，便于模型化，但是其假定在有些情况下是不合理的">
+<meta property="og:updated_time" content="2017-09-13T11:31:57.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词袋模型">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/xo.png?imageslim">
+<meta name="twitter:description" content="Bag of words，也叫做“词袋”，在信息检索中，Bag of words model假定对于一个文本，忽略其词序和语法，句法，将其仅仅看做是一个词集合，或者说是词的一个组合，文本中每个词的出现都是独立的，不依赖于其他词是否出现，或者说当这篇文章的作者在任意一个位置选择一个词汇都不受前面句子的影响而独立选择的。 这种假设虽然对自然语言进行了简化，便于模型化，但是其假定在有些情况下是不合理的">
   
   
     <link rel="icon" href="/favicon.png">
@@ -93,8 +94,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/xo.png?imageslim" alt=""></p>
-<a id="more"></a>
+        <a id="more"></a>
 <p><code>Bag of words</code>，也叫做“词袋”，在信息检索中，<code>Bag of words model</code>假定对于一个文本，忽略其词序和语法，句法，将其仅仅看做是一个词集合，或者说是词的一个组合，文本中每个词的出现都是独立的，不依赖于其他词是否出现，或者说当这篇文章的作者在任意一个位置选择一个词汇都不受前面句子的影响而独立选择的。</p>
 <p>这种假设虽然对自然语言进行了简化，便于模型化，但是其假定在有些情况下是不合理的，例如在新闻个性化推荐中，采用<code>Bag of words</code>的模型就会出现问题。例如用户甲对“南京醉酒驾车事故”这个短语很感兴趣，采用<code>bag of words</code>忽略了顺序和句法，则认为用户甲对“南京”、“醉酒”、“驾车”和“事故”感兴趣，因此可能推荐出和“南京”，“公交车”，“事故”相关的新闻，这显然是不合理的。</p>
 
@@ -184,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -195,6 +195,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/13/hello-world/">Hexo常用指令</a>
+          </li>
         
           <li>
             <a href="/2017/09/13/test/">test</a>
@@ -210,10 +214,6 @@
         
           <li>
             <a href="/2017/08/31/论文记录3/">End-to-end Sequence Labeling via Bi-directional LSTM-CNNs-CRF</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/27/哪有什么岁月静好，不过是有人替你负重前行/">哪有什么岁月静好，不过是有人替你负重前行</a>
           </li>
         
       </ul>

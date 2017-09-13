@@ -68,6 +68,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-seq2seq" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/27/seq2seq/" class="article-date">
+  <time datetime="2017-08-27T07:24:28.000Z" itemprop="datePublished">2017-08-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/27/seq2seq/">seq2seq模型分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-seq2seq2模型分析-五星"><a href="#1-seq2seq2模型分析-五星" class="headerlink" title="1 seq2seq2模型分析(五星)"></a>1 seq2seq2模型分析(五星)</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/27/seq2seq/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://petersansan.top/2017/08/27/seq2seq/" data-id="cj7ix9s77000fdrif8tc665q1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+
+    </footer>
+	
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-卷积神经网络" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/27/卷积神经网络/" class="article-date">
@@ -94,12 +143,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/eer.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/08/27/卷积神经网络/#more">Read More</a>
-          </p>
-        
+        <a id="more"></a>
+<p>精品博文：</p>
+<p>1、<a href="http://blog.csdn.net/yunpiao123456/article/details/52437794" target="_blank" rel="external">卷积神经网络概念与原理</a></p>
+
       
     </div>
     <footer class="article-footer">
@@ -290,12 +337,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/yue.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/05/25/tensorflow中的lstm的state/#more">Read More</a>
-          </p>
-        
+        <a id="more"></a>
+<h2 id="一、TF中RNN函数的输入输出"><a href="#一、TF中RNN函数的输入输出" class="headerlink" title="一、TF中RNN函数的输入输出"></a>一、TF中RNN函数的输入输出</h2><p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，如果采用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)，</div></pre></td></tr></table></figure>
+<p>则<code>LSTM</code>的输入为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shape = (batch_size, timestep_size, input_size)</div></pre></td></tr></table></figure>
+<p><code>LSTM</code>的输出为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ timestep_size,batch_size, hidden_size];</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
+<p>如果采用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = tf.nn.dynamic_rnn(mlstm_cell, inputs=X, initial_state=init_state, time_major=False)</div></pre></td></tr></table></figure></p>
+<p>则<code>LSTM</code>的输入为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shpae = (timestep_size,batch_size,input_size)</div></pre></td></tr></table></figure>
+<p><code>LSTM</code>的输出为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ batch_size,timestep_size, hidden_size]</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
+<h2 id="二、TF中lstm的state"><a href="#二、TF中lstm的state" class="headerlink" title="二、TF中lstm的state"></a>二、TF中lstm的state</h2><p><code>state</code>其实包含了两个变量<code>c</code>与<code>h</code>，分别由如下图表示：</p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn13.png?imageView2/2/w/650" alt=""></p>
+<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn14.png?imageView2/2/w/650" alt=""></p>
+<p>因此可以看出<code>state</code>中包含了<code>output</code>；</p>
+
       
     </div>
     <footer class="article-footer">
@@ -303,55 +361,6 @@
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tensorflow/">tensorflow</a></li></ul>
-
-    </footer>
-	
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-关于RNN（Seq2Seq）的一点个人理解与感悟" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/" class="article-date">
-  <time datetime="2017-05-25T05:49:57.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/">关于RNN（Seq2Seq）的一点个人理解与感悟</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/ffdd.png?imageslim" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/" data-id="cj7ix9s7t001fdrif6yfp7w4l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
     </footer>
 	
@@ -404,7 +413,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -415,6 +424,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/13/hello-world/">Hexo常用指令</a>
+          </li>
         
           <li>
             <a href="/2017/09/13/test/">test</a>
@@ -430,10 +443,6 @@
         
           <li>
             <a href="/2017/08/31/论文记录3/">End-to-end Sequence Labeling via Bi-directional LSTM-CNNs-CRF</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/27/哪有什么岁月静好，不过是有人替你负重前行/">哪有什么岁月静好，不过是有人替你负重前行</a>
           </li>
         
       </ul>
