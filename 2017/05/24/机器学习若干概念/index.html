@@ -10,11 +10,11 @@
 <meta property="og:title" content="机器学习若干概念">
 <meta property="og:url" content="http://petersansan.top/2017/05/24/机器学习若干概念/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim">
-<meta property="og:updated_time" content="2017-05-25T08:02:56.014Z">
+<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png">
+<meta property="og:updated_time" content="2017-09-13T11:58:42.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习若干概念">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim">
+<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -93,7 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/fdc.png?imageslim" alt=""></p>
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png" alt=""></p>
 <a id="more"></a>
 <h2 id="问题一：多类分类下为什么用softmax而不是用其他归一化方法"><a href="#问题一：多类分类下为什么用softmax而不是用其他归一化方法" class="headerlink" title="问题一：多类分类下为什么用softmax而不是用其他归一化方法"></a>问题一：多类分类下为什么用softmax而不是用其他归一化方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">先理解max. 对一个三类问题，某样本经过NN处理后，最后一层输出值为[24,3,0.1]的话，那么经过max之后的结果为[1,0,0]。对不？</div><div class="line">　　（至于为啥要max，输出结果本来挺奇怪 经过max以后就是categorical 的了，那么样本的类标就可以和他的预测值一起合体 直观地计算cost function。）</div><div class="line">我们最需要的其实是max，但是max有个缺点就是不可导，没法用在dp里，于是有人就想出了softmax。思路就是指数级扩大最后一层的输出，每个值都会增大，然而最大的那个值相比其他值扩大的更多，然后归一化一下，考虑一下极限，如果最大值x_1经过指数运算后想对其他值为无穷大，那么exp(x_1)/exp(x_1)+others =1,其他输出值对应的为0。所以softmax模拟了max的行为，同时他还可导。</div></pre></td></tr></table></figure>
       

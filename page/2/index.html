@@ -143,10 +143,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p>精品博文：</p>
-<p>1、<a href="http://blog.csdn.net/yunpiao123456/article/details/52437794" target="_blank" rel="external">卷积神经网络概念与原理</a></p>
-
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png" alt=""></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/27/卷积神经网络/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -337,23 +339,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h2 id="一、TF中RNN函数的输入输出"><a href="#一、TF中RNN函数的输入输出" class="headerlink" title="一、TF中RNN函数的输入输出"></a>一、TF中RNN函数的输入输出</h2><p>一开始接触到这个问题是在<code>Tensorflow</code>中的<code>多层LSTM手写数字识别</code>代码中，如果采用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = rnn.static_rnn(mlstm_cell, inputs=X, initial_state=init_state,dtype=tf.float32)，</div></pre></td></tr></table></figure>
-<p>则<code>LSTM</code>的输入为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shape = (batch_size, timestep_size, input_size)</div></pre></td></tr></table></figure>
-<p><code>LSTM</code>的输出为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ timestep_size,batch_size, hidden_size];</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
-<p>如果采用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outputs, state = tf.nn.dynamic_rnn(mlstm_cell, inputs=X, initial_state=init_state, time_major=False)</div></pre></td></tr></table></figure></p>
-<p>则<code>LSTM</code>的输入为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shpae = (timestep_size,batch_size,input_size)</div></pre></td></tr></table></figure>
-<p><code>LSTM</code>的输出为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">outputs.shape = [ batch_size,timestep_size, hidden_size]</div><div class="line">state.shape = [layer_num, 2, batch_size, hidden_size];</div></pre></td></tr></table></figure>
-<h2 id="二、TF中lstm的state"><a href="#二、TF中lstm的state" class="headerlink" title="二、TF中lstm的state"></a>二、TF中lstm的state</h2><p><code>state</code>其实包含了两个变量<code>c</code>与<code>h</code>，分别由如下图表示：</p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn13.png?imageView2/2/w/650" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/rnn14.png?imageView2/2/w/650" alt=""></p>
-<p>因此可以看出<code>state</code>中包含了<code>output</code>；</p>
-
+        <p><img src="http://ogtxggxo6.bkt.clouddn.com/YUIKJN.png" alt=""></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/25/tensorflow中的lstm的state/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
