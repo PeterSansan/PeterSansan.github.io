@@ -3,29 +3,17 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>关于RNN（Seq2Seq）的一点个人理解与感悟 | blog of PeterSansan</title>
+  <title>归档: 2017/9 | blog of PeterSansan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="深度学习">
-<meta property="og:type" content="article">
-<meta property="og:title" content="关于RNN（Seq2Seq）的一点个人理解与感悟">
-<meta property="og:url" content="http://petersansan.top/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/index.html">
+  <meta name="description" content="Focus on NLP">
+<meta property="og:type" content="website">
+<meta property="og:title" content="blog of PeterSansan">
+<meta property="og:url" content="http://petersansan.top/archives/2017/09/index.html">
 <meta property="og:site_name" content="blog of PeterSansan">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/ffdd.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as.png">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as1.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as2.png">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as3.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as4.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as5.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as6.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as7.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as8.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as9.png?imageslim">
-<meta property="og:image" content="http://ogtxggxo6.bkt.clouddn.com/as10.png?imageslim">
-<meta property="og:updated_time" content="2017-05-25T06:06:47.466Z">
+<meta property="og:description" content="Focus on NLP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于RNN（Seq2Seq）的一点个人理解与感悟">
-<meta name="twitter:image" content="http://ogtxggxo6.bkt.clouddn.com/ffdd.png?imageslim">
+<meta name="twitter:title" content="blog of PeterSansan">
+<meta name="twitter:description" content="Focus on NLP">
   
   
     <link rel="icon" href="/favicon.png">
@@ -78,94 +66,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-关于RNN（Seq2Seq）的一点个人理解与感悟" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/" class="article-date">
-  <time datetime="2017-05-25T05:49:57.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      关于RNN（Seq2Seq）的一点个人理解与感悟
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/09/13/test/" class="archive-article-date">
+  <time datetime="2017-09-13T11:05:31.000Z" itemprop="datePublished">9月 13</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/13/test/">test</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ogtxggxo6.bkt.clouddn.com/ffdd.png?imageslim" alt=""></p>
-<a id="more"></a>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as.png" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as1.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as2.png" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as3.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as4.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as5.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as6.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as7.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as8.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as9.png?imageslim" alt=""></p>
-<p><img src="http://ogtxggxo6.bkt.clouddn.com/as10.png?imageslim" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://petersansan.top/2017/05/25/关于RNN（Seq2Seq）的一点个人理解与感悟/" data-id="cj7ix9s7t001fdrif6yfp7w4l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
-
-    </footer>
-	
-    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-    <script>
-    var cloudTieConfig = {
-      url: document.location.href, 
-      sourceId: "",
-      productKey: "e2a8be6e9b7f4bf7aa3c3f956be2ce37",
-      target: "cloud-tie-wrapper"
-    };
-    var yunManualLoad = true;
-    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-    </script>
-	
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/05/24/机器学习若干概念/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          机器学习若干概念
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/05/25/tensorflow中的lstm的state/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">tensorflow中的lstm的state</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
+  
+  
+    </div></section>
+  
 
 </section>
         
